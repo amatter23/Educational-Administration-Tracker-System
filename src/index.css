@@ -1,13 +1,217 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Cairo', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+/* reset */
+body,
+p,
+a,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+/* variables */
+:root {
+  --backgound-1: #ffffff;
+  --primary-darker: #182938;
+  --primary-dark: #374e63;
+  --primary-base: #617586;
+  --primary-light: #8b9caa;
+  --text-color-titles: #1f2c38;
+  --text-color-body: #2c3c4b;
+  --text-color-light: #5d7386;
+  --text-color-placeholder: #8b9caa;
+  --pading: 1rem;
+  --btn-color: #1290ff;
+  --border-radius: 0.25rem;
+}
+
+
+
+/* text style  */
+h1 {
+  font-size: 2.3em;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+h5 {
+  font-size: 1em;
+  font-weight: 700;
+}
+h6 {
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.big-text {
+  font-size: 4.625em;
+  font-weight: 400;
+}
+
+.standart-text {
+  font-size: 1em;
+  font-weight: 400;
+}
+.small-text {
+  font-size: 0.875em;
+  font-weight: 400;
+}
+
+.smaller-text {
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+/* small tablet styles */
+@media screen and (min-width: 200px) {
+  body {
+    font-size: 16px;
+  }
+  html {
+    font-size: 16px;
+  }
+  /* button style have a 2 style one is btn and btn-outline */
+
+  .btn {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: var(--backgound-1);
+    background-color: var(--btn-color);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn:hover {
+    background-color: var(--backgound-1);
+    color: var(--btn-color);
+    scale: 1.05;
+  }
+  .btn-outline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: var(--btn-color);
+    background-color: var(--backgound-1);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-outline:hover {
+    background-color: var(--btn-color);
+    color: var(--backgound-1);
+    scale: 1.05;
+  }
+}
+
+/* large tablet & laptop styles */
+@media screen and (min-width: 960px) {
+  body {
+    font-size: 18px;
+  }
+  html {
+    font-size: 18px;
+  }
+  /* button style have a 2 style one is btn and btn-outline */
+
+  .btn {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: var(--backgound-1);
+    background-color: var(--btn-color);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn:hover {
+    background-color: var(--backgound-1);
+    color: var(--btn-color);
+    scale: 1.05;
+  }
+  .btn-outline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: var(--btn-color);
+    background-color: var(--backgound-1);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-outline:hover {
+    background-color: var(--btn-color);
+    color: var(--backgound-1);
+    scale: 1.05;
+  }
+}
+
+/* desktop styles */
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 20px;
+  }
+  html {
+    font-size: 20px;
+  }
+  /* button style have a 2 style one is btn and btn-outline */
+
+  .btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    color: var(--backgound-1);
+    background-color: var(--btn-color);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn:hover {
+    background-color: var(--backgound-1);
+    color: var(--btn-color);
+    scale: 1.05;
+  }
+  .btn-outline {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: var(--btn-color);
+    background-color: var(--backgound-1);
+    border-radius: 0.25rem;
+    border: solid 1px var(--btn-color);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-outline:hover {
+    background-color: var(--btn-color);
+    color: var(--backgound-1);
+    scale: 1.05;
+  }
 }
