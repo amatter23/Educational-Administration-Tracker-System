@@ -15,6 +15,9 @@ li {
 li {
   list-style-type: none;
 }
+input {
+  all: unset;
+}
 /* variables */
 :root {
   --backgound-1: #ffffff;
@@ -29,53 +32,77 @@ li {
   --pading: 1rem;
   --btn-color: #1290ff;
   --border-radius: 0.25rem;
+  --border-color: #3361753a;
 }
-
-
 
 /* text style  */
 h1 {
-  font-size: 2.3em;
+  font-size: 2.3rem;
   font-weight: 700;
 }
 h2 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 h3 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 h4 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 h5 {
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 700;
 }
 h6 {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
 .big-text {
-  font-size: 4.625em;
+  font-size: 4.625rem;
   font-weight: 400;
 }
 
 .standart-text {
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 400;
 }
 .small-text {
-  font-size: 0.875em;
+  font-size: 0.875rem;
   font-weight: 400;
 }
 
 .smaller-text {
-  font-size: 0.75em;
+  font-size: 0.75rem;
   font-weight: 400;
+}
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+label {
+  font-size: 0.875rem;
+  color: var(--text-color-light);
+  justify-content: flex-end;
+  /* need to make this in right side */
+
+  text-align: right;
+}
+input[type='text'] {
+  font-size: 1rem;
+  color: var(--text-color-body);
+  border: solid 1px var(--border-color);
+  padding: 8px 8px;
+  border-radius: var(--border-radius);
+  text-align: right;
+}
+input[type='text']::placeholder {
+  font-size: 1rem;
+  color: var(--text-color-placeholder);
 }
 
 /* small tablet styles */
