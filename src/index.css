@@ -21,6 +21,7 @@ input {
 /* variables */
 :root {
   --backgound-1: #ffffff;
+  --backgound-2: #f8f9fa;
   --primary-darker: #182938;
   --primary-dark: #374e63;
   --primary-base: #617586;
@@ -30,12 +31,21 @@ input {
   --text-color-light: #5d7386;
   --text-color-placeholder: #8b9caa;
   --pading: 1rem;
+  --gap: 1rem;
   --btn-color: #1290ff;
   --border-radius: 0.25rem;
   --border-color: #3361753a;
 }
 
 /* text style  */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 h1 {
   font-size: 2.3rem;
   font-weight: 700;
@@ -83,26 +93,55 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: fit-content;
 }
 label {
   font-size: 0.875rem;
   color: var(--text-color-light);
   justify-content: flex-end;
   /* need to make this in right side */
-
   text-align: right;
 }
 input[type='text'] {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--text-color-body);
   border: solid 1px var(--border-color);
-  padding: 8px 8px;
   border-radius: var(--border-radius);
   text-align: right;
+  padding: 0 var(--pading);
+  background-color: var(--backgound-1);
 }
+
 input[type='text']::placeholder {
   font-size: 1rem;
   color: var(--text-color-placeholder);
+}
+input[type='number'] {
+  font-size: 0.9rem;
+  color: var(--text-color-body);
+  border: solid 1px var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: flex-end;
+  background-color: var(--backgound-1);
+  width: 5rem;
+  padding: 0 calc(var(--pading) / 2);
+}
+input[type='number']::placeholder {
+  font-size: 0.9rem;
+  color: var(--text-color-body);
+
+  border-radius: var(--border-radius);
+  text-align: flex-end;
+  background-color: var(--backgound-1);
+  width: 5rem;
+}
+input[type='checkbox' i] {
+  appearance: auto;
+  margin: 3px 3px 3px 4px;
+  width: 20px;
+  height: 20px;
+  padding: var(--pading);
+  border: solid 1px var(--border-color);
 }
 
 /* small tablet styles */
