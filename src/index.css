@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Cairo', sans-serif;
 }
@@ -28,17 +31,17 @@ input {
   --primary-light: #8b9caa;
   --text-color-titles: #1f2c38;
   --text-color-body: #2c3c4b;
-  --text-color-light: #5d7386;
+  --text-color-light: #6f889f;
   --text-color-placeholder: #8b9caa;
   --pading: 1rem;
   --gap: 1rem;
   --btn-color: #1290ff;
   --border-radius: 0.25rem;
   --border-color: #3361753a;
-  --font-size-big:font-size: 4.625rem;
-  --font-size-standard:font-size: 1rem;
-  --font-size-small:font-size: 0.875rem;
-  --font-size-smaller:font-size: 0.875rem;
+  --font-size-big: 4.625rem;
+  --font-size-standard: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-smaller: 0.75rem;
   --font-weight-normal: 400;
 }
 
@@ -75,7 +78,6 @@ h6 {
   font-size: 0.8rem;
   font-weight: 700;
 }
-
 
 .input-label {
   display: flex;
@@ -145,8 +147,8 @@ input[type='checkbox' i] {
 
   .btn {
     font-size: 0.8rem;
-    font-weight: 700;
-    padding: 8px 16px;
+    font-weight: 500;
+    padding: 4px 8px;
     color: var(--backgound-1);
     background-color: var(--btn-color);
     border-radius: 0.25rem;
@@ -162,8 +164,8 @@ input[type='checkbox' i] {
   }
   .btn-outline {
     font-size: 0.8rem;
-    font-weight: 700;
-    padding: 8px 16px;
+    font-weight: 500;
+    padding: 4px 8px;
     color: var(--btn-color);
     background-color: var(--backgound-1);
     border-radius: 0.25rem;
