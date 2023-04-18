@@ -35,6 +35,11 @@ input {
   --btn-color: #1290ff;
   --border-radius: 0.25rem;
   --border-color: #3361753a;
+  --font-size-big:font-size: 4.625rem;
+  --font-size-standard:font-size: 1rem;
+  --font-size-small:font-size: 0.875rem;
+  --font-size-smaller:font-size: 0.875rem;
+  --font-weight-normal: 400;
 }
 
 /* text style  */
@@ -71,24 +76,7 @@ h6 {
   font-weight: 700;
 }
 
-.big-text {
-  font-size: 4.625rem;
-  font-weight: 400;
-}
 
-.standart-text {
-  font-size: 1rem;
-  font-weight: 400;
-}
-.small-text {
-  font-size: 0.875rem;
-  font-weight: 400;
-}
-
-.smaller-text {
-  font-size: 0.75rem;
-  font-weight: 400;
-}
 .input-label {
   display: flex;
   flex-direction: column;
@@ -110,6 +98,7 @@ input[type='text'] {
   text-align: right;
   padding: 0 var(--pading);
   background-color: var(--backgound-1);
+  height: fit-content;
 }
 
 input[type='text']::placeholder {
