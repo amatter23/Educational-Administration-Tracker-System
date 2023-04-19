@@ -3,13 +3,29 @@ import React, { useState, useEffect } from 'react';
 import classes from './AdminTable.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faList, faPlus } from '@fortawesome/free-solid-svg-icons';
-
+import { getUsers } from '../../utils/getData';
 const AdminTable = props => {
   // users data
   const [users, setUsers] = useState([]);
-  // todo fitch data from api
+  const [isLoading, setIsLoading] = useState(true);
+ 
+
+  const fetchData = async () => {
+    try {
+      const response = await getUsers();
+      setUsers(response);
+      console.log(response);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
   // todo create a filter component
 
+  useEffect(() => {
+    fetchData();
+  }, []);
   // state to toggle the add user screen
 
   const [addUserToggle, UpdateaddUserToggle] = useState(false);
