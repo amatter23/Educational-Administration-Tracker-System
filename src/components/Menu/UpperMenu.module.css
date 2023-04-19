@@ -1,0 +1,43 @@
+.icon {
+  color: var(--text-color-light);
+}
+.menu {
+  background-color: var(--backgound-1);
+  color: var(--text-color-light);
+  border-bottom: 1px solid var(--border-color);
+  border-bottom: solid 1px var(--border-color);
+  display: flex;
+  flex-direction: row;
+  padding: calc(var(--pading) / 4) 0;
+  width: 100%;
+  justify-content: space-between;
+}
+.menuLogo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) / 2);
+}
+.menuLogo > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  height: 100%;
+  padding: 0 var(--pading);
+  border-right: solid 1px var(--border-color);
+}
+.logout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--pading);
+  cursor: pointer;
+}
+.logout::hover {
+  color: var(--text-color-titles);
+}
