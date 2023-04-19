@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: 100vw;
+  height: 100vh;
+}
+.content{
+  width: 85%;
+  height: 100%;
+  margin:  auto;
+}
+
+@media screen and (max-width: 400px) {
+
+  .content{
+    width: 95%;
+    height: 100%;
+    margin:  auto;
+  }
+}
