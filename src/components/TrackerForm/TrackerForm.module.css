@@ -9,6 +9,8 @@ body {
   border-radius: var(--border-radius);
   background-color: var(--backgound-2);
   color: var(--primary-dark);
+  height: 100%;
+  overflow-y: scroll;
 }
 .form {
   display: flex;
