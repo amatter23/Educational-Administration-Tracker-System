@@ -19,6 +19,9 @@
   justify-content: center;
   gap: calc(var(--gap) / 2);
 }
+.name{
+  border-right: solid 1px var(--border-color);
+}
 .menuLogo > div {
   display: flex;
   flex-direction: row;
@@ -29,6 +32,7 @@
   height: 100%;
   padding: 0 var(--pading);
   border-right: solid 1px var(--border-color);
+  cursor: pointer;
 }
 .logout {
   display: flex;
@@ -40,4 +44,86 @@
 }
 .logout::hover {
   color: var(--text-color-titles);
+}
+
+.list ul {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+  margin-left: calc(var(--pading) * 2);
+  color: var(--backgound-1);
+}
+.list ul li {
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--backgound-1);
+  gap: var(--gap);
+  display: flex;
+  flex-direction: row;
+  transform: none !important;
+}
+.icon {
+  padding-right: calc(var(--pading) / 2);
+  
+}
+a {
+  text-decoration: none;
+  color: var(--primary-dark);
+}
+.active {
+  color: var(--primary-light);
+  border-bottom: solid 1px var(--primary-light);
+}
+.footer {
+  border-top: solid 1px var(--border-color);
+  font-size: var(--font-size-smaller);
+  position: absolute;
+  bottom: 0;
+}
+@media screen and (max-width: 500px) {
+  .list ul {
+    position: absolute;
+    left: -10%;
+    top: 4%;
+    background-color: var(--primary-base);
+    flex-direction: column;
+    padding: var(--pading);
+    transform: translatex(0%);
+    height: 98%;
+    transition: 200ms ease-in-out;
+    
+  }
+  a {
+    text-decoration: none;
+    color: var(--backgound-1);
+  }
+  .side{
+    transform: translatex(-100%) !important;
+    color: var(--backgound-1);
+  }
+
+}
+@media screen and (max-width: 375px) {
+  .list ul {
+    position: absolute;
+    left: -10%;
+    top: 5%;
+    background-color: var(--primary-base);
+    flex-direction: column;
+    padding: var(--pading);
+    transform: translatex(0%);
+    height: 100%;
+    transition: 200ms ease-in-out;
+  }
+  a {
+    text-decoration: none;
+    color: var(--backgound-1);
+  }
+  .side{
+    transform: translatex(-100%) !important;
+    color: var(--backgound-1);
+  }
+
 }
