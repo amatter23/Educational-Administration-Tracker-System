@@ -9,9 +9,9 @@ const UserRoute = props => {
     <div className={classes.container}>
       <UpperMenu />
       <div className={classes.middle}>
-        <div className={classes.menu}>
+        {/* <div className={classes.menu}>
         <Menu />
-        </div>
+        </div> */}
         <div className={classes.content}>
         <Outlet />
         </div>
