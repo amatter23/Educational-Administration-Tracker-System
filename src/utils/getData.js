@@ -51,3 +51,33 @@ export function addUser(email, password, userName) {
       return data;
     });
 }
+
+export function addForm(form) {
+  var resp;
+  return fetch(api_url + '/evaluation-form/', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: auth,
+    },
+    body: JSON.stringify(form),
+  })
+    .then(response => {
+      resp = response;
+      return response.json();
+    })
+    .then(json => {
+      return {
+        response: resp,
+        // errorMassage: [json.username, json.email, json.password],
+        // userName: json.username,
+        // email: json.email,
+        // password: json.password,
+        errorMassage: json,
+        error: !resp.ok,
+      };
+    })
+    .then(data => {
+      return data;
+    });
+}
