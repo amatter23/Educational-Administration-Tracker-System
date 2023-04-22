@@ -9,24 +9,24 @@ import {
   loader,
 } from 'react-router-dom';
 import React, { useState } from 'react';
-import TrackerForm from './components/TrackerForm/TrackerForm';
+import TrackerForm from './components/Tracker/TrackerForm/TrackerForm';
 import AdminRouts from './routes/AdminRouts.js';
 import UserRoute from './routes/UserRoute.js';
+import TrackerSchools from './components/Tracker/TrackerSchools/TrackerSchools';
 import './App.css';
 
 function App() {
   const [userData, UpdateUserData] = useState({
     role: 'tracker',
   });
-
-  const routerUserTraker = createBrowserRouter([
+  const routerUserTracker = createBrowserRouter([
     {
       path: '/',
       element: <UserRoute />,
       children: [
         {
           path: '/',
-          element: <div>Dashboard</div>,
+          element: <TrackerSchools />,
         },
         {
           path: '/trackerForm',
@@ -46,7 +46,7 @@ function App() {
       {userData.role === 'admin' ? (
         <RouterProvider router={routerAdmin} />
       ) : (
-        <RouterProvider router={routerUserTraker} />
+        <RouterProvider router={routerUserTracker} />
       )}
     </>
   );
