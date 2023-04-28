@@ -1,13 +1,12 @@
 const api_url = 'https://fms-jcfe.onrender.com';
 const auth =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMjkxNjg0LCJqdGkiOiJjYTdmYjdiYjBlOTI0MWRkYWI2YThjNGZjOTU4YjlmMyIsInVzZXJfaWQiOjF9.EzTv-RCRnpQ_ZwgW1J4MZCtspiQerIASxWDvwAHVK0M';
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzMDc0NzEwLCJqdGkiOiI0YjNjOGZmOWE5N2Q0MGM0OTZiOWZmMjg5Y2EzNjY5YiIsInVzZXJfaWQiOjF9.MQ5STmZWIsEhjmOC6Ycb_QAJ2i8fXGACuvO2NCcA2io';
 
 export function getUsers() {
   return fetch(api_url + '/auth/users/', {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgyMzAxMzI4LCJqdGkiOiJkN2RiMTA3N2UxMGQ0ZGVlOGU0Mjk3NWEzMTFlNzFiYiIsInVzZXJfaWQiOjF9.zWUqFdvH_uPRpkdzFms5pKxWE2cl3mTzfhQ2gZLZ8Zs',
+      Authorization: auth,
     },
   })
     .then(response => response.json())
@@ -81,3 +80,23 @@ export function addForm(form) {
       return data;
     });
 }
+
+// get personal data
+
+export function getPersonalData() {
+  return fetch( api_url +'/auth/users/me/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return res.status ;
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
