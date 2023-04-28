@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(187deg, #182938, #374e63, #617586);
+  background-size: 600% 600%;
+  color: var(--text-color-body);
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+  width: 30rem;
+  background-color: var(--backgound-1);
+  border-radius: 1rem;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  background-image: url("../../assits/cool-background.png")
+}
+
+
+.inputs {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  gap: var(--gap);
+  box-sizing: border-box;
+  position: relative;
+  height: 90%;
+}
+.inputsCon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  width: 100%;
+}
+.inputContanier {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: fit-content;
+  width: 80%;
+  gap: var(--gap);
+}
+.inputs input {
+  text-align: left;
+  width: 100%;
+}
+.inputs label {
+  text-align: left;
+}
+.inputs button {
+  width: 80%;
+}
+.style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+  height: 100%;
+  border-left: 1px solid var(--border-color);
+  text-align: left;
+}
+.text {
+  width: 80%;
+  text-align: center;
+}
+.style img {
+  width: 30rem;
+}
+.style h2 {
+  text-align: left;
+  border-bottom: solid 1px var(--border-color);
+}
+
+
+@media screen and (max-width: 900px) {
+  .menu {
+    display: none;
+  }
+  .content {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .menu {
+    display: none;
+  }
+  .content {
+    width: 80%;
+    height: 50%;
+    margin: auto;
+  }
+}
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
