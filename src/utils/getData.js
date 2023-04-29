@@ -1,5 +1,5 @@
-const api_url = 'https://fms-jcfe.onrender.com';
-const auth =
+export const api_url = 'https://fms-jcfe.onrender.com';
+export const auth =
   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzMDc0NzEwLCJqdGkiOiI0YjNjOGZmOWE5N2Q0MGM0OTZiOWZmMjg5Y2EzNjY5YiIsInVzZXJfaWQiOjF9.MQ5STmZWIsEhjmOC6Ycb_QAJ2i8fXGACuvO2NCcA2io';
 
 export function getUsers() {
