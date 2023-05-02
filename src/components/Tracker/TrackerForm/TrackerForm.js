@@ -217,7 +217,7 @@ const TrackerForm = () => {
 
   // check if the form is loading or not
   const [isLoading, setIsLoading] = useState();
-
+  // check if the form is submitted or not
   const [isError, setIsError] = useState('none');
 
   // function test(obj) {
