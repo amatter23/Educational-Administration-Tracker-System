@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+  padding: calc(var(--pading) / 2) var(--pading);
+  color: var(--text-color-body);
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  justify-content: space-evenly;
+  margin-left: var(--pading);
+  gap: calc(var(--gap) * 1);
+}
+
+@media screen and (max-width: 550px) {
+  .content {
+    flex-wrap: wrap;
+  }
+}
