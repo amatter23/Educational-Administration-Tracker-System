@@ -9,15 +9,21 @@ export function getUsers() {
       'Content-type': 'application/json; charset=UTF-8',
       Authorization: auth,
     },
-  })
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    });
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
 }
 
 export function addUser(email, password, userName) {
-  var resp;
   return fetch(api_url + '/auth/users/', {
     method: 'POST',
     headers: {
@@ -31,25 +37,18 @@ export function addUser(email, password, userName) {
       first_name: 'ahmed',
       last_name: 'mattar',
     }),
-  })
-    .then(response => {
-      resp = response;
-      return response.json();
-    })
-    .then(json => {
-      return {
-        response: resp,
-        // errorMassage: [json.username, json.email, json.password],
-        // userName: json.username,
-        // email: json.email,
-        // password: json.password,
-        errorMassage: json,
-        error: !resp.ok,
-      };
-    })
-    .then(data => {
-      return data;
-    });
+  }).then(res => {
+    if (res.status === 201) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
 }
 
 export function addForm(form) {
@@ -104,7 +103,6 @@ export function getPersonalData() {
 }
 
 // get school to each user
-
 export function getSchools(userRole, formId) {
   var api = userRole.replace('_admin', '').replace('_', '-');
   if (formId !== undefined) {
@@ -139,6 +137,28 @@ export function addResponse(formId, response, userRole) {
       Authorization: auth,
     },
     body: JSON.stringify(response),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+// get tracker school
+export function getTrackerSchools() {
+  return fetch(api_url + '/evaluation-form/', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
   }).then(res => {
     if (res.status === 200) {
       return res.json().then(data => {
