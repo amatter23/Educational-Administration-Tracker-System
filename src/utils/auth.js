@@ -29,14 +29,17 @@ export function checkToken() {
 export function removeAuthToken() {
   localStorage.removeItem('token');
 }
+// create a function to check if the user is logged in
 
 export function checkAuth() {
   if (localStorage.getItem('token')) {
     return true;
   } else {
-    return redirect('/auth');
+    return false;
   }
 }
+
+
 export function loginPageRedirect() {
   if (localStorage.getItem('token')) {
     return redirect('/');
@@ -69,6 +72,4 @@ export function fetchlogin(userName, password) {
 
 export function logout() {
   removeAuthToken();
-  window.location.reload();
 }
-
