@@ -11,17 +11,24 @@ import {
 
 import { fetchlogin } from '../../utils/auth';
 const Login = () => {
+  // state to store the user name
   const [userName, setUserName] = useState(null);
+  // state to store the password
   const [password, setPassword] = useState(null);
+  // state to store the error
   const [error, setError] = useState(null);
+  // state to store the loading state
   const [isLoading, setLoading] = useState(false);
+  // function to store the user name input
   const userNameHandler = e => {
     setUserName(e.target.value);
   };
+  // function to store the password input
   const passwordHandler = e => {
     setPassword(e.target.value);
   };
 
+  // function to login
   const login = async () => {
     setLoading(true);
     try {
@@ -32,6 +39,10 @@ const Login = () => {
           setLoading(false);
         } else if (data === 401) {
           setError('Invalid user name or password');
+        }
+        else{
+          // refresh the site data
+          window.location.reload();
         }
       });
     } catch (error) {
