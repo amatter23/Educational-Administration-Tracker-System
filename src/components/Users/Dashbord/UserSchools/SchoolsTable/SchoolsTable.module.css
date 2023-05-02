@@ -1,0 +1,156 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  color: var(--text-color-body);
+}
+.header{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+.title{
+  color: var(--text-color-body);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: var(--gap);
+}
+.table {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  padding: var(--pading);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100%;
+  gap: var(--gap);
+}
+.content {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  
+}
+.tableHeader {
+  color: var(--backgound-1);
+  font-weight: bold;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  padding: calc(var(--pading) / 2);
+  background-color: var(--text-color-body);
+  border-radius: var(--border-radius);
+}
+.tableHeaderItem {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+.tableBody {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+  gap: calc(var(--gap) / 2);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 90%;
+}
+.tableRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: calc(var(--pading) / 4);
+  border-radius: var(--border-radius);
+  border-bottom: 1px solid var(--border-color);
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+}
+.tableRow:nth-child(even) {
+  background-color: var(--backgound-2);
+}
+.tableRow:hover {
+  scale: 1.01;
+  background-color: var(--text-color-body);
+  color: var(--backgound-1);
+  border-radius: var(--border-radius);
+}
+.tableBodyItem {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+
+  border-radius: var(--border-radius);
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5%;
+  gap: var(--gap);
+}
+.pagination button {
+  font-size: var(--font-size-smaller);
+  color: var(--text-color-light);
+  border: solid 1px var(--border-color);
+  border-radius: var(--border-radius);
+  padding: calc(var(--pading) / 6) calc(var(--pading) / 2);
+  background-color: var(--backgound-1);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  text-align: center;
+
+  transition: 200ms ease-in-out;
+  font-weight: 500;
+}
+.pagination button:hover {
+  background-color: var(--backgound-2);
+  border: solid 1px var(--backgound-2);
+}
+
+/* .tableBodyItem > * {
+  width: 100%;
+  text-align: center;
+}
+.tableBodyItem > *:nth-child(1) {
+  width: 20%;
+}
+.tableBodyItem > *:nth-child(2) {
+  width: 20%;
+}
+.tableBodyItem > *:nth-child(3) {
+  width: 20%;
+}
+.tableBodyItem > *:nth-child(4) {
+  width: 20%;
+} */
+
+@media screen and (max-width: 500px) {
+  .schoolName {
+    display: flex;
+  }
+  .clear {
+    display: none;
+  }
+}
