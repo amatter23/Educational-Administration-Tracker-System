@@ -266,7 +266,7 @@ const UserCheckBoxData = props => {
           {formResponse.response != null ? (
             <div className={classes.response}>
               <div className={classes.title}>
-                <h5>{t('Add response')}</h5>
+                <h5>{t('Response')}</h5>
                 <FontAwesomeIcon icon={faReply} />
               </div>
               <p>{formResponse.response}</p>
