@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { redirect, useNavigate } from 'react-router-dom';
 import classes from './UpperMenu.module.css';
+import { logout } from '../../utils/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBraille,
@@ -7,23 +9,25 @@ import {
   faArrowRightFromBracket,
   faTableColumns,
   faAlignJustify,
+  faAddressCard,
+  faSchool,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 const UpperMenu = props => {
-  const [userData, setuserData] = useState({
-    role: 'tracker',
-  });
-  const [menuShow, setmenuShow] = useState(false);
+  // state to store the user data
+  const [userData, setuserData] = useState(props.userData);
+  // state to store the menu show state
+  const [menuShow, setmenuShow] = useState(true);
+  // state to store the user roles have checkbox inputs
+  const [userRoles, setUserRoles] = useState(props.userRolesHaveCheckBoxInputs);
+  // navigate function
+  const navigate = useNavigate();
+  // choose the menu items based on the user role
   const menuItems = () => {
     if (userData.role === 'tracker') {
       return (
         <div className={classes.list}>
-          <ul
-            // style={{
-            //   transform: menuShow ? 'translatex(-110%)' : 'translatex(3%)',
-            // }}
-            className={menuShow? classes.side: ""}
-          >
+          <ul className={menuShow ? classes.side : ''}>
             <li>
               <NavLink
                 to='/'
@@ -34,7 +38,7 @@ const UpperMenu = props => {
                   className={classes.icon}
                   icon={faTableColumns}
                 />
-                Dashboard
+                Schools
               </NavLink>
             </li>
             <li>
@@ -50,12 +54,44 @@ const UpperMenu = props => {
               </NavLink>
             </li>
           </ul>
+        </div>
+      );
+    } else if (userData.role === 'system_admin') {
+      return;
+    } else if (userRoles.includes(userData.role)) {
+      return (
+        <div className={classes.list}>
+          <ul className={menuShow ? classes.side : ''}>
+            <li>
+              <NavLink
+                to='/'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon
+                  className={classes.icon}
+                  icon={faTableColumns}
+                />
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/schools'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+              >
+                <FontAwesomeIcon className={classes.icon} icon={faSchool} />
+                Schools
+              </NavLink>
+            </li>
+          </ul>
           {/* <div className={classes.footer}>
             <p>© 2023 All Rights Reserved</p>
           </div> */}
         </div>
       );
     }
+    //todo add manager and user roles to the menu
   };
   return (
     <div className={classes.menu}>
@@ -70,16 +106,28 @@ const UpperMenu = props => {
         </div>
         <div className={classes.name}>
           <FontAwesomeIcon icon={faCircleUser} className={classes.icon} />
-          <h6>Admin</h6>
+          <h6>{userData.role}</h6>
         </div>
-        <div  >{menuItems()}</div>
+        {menuItems()}
       </div>
 
-      <div className={classes.logout}>
-        <FontAwesomeIcon
-          icon={faArrowRightFromBracket}
-          className={classes.icon}
-        />
+      <div className={classes.left}>
+        <div className={classes.user}>
+          <FontAwesomeIcon className={classes.icon} icon={faAddressCard} />
+        </div>
+        <div
+          onClick={() => {
+            logout();
+            navigate('/');
+            window.location.reload(true);
+          }}
+          className={classes.logout}
+        >
+          <FontAwesomeIcon
+            icon={faArrowRightFromBracket}
+            className={classes.icon}
+          />
+        </div>
       </div>
     </div>
   );
