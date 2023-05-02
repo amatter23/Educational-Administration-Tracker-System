@@ -1,6 +1,7 @@
-export const api_url = 'https://fms-jcfe.onrender.com';
-export const auth =
-  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgzMDc0NzEwLCJqdGkiOiI0YjNjOGZmOWE5N2Q0MGM0OTZiOWZmMjg5Y2EzNjY5YiIsInVzZXJfaWQiOjF9.MQ5STmZWIsEhjmOC6Ycb_QAJ2i8fXGACuvO2NCcA2io';
+import { getAuthToken } from './auth';
+
+export const api_url = 'https://fms-production.up.railway.app';
+export const auth = 'Bearer ' + getAuthToken();
 
 export function getUsers() {
   return fetch(api_url + '/auth/users/', {
@@ -82,9 +83,8 @@ export function addForm(form) {
 }
 
 // get personal data
-
 export function getPersonalData() {
-  return fetch( api_url +'/auth/users/me/', {
+  return fetch(api_url + '/auth/users/me/', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: auth,
@@ -92,7 +92,10 @@ export function getPersonalData() {
   }).then(res => {
     if (res.status === 200) {
       return res.json().then(data => {
-        return res.status ;
+        return {
+          result: data,
+          status: res.status,
+        };
       });
     } else {
       return res.status;
@@ -100,3 +103,52 @@ export function getPersonalData() {
   });
 }
 
+// get school to each user
+
+export function getSchools(userRole, formId) {
+  var api = userRole.replace('_admin', '').replace('_', '-');
+  if (formId !== undefined) {
+    api = api + '/' + formId;
+  }
+  return fetch(api_url + '/' + api + '/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+// add response to the form
+export function addResponse(formId, response, userRole) {
+  var api = userRole.replace('_admin', '').replace('_', '-');
+  return fetch(api_url + '/' + api + '/' + formId + '/', {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: auth,
+    },
+    body: JSON.stringify(response),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
