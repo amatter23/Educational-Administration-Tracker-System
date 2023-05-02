@@ -11,6 +11,7 @@
   padding: calc(var(--pading) / 4) 0;
   width: 100%;
   justify-content: space-between;
+  position: relative;
 }
 .menuLogo {
   display: flex;
@@ -19,7 +20,7 @@
   justify-content: center;
   gap: calc(var(--gap) / 2);
 }
-.name{
+.name {
   border-right: solid 1px var(--border-color);
 }
 .menuLogo > div {
@@ -41,9 +42,24 @@
   justify-content: center;
   padding: 0 var(--pading);
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.logout:hover {
+  scale: 1.2;
 }
 .logout::hover {
   color: var(--text-color-titles);
+}
+.user {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.user:hover {
+  scale: 1.2;
+}
+
+.icon {
+  transition: all 0.3s ease;
 }
 
 .list ul {
@@ -52,6 +68,8 @@
   gap: var(--gap);
   margin-left: calc(var(--pading) * 2);
   color: var(--backgound-1);
+  z-index: 10;
+
 }
 .list ul li {
   font-size: var(--font-size-small);
@@ -66,7 +84,6 @@
 }
 .icon {
   padding-right: calc(var(--pading) / 2);
-  
 }
 a {
   text-decoration: none;
@@ -82,48 +99,52 @@ a {
   position: absolute;
   bottom: 0;
 }
-@media screen and (max-width: 500px) {
+
+.left {
+  display: flex;
+}
+@media screen and (max-width: 600px) {
   .list ul {
     position: absolute;
-    left: -10%;
-    top: 4%;
+    left: 0;
+    top: 100%;
     background-color: var(--primary-base);
     flex-direction: column;
     padding: var(--pading);
     transform: translatex(0%);
-    height: 98%;
+    height: 100vh;
     transition: 200ms ease-in-out;
-    
+    margin-left: 0;
   }
   a {
     text-decoration: none;
     color: var(--backgound-1);
   }
-  .side{
+  .side {
     transform: translatex(-100%) !important;
     color: var(--backgound-1);
   }
-
 }
 @media screen and (max-width: 375px) {
-  .list ul {
+  /* .list ul {
     position: absolute;
-    left: -10%;
-    top: 5%;
+    left: 0;
+    bottom: 0;
     background-color: var(--primary-base);
     flex-direction: column;
     padding: var(--pading);
     transform: translatex(0%);
     height: 100%;
     transition: 200ms ease-in-out;
-  }
+    margin-top: 10%;
+  } */
   a {
     text-decoration: none;
     color: var(--backgound-1);
   }
-  .side{
+  /* .side {
     transform: translatex(-100%) !important;
     color: var(--backgound-1);
-  }
-
+  } */
+  
 }
