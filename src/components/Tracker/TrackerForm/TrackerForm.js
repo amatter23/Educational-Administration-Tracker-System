@@ -15,26 +15,6 @@ const TrackerForm = () => {
     school_name: '',
     school_id: '',
     school_level: '',
-    security_safety: {
-      labs: null,
-      cabins: null,
-      building: null,
-      wall: null,
-      external_factors: null,
-      security_factors: {
-        fire_line: null,
-        tanks: null,
-        buckets: null,
-        fire_extinguishers: null,
-      },
-    },
-    teachers: {
-      material_one: {
-        name: 'عربي',
-        increase: null,
-        decrease: null,
-      },
-    },
     students_affairs: {
       first_class: {
         registered: null,
@@ -44,12 +24,44 @@ const TrackerForm = () => {
       transfers_to_school: null,
       transfers_from_school: null,
       transferred_files: null,
+      issue: {
+        issue: '',
+      },
+    },
+    security_safety: {
+      labs: 'null',
+      cabins: 'null',
+      building: 'null',
+      wall: 'null',
+      external_factors: 'null',
+      security_factors: {
+        fire_line: 'null',
+        tanks: 'null',
+        buckets: 'null',
+        fire_extinguishers: 'null',
+      },
+      issue: {
+        issue: '',
+      },
+    },
+    teachers: {
+      material_one: {
+        name: '',
+        increase: null,
+        decrease: null,
+      },
+      issue: {
+        issue: '',
+      },
     },
     workers_affairs: {
       registered: null,
       present: null,
       absent: null,
       negatives: null,
+      issue: {
+        issue: '',
+      },
     },
     strategic_planning: {
       obstacles: null,
@@ -57,6 +69,9 @@ const TrackerForm = () => {
       team_building: null,
       plan: null,
       analysis: null,
+      issue: {
+        issue: '',
+      },
     },
     administration: {
       execution_plan: null,
@@ -69,11 +84,17 @@ const TrackerForm = () => {
       risks_indicators: null,
       plan: null,
       training_on_plan: null,
+      issue: {
+        issue: '',
+      },
     },
     training: {
       teachers_training: null,
       training_plan: null,
       training_plan_activation: null,
+      issue: {
+        issue: '',
+      },
     },
     nutrition: {
       daily_received: null,
@@ -81,19 +102,27 @@ const TrackerForm = () => {
       disciplined_distribution: null,
       health_certificate: null,
       not_stored_periods: null,
+      issue: {
+        issue: '',
+      },
     },
     cooperative: {
       existing_authorized_items: null,
       drag_running: null,
       drag_profits: null,
+      issue: {
+        issue: '',
+      },
     },
     laboratories: {
       work_validity: null,
-      ory_association: null,
       networks: null,
       computers: null,
       evaluation: null,
       tilo: null,
+      issue: {
+        issue: '',
+      },
     },
     decentralization: {
       board_of_trustees: null,
@@ -102,12 +131,18 @@ const TrackerForm = () => {
       exchange: null,
       plan: null,
       append: null,
+      issue: {
+        issue: '',
+      },
     },
     production_unit: {
       profit_distribution: null,
       supply: null,
       activation: null,
       certified: null,
+      issue: {
+        issue: '',
+      },
     },
     environment_population: {
       toilets_health_procedures: null,
@@ -116,6 +151,9 @@ const TrackerForm = () => {
       check_health_plan: null,
       activities: null,
       labs_health_procedures: null,
+      issue: {
+        issue: '',
+      },
     },
     quality: {
       first_year_one: null,
@@ -127,10 +165,88 @@ const TrackerForm = () => {
       first_year_three: null,
       second_year_three: null,
       third_year_three: null,
+      issue: {
+        issue: '',
+      },
     },
   });
+  const [issueField, setIssueField] = useState({
+    students_affairs: {
+      issue: false,
+    },
+    security_safety: {
+      issue: [false, false],
+    },
+    teachers: {
+      issue: false,
+    },
+    workers_affairs: {
+      issue: false,
+    },
+    strategic_planning: {
+      issue: false,
+    },
+    administration: {
+      issue: false,
+    },
+    training: {
+      issue: false,
+    },
+    nutrition: {
+      issue: false,
+    },
+    cooperative: {
+      issue: false,
+    },
+    laboratories: {
+      issue: false,
+    },
+    decentralization: {
+      issue: false,
+    },
+    production_unit: {
+      issue: false,
+    },
+    environment_population: {
+      issue: false,
+    },
+    quality: {
+      issue: false,
+    },
+  });
+
   // check if the form is loading or not
   const [isLoading, setIsLoading] = useState();
+
+  const [isError, setIsError] = useState('none');
+
+  // function test(obj) {
+  //     for (let prop in obj) {
+  //      console.log(isError);
+  //       if (typeof obj[prop] === 'object') {
+  //         if (test(obj[prop])) {
+  //          setIsError("flex");
+  //          console.log(obj[prop]);
+  //         }
+  //       } else {
+  //         if (typeof obj[prop] === 'string' && obj[prop].includes('غير')) {
+  //           console.log(obj[prop]);
+  //           setIsError("flex");
+  //         }
+  //       }
+  //     }
+  //     setIsError("none");
+  //   }
+  const test = () => {
+    const hasNonArabicValue = Object.values(inputs).some(value => {
+      if (typeof value === 'object' && value !== null) {
+        return Object.values(value).some(
+          nestedValue => !nestedValue?.includes('غير')
+        );
+      }
+      return !value?.includes('غير');
+    });
+  };
 
   // function to handle the submit of the form
   const addFormHandler = async event => {
@@ -139,7 +255,6 @@ const TrackerForm = () => {
     try {
       const response = await addForm(inputs).then(response => {
         setIsLoading(false);
-        console.log(response);
         if (response.error === true) {
           toast.error('حاول مره اخري', {});
         } else {
@@ -155,6 +270,36 @@ const TrackerForm = () => {
       setIsLoading(false);
     }
   };
+
+  // let allKeysAreEmpty = true;
+  // Object.keys(inputs.quality).forEach(key => {
+  //   if (inputs.quality[key] !== '') {
+  //     allKeysAreEmpty = false;
+  //   }
+  // });
+
+  // const checkIssues = objectTrack => event => {
+  //   // if (Object.keys(objectTrack) === 0) {
+  //     if (objectTrack.includes('غير' || 'لا')) {
+  //       console.log('true');
+  //       return true;
+  //     } else {
+  //       console.log('false');
+  //       return false;
+  //     }
+  //   // }
+  //   // } else {
+  //   //   Object.keys(objectTrack).forEach(key => {
+  //   //     if (objectTrack[key] === 'غير' || objectTrack[key] === 'لا') {
+  //   //       console.log('true');
+  //   //       return true;
+  //   //     } else {
+  //   //       console.log('false');
+  //   //       return false;
+  //   //     }
+  //   //   });
+  //   // }
+  // };
 
   return (
     <div className={classes.contaner}>
@@ -264,18 +409,27 @@ const TrackerForm = () => {
                 <input
                   value={'غير منضبط'}
                   placeholder='"غير منضبط"'
+                  // checked={
+                  //   inputs.students_affairs.transferred_files === 'غير منضبط'
+                  // }
                   checked={
                     inputs.students_affairs.transferred_files === 'غير منضبط'
                   }
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       students_affairs: {
                         ...inputs.students_affairs,
                         transferred_files: 'غير منضبط',
                       },
-                    })
-                  }
+                    });
+                    setIssueField({
+                      ...issueField,
+                      students_affairs: {
+                        issue: true,
+                      },
+                    });
+                  }}
                   name='students_affairs-transferred_files'
                   id='students_affairs-transferred_files'
                   type='checkbox'
@@ -288,21 +442,28 @@ const TrackerForm = () => {
                   checked={
                     inputs.students_affairs.transferred_files === 'منضبط'
                   }
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       students_affairs: {
                         ...inputs.students_affairs,
                         transferred_files: 'منضبط',
                       },
-                    })
-                  }
+                    });
+                    setIssueField({
+                      ...issueField,
+                      students_affairs: {
+                        issue: false,
+                      },
+                    });
+                  }}
                   name='students_affairs-transferred_files'
                   id='students_affairs-transferred_files'
                   type='checkbox'
                 />
                 <label htmlFor=''> منضبط</label>
               </div>
+
               <h6>ملفات التحويل</h6>
             </div>
             <div className={classes.input}>
@@ -341,6 +502,32 @@ const TrackerForm = () => {
                 />
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display:
+                issueField.students_affairs.issue === true ? 'flex' : 'none',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder='السلبية'
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  students_affairs: {
+                    ...inputs.students_affairs,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -388,15 +575,21 @@ const TrackerForm = () => {
             <div className={classes.input}>
               <div className={classes.input}>
                 <input
-                  onChange={e =>
+                  onChange={e => {
                     setinputs({
                       ...inputs,
                       workers_affairs: {
                         ...inputs.workers_affairs,
                         negatives: e.target.checked ? 'لا يوجد' : 'يوجد',
                       },
-                    })
-                  }
+                    });
+                    setIssueField({
+                      ...issueField,
+                      workers_affairs: {
+                        issue: !issueField.workers_affairs.issue,
+                      },
+                    });
+                  }}
                   placeholder='0'
                   id='schoolInf_level'
                   type='checkbox'
@@ -405,6 +598,32 @@ const TrackerForm = () => {
               </div>
 
               <h6> يوجد سلبيه</h6>
+            </div>
+            <div
+              style={{
+                display:
+                  issueField.workers_affairs.issue === true ? 'flex' : 'none',
+                width: '100%',
+                margin: '0 auto',
+              }}
+              className={classes.issue}
+            >
+              <input
+                style={{ width: '70%', margin: '0 auto' }}
+                placeholder='السلبية'
+                type='text'
+                onChange={e =>
+                  setinputs({
+                    ...inputs,
+                    workers_affairs: {
+                      ...inputs.workers_affairs,
+                      issue: {
+                        issue: e.target.value,
+                      },
+                    },
+                  })
+                }
+              />
             </div>
           </div>
         </div>
@@ -417,15 +636,16 @@ const TrackerForm = () => {
                   checked={
                     inputs.security_safety.external_factors === 'غير منضبط'
                   }
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       security_safety: {
                         ...inputs.security_safety,
                         external_factors: 'غير منضبط',
                       },
-                    })
-                  }
+                    });
+                    test();
+                  }}
                   placeholder='0'
                   id='schoolInf_level'
                   type='checkbox'
@@ -433,15 +653,16 @@ const TrackerForm = () => {
                 <label htmlFor=''> غير منضبط</label>
                 <input
                   checked={inputs.security_safety.external_factors === 'منضبط'}
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       security_safety: {
                         ...inputs.security_safety,
                         external_factors: 'منضبط',
                       },
-                    })
-                  }
+                    });
+                    test();
+                  }}
                   placeholder='0'
                   id='schoolInf_level'
                   type='checkbox'
@@ -452,15 +673,21 @@ const TrackerForm = () => {
               <div className={classes.input}>
                 <input
                   checked={inputs.security_safety.wall === 'غير منضبط'}
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       security_safety: {
                         ...inputs.security_safety,
                         wall: 'غير منضبط',
                       },
-                    })
-                  }
+                    });
+                    setIssueField({
+                      ...issueField,
+                      security_safety: {
+                        issue: true,
+                      },
+                    });
+                  }}
                   placeholder='0'
                   id='schoolInf_level'
                   type='checkbox'
@@ -468,15 +695,21 @@ const TrackerForm = () => {
                 <label htmlFor=''> غير منضبط</label>
                 <input
                   checked={inputs.security_safety.wall === 'منضبط'}
-                  onChange={() =>
+                  onChange={() => {
                     setinputs({
                       ...inputs,
                       security_safety: {
                         ...inputs.security_safety,
                         wall: 'منضبط',
                       },
-                    })
-                  }
+                    });
+                    setIssueField({
+                      ...issueField,
+                      security_safety: {
+                        issue: false,
+                      },
+                    });
+                  }}
                   placeholder='0'
                   id='schoolInf_level'
                   type='checkbox'
@@ -779,6 +1012,31 @@ const TrackerForm = () => {
                 <h6> خط حريق</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: isError,
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder='السلبية'
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  security_safety: {
+                    ...inputs.security_safety,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
