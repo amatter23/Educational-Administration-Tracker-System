@@ -8,7 +8,7 @@ import UpperMenu from '../components/Menu/UpperMenu';
 const AdminRouts = props => {
   return (
     <div className={classes.container}>
-      <UpperMenu />
+      <UpperMenu userData={props.userData}/>
       <div className={classes.content}>
         <AdminTable />
       </div>
