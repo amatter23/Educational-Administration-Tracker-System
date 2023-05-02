@@ -3,6 +3,7 @@
 }
 body {
   font-family: 'Cairo', sans-serif;
+  box-sizing: border-box;
 }
 
 /* reset */
@@ -107,6 +108,21 @@ input[type='text']::placeholder {
   font-size: 1rem;
   color: var(--text-color-placeholder);
 }
+input[type='Password'] {
+  font-size: 0.9rem;
+  color: var(--text-color-body);
+  border: solid 1px var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: right;
+  padding: 0 var(--pading);
+  background-color: var(--backgound-1);
+  height: fit-content;
+}
+
+input[type='text']::placeholder {
+  font-size: 1rem;
+  color: var(--text-color-placeholder);
+}
 input[type='number'] {
   font-size: 0.9rem;
   color: var(--text-color-body);
@@ -137,27 +153,24 @@ input[type='checkbox' i] {
 
 ::-webkit-scrollbar {
   width: 10px;
-  
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  
   background: var(--primary-dark);
-  border-radius: calc(var(--border-radius)/2);
+  border-radius: calc(var(--border-radius) / 2);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--primary-base);
-  border-radius: calc(var(--border-radius)/2);
+  border-radius: calc(var(--border-radius) / 2);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-light);
 }
-
 
 /* small tablet styles */
 @media screen and (min-width: 200px) {
@@ -180,6 +193,7 @@ input[type='checkbox' i] {
     transition: all 0.4s ease-in-out;
     cursor: pointer;
     width: 100%;
+    font-family: 'Cairo', sans-serif;
   }
   .btn:hover {
     background-color: var(--backgound-1);
@@ -197,6 +211,8 @@ input[type='checkbox' i] {
     transition: all 0.4s ease-in-out;
     cursor: pointer;
     width: 100%;
+    font-family: 'Cairo', sans-serif;
+
   }
   .btn-outline:hover {
     background-color: var(--btn-color);
@@ -295,4 +311,23 @@ input[type='checkbox' i] {
     color: var(--backgound-1);
     scale: 1.05;
   }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+  font-size: var(--font-size-small);
+  color: var(--primary-base);
+  font-weight: 800;
+  gap: var(--gap);
 }
