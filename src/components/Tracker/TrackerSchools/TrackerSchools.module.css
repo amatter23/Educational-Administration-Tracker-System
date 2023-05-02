@@ -5,7 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 95%;
   border-radius: var(--border-radius);
   background-color: var(--backgound-2);
   color: var(--primary-dark);
@@ -13,6 +13,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   padding: var(--pading);
   overflow: hidden;
+  margin: auto;
 }
 .header {
   display: flex;
@@ -102,3 +103,7 @@ body {
   align-items: center;
   z-index: 1;
 }
+
+
+
+
