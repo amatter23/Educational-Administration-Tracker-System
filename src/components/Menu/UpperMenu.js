@@ -16,6 +16,8 @@ import { NavLink } from 'react-router-dom';
 const UpperMenu = props => {
   // state to store the user data
   const [userData, setuserData] = useState(props.userData);
+  // state to change the user role to a more readable format
+  const userRoleHandler = userData.role.replace('_admin', '').replace('_', '-').replace('-', ' ');
   // state to store the menu show state
   const [menuShow, setmenuShow] = useState(true);
   // state to store the user roles have checkbox inputs
@@ -106,7 +108,7 @@ const UpperMenu = props => {
         </div>
         <div className={classes.name}>
           <FontAwesomeIcon icon={faCircleUser} className={classes.icon} />
-          <h6>{userData.role}</h6>
+          <h6>{userRoleHandler}</h6>
         </div>
         {menuItems()}
       </div>
