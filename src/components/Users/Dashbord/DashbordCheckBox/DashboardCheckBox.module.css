@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  width: 95%;
+  height: 95%;
+  overflow: hidden;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  height: 20%;
+  margin: auto;
+}
+.top .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
+}
+.top .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 100%;
+}
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  height: 80%;
+  background: var(--backgound-2);
+  /* flex-wrap: wrap; */
+  padding: var(--pading);
+  border-radius: var(--border-radius);
+  /* gap: var(--gap); */
+  margin: auto;
+  justify-content: space-evenly;
+}
+
+.bottom .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  height: 100%;
+  transition: 300ms ease-in-out;
+}
+.bottom .left:hover {
+  scale: 1.01;
+}
+.bottom .right:hover {
+  scale: 1.01;
+}
+.bottom .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+  transition: 300ms ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  .top .left {
+    width: 0%;
+    display: none;
+  }
+  .top .right {
+    width: 100%;
+  }
+  .content {
+    width: 95%;
+    height: 90%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    height: 80%;
+    gap: var(--gap);
+    /* flex-wrap: wrap; */
+  }
+
+  .bottom .left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .bottom .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+  }
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 95%;
+    height: fit-content;
+    margin: auto;
+  }
+  .container {
+    width: 95%;
+    height: fit-content;
+    /* overflow: hidden; */
+    gap: var(--gap);
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .content {
+    width: 95%;
+    height: 90%;
+    margin: auto;
+  }
+}
