@@ -3,31 +3,47 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import classes from './AdminTable.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faList, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFilter,
+  faList,
+  faPlus,
+  faCircleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 import { getUsers, addUser } from '../../utils/getData';
 import Loader from '../../pages/Loader';
+import { useTranslation } from 'react-i18next';
 const AdminTable = props => {
-
   // todo create a filter component
   // todo handle the text overflow
+
+  // implement the translation variable
+  const { t } = useTranslation();
   // users data
   const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [isLoading, setLoading] = useState(true);
+  // check if the form is submitted or not
+  const [error, setError] = useState(false);
 
   // get data from api
   const fetchData = async () => {
     try {
-      const response = await getUsers();
-      setUsers(response);
-      setIsLoading(false);
+      const response = await getUsers().then(data => {
+        setLoading(false);
+        if (data.status === 200) {
+          setUsers(data.result);
+          return;
+        } else {
+          setError(true);
+          return;
+        }
+      });
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      setLoading(false);
     }
   };
-  
-  // fetch data 
+
+  // fetch data
   useEffect(() => {
     fetchData();
   }, []);
@@ -36,6 +52,8 @@ const AdminTable = props => {
 
   // add user handler to api
   // todo handle user information
+  // todo handle the add user add user only not staff member (role)
+  // add user handler
   const addUserHandler = async event => {
     event.preventDefault();
     console.log(event.target.userName.value);
@@ -45,18 +63,20 @@ const AdminTable = props => {
         event.target.email.value,
         event.target.password.value,
         event.target.userName.value
-      ).then(response => {
-        setAddUserLoading(false);
-        console.log(response);
-        if (response.error === true) {
-          toast.error('Try again later', {});
-        } else {
-          toast.success('success');
-          setTimeout(function () {
-            window.location.reload();
-          }, 3000);
-        }
-      });
+      )
+        .then(data => {
+          setAddUserLoading(false);
+          if (data.status === 201) {
+            toast.success(t('Add user success'));
+            setTimeout(function () {
+              window.location.reload();
+            }, 3000);
+            return;
+          } else {
+            toast.error(t('Try again later'), {});
+            return;
+          }
+        });
     } catch (error) {
       console.log(error);
     }
@@ -65,10 +85,20 @@ const AdminTable = props => {
   // state to toggle the add user screen
   const [addUserToggle, UpdateaddUserToggle] = useState(false);
 
-
+  // is loading
   if (isLoading) {
     return <Loader />;
   }
+  // if the error is true show the error message
+  else if (error === true) {
+    return (
+      <div className='loader'>
+        <FontAwesomeIcon icon={faCircleExclamation} size='2xl' />
+        <span>Can't retch it now</span>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.container}>
       <ToastContainer />
