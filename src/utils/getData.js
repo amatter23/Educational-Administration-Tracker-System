@@ -1,6 +1,6 @@
 import { getAuthToken } from './auth';
 
-export const api_url = 'https://fms-production.up.railway.app';
+export const api_url = 'https://fms.fly.dev';
 export const auth = 'Bearer ' + getAuthToken();
 
 export function getUsers() {
