@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react';
 import TrackerForm from './components/Tracker/TrackerForm/TrackerForm';
 import UserRoute from './routes/UserRoute.js';
 import TrackerSchools from './components/Tracker/TrackerSchools/TrackerSchools';
-import Login from './pages/Login/Login'
+import Login from './pages/Login/Login';
 import { getPersonalData, getRoles } from '../src/utils/getData';
 import Loader from '../src/pages/Loader';
 import AdminTable from './components/Admin/AdminTable';
@@ -22,6 +22,7 @@ import { checkAuth } from './utils/auth';
 import DashboardCheckBox from './components/Users/Dashbord/DashbordCheckBox/DashboardCheckBox';
 import SchoolsTable from './components/Users/Dashbord/UserSchools/SchoolsTable/SchoolsTable';
 import UserCheckBoxData from './components/Users/UsersCheckBoxData/UserCheckBoxData';
+import UserInformationView from './pages/UserInformationView/UserInformationView';
 import './App.css';
 
 import i18n from 'i18next';
@@ -70,6 +71,10 @@ function App() {
           path: '/trackerForm',
           element: <TrackerForm />,
         },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
+        },
       ],
     },
   ]);
@@ -82,6 +87,10 @@ function App() {
         {
           path: '/',
           element: <AdminTable />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
         },
       ],
     },
@@ -108,6 +117,10 @@ function App() {
         {
           path: '/formData',
           element: <UserCheckBoxData userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
         },
       ],
     },
@@ -158,6 +171,9 @@ function App() {
               phone: data.result.phone,
               id: data.result.id,
               firstName: data.result.first_name,
+              lastName: data.result.last_name,
+              userName: data.result.username,
+              password: data.result.password,
             });
             return;
           } else {
