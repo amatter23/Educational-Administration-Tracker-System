@@ -109,7 +109,12 @@ const UpperMenu = props => {
         >
           <FontAwesomeIcon icon={faBraille} className={classes.icon} />
         </div>
-        <div className={classes.name}>
+        <div
+          onClick={() => {
+            navigate('/');
+          }}
+          className={classes.name}
+        >
           <FontAwesomeIcon icon={faCircleUser} className={classes.icon} />
           <h6>{userRoleHandler}</h6>
         </div>
