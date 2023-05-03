@@ -45,7 +45,6 @@ input {
   --font-size-smaller: 0.75rem;
   --font-weight-normal: 400;
 }
-
 /* text style  */
 h1,
 h2,
@@ -94,6 +93,16 @@ label {
   text-align: right;
 }
 input[type='text'] {
+  font-size: 0.9rem;
+  color: var(--text-color-body);
+  border: solid 1px var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: right;
+  padding: 0 var(--pading);
+  background-color: var(--backgound-1);
+  height: fit-content;
+}
+input[type='email'] {
   font-size: 0.9rem;
   color: var(--text-color-body);
   border: solid 1px var(--border-color);
