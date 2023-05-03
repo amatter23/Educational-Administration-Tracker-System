@@ -172,3 +172,32 @@ export function getTrackerSchools() {
     }
   });
 }
+
+// edit user data
+export function editUserData(firstName, lastName, email, password) {
+  return fetch(api_url + '/auth/users/me/', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+    body: JSON.stringify({
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      // Password: MUST BE INCREMENTED DON'T ALLOW TO CHANGE
+      password: password,
+    }),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
