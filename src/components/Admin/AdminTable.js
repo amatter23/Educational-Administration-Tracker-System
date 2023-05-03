@@ -9,21 +9,55 @@ import {
   faPlus,
   faCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
-import { getUsers, addUser } from '../../utils/getData';
+import { getUsers, addUser, getRoles } from '../../utils/getData';
 import Loader from '../../pages/Loader';
 import { useTranslation } from 'react-i18next';
+import Select from 'react-select';
+
 const AdminTable = props => {
   // todo create a filter component
-  // todo handle the text overflow
-
+  // todo create a search component
+  // todo create a pagination component
+  // todo create a delete and edit component for each row
   // implement the translation variable
   const { t } = useTranslation();
   // users data
   const [users, setUsers] = useState([]);
+  // loading state to load the data
   const [isLoading, setLoading] = useState(true);
-  // check if the form is submitted or not
+
+  // check if there is an error
   const [error, setError] = useState(false);
 
+  // error message state when adding a user
+  const [errorMassage, setErrorMassage] = useState('');
+
+  // roles data
+  const [options, setOptions] = useState([
+    { value: 'system_admin', label: 'system_admin' },
+    { value: 'administration_admin', label: 'administration_admin' },
+    { value: 'cooperative_admin', label: 'cooperative_admin' },
+    { value: 'decentralization_admin', label: 'decentralization_admin ' },
+    {
+      value: 'environment_population_admin',
+      label: 'environment_population_admin',
+    },
+    { value: 'laboratories_admin', label: 'laboratories_admin' },
+    { value: 'nutrition_admin', label: 'nutrition_admin' },
+    { value: 'production_unit_admin', label: 'production_unit_admin' },
+    { value: 'quality_admin', label: 'quality_admin' },
+    { value: 'security_safety_admin', label: 'security_safety_admin' },
+    { value: 'strategic_planning_admin', label: 'strategic_planning_admin' },
+    { value: 'students_affairs_admin', label: 'students_affairs_admin' },
+    { value: 'teachers_admin', label: 'teachers_admin' },
+    { value: 'tracker', label: 'tracker' },
+    { value: 'training_admin', label: 'training_admin' },
+    { value: 'vice', label: 'vice' },
+    { value: 'workers_affairs_admin', label: 'workers_affairs_admin' },
+    { value: 'manager', label: 'manager' },
+  ]);
+  // selected option
+  const [selectedOption, setSelectedOption] = useState(null);
   // get data from api
   const fetchData = async () => {
     try {
@@ -50,35 +84,49 @@ const AdminTable = props => {
   // state to toggle the loader when adding a user
   const [addUserLoading, setAddUserLoading] = useState();
 
-  // add user handler to api
-  // todo handle user information
-  // todo handle the add user add user only not staff member (role)
-  // add user handler
+  //add user handler to api
   const addUserHandler = async event => {
     event.preventDefault();
-    console.log(event.target.userName.value);
     setAddUserLoading(true);
+    if (
+      selectedOption === null ||
+      event.target.email.value === undefined ||
+      event.target.password.value === undefined ||
+      event.target.userName.value === undefined ||
+      event.target.firstName.value === undefined ||
+      event.target.lastName.value === undefined
+    ) {
+      toast.error(t('Please fill all the fields'));
+      setAddUserLoading(false);
+      return;
+    }
     try {
       const response = await addUser(
         event.target.email.value,
         event.target.password.value,
-        event.target.userName.value
-      )
-        .then(data => {
-          setAddUserLoading(false);
-          if (data.status === 201) {
-            toast.success(t('Add user success'));
-            setTimeout(function () {
-              window.location.reload();
-            }, 3000);
-            return;
-          } else {
-            toast.error(t('Try again later'), {});
-            return;
-          }
-        });
+        selectedOption.value,
+        event.target.userName.value,
+        event.target.firstName.value,
+        event.target.lastName.value
+      ).then(data => {
+        if (data === true) {
+          toast.success(t('Add user success'));
+          setErrorMassage('');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          return;
+        }
+        const keys = Object.keys(data);
+        console.log(data[keys[0]][0]);
+        setErrorMassage(data[keys[0]][0]);
+      });
+
+      setAddUserLoading(false);
     } catch (error) {
       console.log(error);
+      setAddUserLoading(false);
+      return;
     }
   };
 
@@ -148,10 +196,21 @@ const AdminTable = props => {
           {users.map(user => {
             return (
               <div className={classes.row}>
-                <div className={classes.cell}>Ahmed Matter</div>
-                <div className={classes.cell}>{user.email}</div>
-                <div className={classes.cell}>{user.username}</div>
-                <div className={classes.cell}>Manager</div>
+                <div
+                  title={user.first_name + ' ' + user.last_name}
+                  className={classes.cell}
+                >
+                  {user.first_name + ' ' + user.last_name}
+                </div>
+                <div title={user.email} className={classes.cell}>
+                  {user.email}
+                </div>
+                <div title={user.username} className={classes.cell}>
+                  {user.username}
+                </div>
+                <div title={user.role} className={classes.cell}>
+                  {user.role}
+                </div>
               </div>
             );
           })}
@@ -172,26 +231,45 @@ const AdminTable = props => {
                 <h6>New user</h6>
               </div>
               <div className={classes.addUserBody}>
-                <div className='input-label'>
-                  <label htmlFor='name'>Name</label>
-                  <input type='text' id='name' />
+                <div style={{ width: '100%' }} className='input-label'>
+                  <label htmlFor='name'>First Name</label>
+                  <input type='text' id='firstName' />
                 </div>
-                <div className='input-label'>
+                <div style={{ width: '100%' }} className='input-label'>
+                  <label htmlFor='name'>Last Name</label>
+                  <input type='text' id='lastName' />
+                </div>
+                <div style={{ width: '100%' }} className='input-label'>
+                  <label htmlFor='role'>Role</label>
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                    className={classes.select}
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderColor: state.isFocused
+                          ? 'none'
+                          : 'var(--border-color)',
+                      }),
+                    }}
+                  />
+                </div>
+                <div style={{ width: '100%' }} className='input-label'>
                   <label htmlFor='email'>Email</label>
                   <input type='text' id='email' />
                 </div>
-                <div className='input-label'>
+                <div style={{ width: '100%' }} className='input-label'>
                   <label htmlFor='userName'>User Name</label>
                   <input type='text' id='userName' />
                 </div>
-                <div className='input-label'>
-                  <label htmlFor='role'>Role</label>
-                  <input type='text' id='role' />
-                </div>
-                <div className='input-label'>
+
+                <div style={{ width: '100%' }} className='input-label'>
                   <label htmlFor='password'>Password</label>
                   <input type='text' id='password' />
                 </div>
+                <div className={classes.errorMassage}>{errorMassage}</div>
               </div>
               <div className={classes.addUserFooter}>
                 <button
@@ -208,7 +286,7 @@ const AdminTable = props => {
             {addUserLoading && (
               <div className={classes.loader}>
                 {' '}
-                <Loader />
+                <Loader backgroundColor={'transparent '} color={true} />
               </div>
             )}
           </form>
