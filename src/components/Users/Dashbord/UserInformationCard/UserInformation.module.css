@@ -14,7 +14,7 @@
   transition: 200ms ease-in-out;
   height: 100%;
   border: solid 1px var(--primary-darker);
-} 
+}
 
 .container:hover {
   scale: 1;
@@ -29,7 +29,7 @@
   z-index: -1;
   background-color: var(--backgound-1);
   transition: 300ms ease-in-out;
-  border-radius :  0 var(--border-radius) var(--border-radius) 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 .container:hover.container::after {
   width: 15%;
@@ -63,4 +63,8 @@
 }
 .content h6 {
   padding: 0;
+}
+
+.userIcon {
+  cursor: pointer;
 }
