@@ -23,7 +23,8 @@ export function getUsers() {
   });
 }
 
-export function addUser(email, password, userName) {
+ // add user
+export function addUser(email, password, role, userName, firstName, lastName) {
   return fetch(api_url + '/auth/users/', {
     method: 'POST',
     headers: {
@@ -34,20 +35,17 @@ export function addUser(email, password, userName) {
       email: email,
       password: password,
       username: userName,
-      first_name: 'ahmed',
-      last_name: 'mattar',
+      role: role,
+      first_name: firstName,
+      last_name: lastName,
     }),
-  }).then(res => {
-    if (res.status === 201) {
-      return res.json().then(data => {
-        return {
-          result: data,
-          status: res.status,
-        };
-      });
-    } else {
-      return res.status;
+  }).then(response => {
+    if (!response.ok) {
+      const data = response.json();
+      return data;
     }
+    const data = response.json();
+    return true;
   });
 }
 
