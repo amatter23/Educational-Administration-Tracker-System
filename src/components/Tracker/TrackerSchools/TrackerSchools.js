@@ -34,7 +34,7 @@ const TrackerSchools = () => {
       const response = getTrackerSchools().then(data => {
         setLoading(false);
         if (data.status === 200) {
-          updateData(data.result);
+          updateData(data.result.results);
           return;
         } else {
           setError(true);

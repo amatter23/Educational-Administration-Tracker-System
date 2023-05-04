@@ -151,7 +151,7 @@ export function addResponse(formId, response, userRole) {
 
 // get tracker school
 export function getTrackerSchools() {
-  return fetch(api_url + '/evaluation-form/', {
+  return fetch(api_url + '/form-info/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
