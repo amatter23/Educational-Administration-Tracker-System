@@ -7,9 +7,15 @@ import { addForm } from '../../../utils/getData';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../../pages/Loader';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+// the main component function
+
 const TrackerForm = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const [inputs, setinputs] = useState({
     school_name: '',
@@ -121,7 +127,7 @@ const TrackerForm = () => {
       evaluation: null,
       tilo: null,
       issue: {
-        issue: '',
+        issue: null,
       },
     },
     decentralization: {
@@ -505,8 +511,7 @@ const TrackerForm = () => {
           </div>
           <div
             style={{
-              display:
-                issueField.students_affairs.issue === true ? 'flex' : 'none',
+              display: 'flex',
               width: '100%',
               margin: '0 auto',
             }}
@@ -514,7 +519,7 @@ const TrackerForm = () => {
           >
             <input
               style={{ width: '70%', margin: '0 auto' }}
-              placeholder='السلبية'
+              placeholder={t('Issue')}
               type='text'
               onChange={e =>
                 setinputs({
@@ -596,35 +601,33 @@ const TrackerForm = () => {
                 />
                 <label htmlFor=''> نعم</label>
               </div>
-
               <h6> يوجد سلبيه</h6>
             </div>
-            <div
-              style={{
-                display:
-                  issueField.workers_affairs.issue === true ? 'flex' : 'none',
-                width: '100%',
-                margin: '0 auto',
-              }}
-              className={classes.issue}
-            >
-              <input
-                style={{ width: '70%', margin: '0 auto' }}
-                placeholder='السلبية'
-                type='text'
-                onChange={e =>
-                  setinputs({
-                    ...inputs,
-                    workers_affairs: {
-                      ...inputs.workers_affairs,
-                      issue: {
-                        issue: e.target.value,
-                      },
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  workers_affairs: {
+                    ...inputs.workers_affairs,
+                    issue: {
+                      issue: e.target.value,
                     },
-                  })
-                }
-              />
-            </div>
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -1015,7 +1018,7 @@ const TrackerForm = () => {
           </div>
           <div
             style={{
-              display: isError,
+              display: 'flex',
               width: '100%',
               margin: '0 auto',
             }}
@@ -1023,7 +1026,7 @@ const TrackerForm = () => {
           >
             <input
               style={{ width: '70%', margin: '0 auto' }}
-              placeholder='السلبية'
+              placeholder={t('Issue')}
               type='text'
               onChange={e =>
                 setinputs({
@@ -1222,6 +1225,31 @@ const TrackerForm = () => {
               </div>
             </div>
           </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  nutrition: {
+                    ...inputs.nutrition,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
         </div>
         <div className={classes.field}>
           <h4>الجمعيه التعاونيه</h4>
@@ -1336,6 +1364,31 @@ const TrackerForm = () => {
                 <label tmlFor=''> يوجد</label>
                 <h6> الاصناف الموجوده مصرح بيها</h6>
               </div>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                margin: '0 auto',
+              }}
+              className={classes.issue}
+            >
+              <input
+                style={{ width: '70%', margin: '0 auto' }}
+                placeholder={t('Issue')}
+                type='text'
+                onChange={e =>
+                  setinputs({
+                    ...inputs,
+                    cooperative: {
+                      ...inputs.cooperative,
+                      issue: {
+                        issue: e.target.value,
+                      },
+                    },
+                  })
+                }
+              />
             </div>
           </div>
         </div>
@@ -1533,6 +1586,32 @@ const TrackerForm = () => {
               <h6>العام الاول</h6>
             </div>
           </div>
+          {/* this field is isseu by graeds */}
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  quality: {
+                    ...inputs.quality,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
         </div>
         <div className={classes.field}>
           <h4>التدريب</h4>
@@ -1646,6 +1725,31 @@ const TrackerForm = () => {
                 <h6> تدريب المعلمين</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  training: {
+                    ...inputs.training,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -1787,6 +1891,31 @@ const TrackerForm = () => {
               </div>
             </div>
           </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  laboratories: {
+                    ...inputs.laboratories,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
         </div>
         <div className={classes.field}>
           <h4>المعلمين</h4>
@@ -1901,6 +2030,32 @@ const TrackerForm = () => {
               </div>
               <h6>ماده</h6>
             </div> */}
+          </div>
+          {/* this feild issue is by numbers of workers */}
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  teachers: {
+                    ...inputs.teachers,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -2127,6 +2282,31 @@ const TrackerForm = () => {
               </div>
             </div>
           </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  decentralization: {
+                    ...inputs.decentralization,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
+          </div>
         </div>
         <div className={classes.field}>
           <h4>الوحده المنتجه</h4>
@@ -2298,6 +2478,31 @@ const TrackerForm = () => {
                 <h6> توزيع الارباح</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  production_unit: {
+                    ...inputs.production_unit,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -2484,6 +2689,31 @@ const TrackerForm = () => {
                 <h6> يوجد تحليل للوضع الراهن</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  strategic_planning: {
+                    ...inputs.strategic_planning,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -2728,6 +2958,31 @@ const TrackerForm = () => {
                 <h6> انشطه البيئه و السكان</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  environment_population: {
+                    ...inputs.environment_population,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.field}>
@@ -3093,6 +3348,31 @@ const TrackerForm = () => {
                 <h6>تدريب علي الخطه</h6>
               </div>
             </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              width: '100%',
+              margin: '0 auto',
+            }}
+            className={classes.issue}
+          >
+            <input
+              style={{ width: '70%', margin: '0 auto' }}
+              placeholder={t('Issue')}
+              type='text'
+              onChange={e =>
+                setinputs({
+                  ...inputs,
+                  administration: {
+                    ...inputs.administration,
+                    issue: {
+                      issue: e.target.value,
+                    },
+                  },
+                })
+              }
+            />
           </div>
         </div>
         <div className={classes.btn}>
