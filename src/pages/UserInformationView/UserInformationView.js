@@ -9,11 +9,18 @@ import {
   faSignature,
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
-import { editUserData } from '../../utils/getData';
+import {
+  editUserData,
+  updatePassword,
+  updateUserName,
+} from '../../utils/getData';
 import Loader from '../Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 const UserInformationView = props => {
+  // translation
+  const { t } = useTranslation();
   // user data state object
   const [userData, UpdateUserData] = useState(props.userData);
   // state to store the first name
@@ -30,9 +37,24 @@ const UserInformationView = props => {
   const [error, setError] = useState(true);
   // state to store the error message
   const [error_message, setError_message] = useState('');
+  // state to open reset password window
+  const [resetPassword, setResetPassword] = useState(false);
+  // state to open reset username window
+  const [resetUserName, setResetUserName] = useState(false);
+  // state to store the new password
+  const [newPassword, setNewPassword] = useState('');
+  // state to store the current password
+  const [currentPassword, setCurrentPassword] = useState('');
+  // state to store the new username
+  const [newUserName, setNewUserName] = useState('');
+  // function to edit the user data
+  // loading reset functions
+  const [resetLoading, setResetLoading] = useState(false);
+  // error reset
+  const [resetError, setResetError] = useState(false);
 
   // function to edit the user data
-  const editUserDate = async event => {
+  const handlereditUserData = async event => {
     event.preventDefault();
     setLoading(true);
     // check if the fields are empty
@@ -46,8 +68,8 @@ const UserInformationView = props => {
       const response = await editUserData(
         first_name,
         last_name,
-        email,
-        userData.password
+        email
+        // userData.password
       ).then(data => {
         setLoading(false);
         setError(false);
@@ -62,6 +84,75 @@ const UserInformationView = props => {
       });
     } catch (error) {
       setLoading(false);
+    }
+  };
+
+  //add user handler to api
+  const handlerResetPassword = async event => {
+    event.preventDefault();
+    setResetLoading(true);
+    if (newPassword === '' || currentPassword === '') {
+      toast.error(t('Please fill all the fields'));
+      setResetLoading(false);
+      return;
+    }
+    try {
+      console.log('Entered');
+      const response = await updatePassword(currentPassword, newPassword).then(
+        data => {
+          if (data === true) {
+            toast.success(t('Reset successfully'));
+            setResetError('');
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+            return;
+          }
+          const keys = Object.keys(data);
+          console.log(data[keys[0]][0]);
+          setResetError(data[keys[0]][0]);
+        }
+      );
+
+      setResetLoading(false);
+    } catch (error) {
+      console.log(error);
+      setResetLoading(false);
+      return;
+    }
+  };
+
+  const handlerResetUserName = async event => {
+    event.preventDefault();
+    setResetLoading(true);
+    if (newUserName === '' || currentPassword === '') {
+      toast.error(t('Please fill all the fields'));
+      setResetLoading(false);
+      return;
+    }
+    try {
+      console.log('Entered');
+      const response = await updateUserName(currentPassword, newUserName).then(
+        data => {
+          if (data === true) {
+            toast.success(t('Reset successfully'));
+            setResetError('');
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+            return;
+          }
+          const keys = Object.keys(data);
+          console.log(data[keys[0]][0]);
+          setResetError(data[keys[0]][0]);
+        }
+      );
+
+      setResetLoading(false);
+    } catch (error) {
+      console.log(error);
+      setResetLoading(false);
+      return;
     }
   };
 
@@ -82,13 +173,23 @@ const UserInformationView = props => {
           <h3>{fullName}</h3>
         </div>
         <div className={classes.actions}>
-          <button className={classes.accBtn}>
+          <button
+            onClick={() => {
+              setResetPassword(true);
+            }}
+            className={classes.accBtn}
+          >
             <span>
               <FontAwesomeIcon icon={faLock} />
             </span>
             Reset password
           </button>
-          <button className={classes.accBtn}>
+          <button
+            onClick={() => {
+              setResetUserName(true);
+            }}
+            className={classes.accBtn}
+          >
             <span>
               <FontAwesomeIcon icon={faAt} />
             </span>
@@ -99,7 +200,7 @@ const UserInformationView = props => {
 
       <div className={classes.data}>
         <h5>Information</h5>
-        <form onSubmit={editUserDate}>
+        <form onSubmit={handlereditUserData}>
           <div className={classes.formGroup}>
             <label htmlFor='first_name'>
               {' '}
@@ -154,7 +255,6 @@ const UserInformationView = props => {
               id='email'
             />
           </div>
-
           <div
             style={{
               display: error ? 'block' : 'none',
@@ -166,6 +266,96 @@ const UserInformationView = props => {
           <button className={classes.accBtn}>Edit</button>
         </form>
       </div>
+
+      {resetPassword ? (
+        <form onSubmit={handlerResetPassword} className={classes.restPassword}>
+          {resetLoading ? (
+            <Loader backgroundColor={'transparent'} color={true} />
+          ) : null}
+          <h5>
+            {' '}
+            <span>
+              <FontAwesomeIcon icon={faLock} />
+            </span>{' '}
+            Reset password
+          </h5>
+          <input
+            onChange={e => {
+              setNewPassword(e.target.value);
+            }}
+            placeholder='New Password'
+            type='text'
+            id='newPassword'
+          />
+          <input
+            placeholder='Current password'
+            type='text'
+            id='currentPassword'
+            onChange={e => {
+              setCurrentPassword(e.target.value);
+            }}
+          />
+          <div className={classes.error}>{resetError}</div>
+          <div className={classes.actions}>
+            <button type='submit' className={classes.accBtn}>
+              Save
+            </button>
+            <button
+              onClick={() => {
+                setResetPassword(false);
+              }}
+              className={classes.accBtn}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : null}
+
+      {resetUserName ? (
+        <form onSubmit={handlerResetUserName} className={classes.restPassword}>
+          {resetLoading ? (
+            <Loader backgroundColor={'transparent'} color={true} />
+          ) : null}
+          <h5>
+            {' '}
+            <span>
+              <FontAwesomeIcon icon={faAt} />
+            </span>{' '}
+            Reset user name
+          </h5>
+          <input
+            placeholder='New user Name '
+            type='text'
+            id='newPassword'
+            onChange={e => {
+              setNewUserName(e.target.value);
+            }}
+          />
+          <input
+            placeholder='Current password'
+            type='text'
+            id='currentPassword'
+            onChange={e => {
+              setCurrentPassword(e.target.value);
+            }}
+          />
+          <div className={classes.error}>{resetError}</div>
+          <div className={classes.actions}>
+            <button type='submit' className={classes.accBtn}>
+              Save
+            </button>
+            <button
+              onClick={() => {
+                setResetUserName(false);
+              }}
+              className={classes.accBtn}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : null}
     </div>
   );
 };

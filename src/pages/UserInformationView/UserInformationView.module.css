@@ -11,6 +11,7 @@
   justify-content: center;
   background-color: var(--backgound-2);
   gap: var(--gap);
+  
 }
 .information {
   height: fit-content;
@@ -142,6 +143,26 @@
 }
 .error{
   color: red;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.restPassword{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  background-color: var(--backgound-1);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: var(--pading);
+  border-radius: var(--border-radius);
+  align-items: center;
+  justify-content: center;
+}
+.restPassword input{
+  text-align: left;
+  width: 90%;
 }
 
 @media screen and (max-width: 1300px) {
@@ -177,6 +198,9 @@
     width: 90%;
   }
   .data {
+    width: 90%;
+  }
+  .restPassword{
     width: 90%;
   }
 }
