@@ -23,7 +23,7 @@ export function getUsers() {
   });
 }
 
- // add user
+// add user
 export function addUser(email, password, role, userName, firstName, lastName) {
   return fetch(api_url + '/auth/users/', {
     method: 'POST',
@@ -183,8 +183,8 @@ export function editUserData(firstName, lastName, email, password) {
       first_name: firstName,
       last_name: lastName,
       email: email,
-      // Password: MUST BE INCREMENTED DON'T ALLOW TO CHANGE
-      password: password,
+      // // Password: MUST BE INCREMENTED DON'T ALLOW TO CHANGE
+      // password: password,
     }),
   }).then(res => {
     if (res.status === 200) {
@@ -197,5 +197,49 @@ export function editUserData(firstName, lastName, email, password) {
     } else {
       return res.status;
     }
+  });
+}
+
+//resetPassword
+export function updatePassword(currentPassword, newPassword) {
+  return fetch(api_url + '/auth/users/set_password/', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: auth,
+    },
+    body: JSON.stringify({
+      new_password: newPassword,
+      current_password: currentPassword,
+    }),
+  }).then(response => {
+    if (!response.ok) {
+      const data = response.json();
+      return data;
+    }
+    const data = response.json();
+    return true;
+  });
+}
+
+//resetPassword
+export function updateUserName(currentPassword, newUserName) {
+  return fetch(api_url + '/auth/users/set_username/', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: auth,
+    },
+    body: JSON.stringify({
+      current_password: currentPassword,
+      new_username: newUserName,
+    }),
+  }).then(response => {
+    if (!response.ok) {
+      const data = response.json();
+      return data;
+    }
+    const data = response.json();
+    return true;
   });
 }
