@@ -1,4 +1,4 @@
-//component to show the data of department have only checkbox data 
+//component to show the data of department have only checkbox data
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -55,8 +55,8 @@ const UserCheckBoxData = props => {
   // state to store the data to return it as jsx element
   const [dataToShow, UpdateDataToShow] = useState();
 
-   // function to get the object array from the form data
-   function getObjectArray(obj) {
+  // function to get the object array from the form data
+  function getObjectArray(obj) {
     const entries = Object.entries(obj);
     const flatEntries = entries.flatMap(([key, value]) => {
       if (typeof value === 'object') {
@@ -131,7 +131,7 @@ const UserCheckBoxData = props => {
   useEffect(() => {
     fetchSchoolData();
   }, []);
-// function to handle the post response
+  // function to handle the post response
   const handleResponse = async event => {
     event.preventDefault();
     setLoading(true);

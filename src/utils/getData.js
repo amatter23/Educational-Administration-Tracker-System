@@ -103,17 +103,15 @@ export function getPersonalData() {
 // https://fms.fly.dev/security-safety/?ordering=-created_at/&page=2
 
 // get school to each user
-export function getSchools(userRole, formId, paginationUrl) {
-  console.log(userRole, formId, paginationUrl);
+export function getSchools(userRole, formId) {
   var api = userRole.replace('_admin', '').replace('_', '-');
-  var url = api_url + '/' + api + '?ordering=-created_at';
   if (formId !== null) {
     api = api + '/' + formId;
-  } else if (paginationUrl !== undefined) {
-    console.log('enter');
-    url = paginationUrl ;
   }
-  return fetch(url, {
+  // } else if (paginationUrl !== undefined) {
+  //   url = paginationUrl;
+  // }
+  return fetch(api_url + '/' + api + '/', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: auth,
@@ -248,5 +246,27 @@ export function updateUserName(currentPassword, newUserName) {
     }
     const data = response.json();
     return true;
+  });
+}
+
+export function getDepartmentStatics(userRole) {
+  var department =
+    userRole.replace('_admin', '').replace('_', '-') + '-statics/';
+  return fetch(api_url + '/' + department, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
   });
 }
