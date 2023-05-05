@@ -100,13 +100,20 @@ export function getPersonalData() {
   });
 }
 
+// https://fms.fly.dev/security-safety/?ordering=-created_at/&page=2
+
 // get school to each user
-export function getSchools(userRole, formId) {
+export function getSchools(userRole, formId, paginationUrl) {
+  console.log(userRole, formId, paginationUrl);
   var api = userRole.replace('_admin', '').replace('_', '-');
-  if (formId !== undefined) {
+  var url = api_url + '/' + api + '?ordering=-created_at';
+  if (formId !== null) {
     api = api + '/' + formId;
+  } else if (paginationUrl !== undefined) {
+    console.log('enter');
+    url = paginationUrl ;
   }
-  return fetch(api_url + '/' + api + '/', {
+  return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: auth,

@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { getSchools } from '../../../../../utils/getData';
 import Loader from '../../../../../pages/Loader';
+import PaginationCustom from '../../../../Ui/Pagination/Pagination';
 const SchoolsTable = props => {
   // state to handle the loading
   const [isLoading, setLoading] = useState(false);
@@ -21,14 +22,24 @@ const SchoolsTable = props => {
   // state to handle the schools data
   const [schools, setSchools] = useState([]);
 
+  const [pageNext, updatePageNext] = useState();
+  const [pagePrevious, updatePagePrevious] = useState();
+  const [pageUrl, updatePageUrl] = useState();
+
+  const getPaginationUrl = url => {
+    updatePageUrl(url);
+  };
+
   // function to fetch the schools data from the server
   const fetchSchoolsData = async () => {
     setLoading(true);
     try {
-      const response = getSchools(userData.role).then(data => {
+      const response = getSchools(userData.role, null, pageUrl).then(data => {
         setLoading(false);
         if (data.status === 200) {
           setSchools(data.result.results);
+          updatePageNext(data.result.next);
+          updatePagePrevious(data.result.previous);
           return;
         } else {
           setError(true);
@@ -44,7 +55,7 @@ const SchoolsTable = props => {
   // useEffect to fetch the data from the server
   useEffect(() => {
     fetchSchoolsData();
-  }, []);
+  }, [pageUrl]);
 
   // function to handle the navigation to the school data page
   const navigate = useNavigate();
@@ -147,10 +158,11 @@ const SchoolsTable = props => {
             })}
           </div>
         </div>
-        <div className={classes.pagination}>
-          <button>Next</button>
-          <button>pervious</button>
-        </div>
+        <PaginationCustom
+          getPaginationUrl={getPaginationUrl}
+          pageNext={pageNext}
+          pagePrevious={pagePrevious}
+        ></PaginationCustom>
       </div>
     </div>
   );
