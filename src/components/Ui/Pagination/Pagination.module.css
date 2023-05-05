@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) / 2);
+}
+.btnPagenation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) / 2);
+  font-size: var(--font-size-smaller);
+  font-weight: 600;
+  padding: calc(var(--pading) / 3) calc(var(--pading));
+  border: solid 1px var(--primary-darker);
+  color: var(--text-color-titles);
+  border-radius: var(--border-radius);
+  transition: 100ms ease-in-out;
+  width: fit-content;
+  cursor: pointer;
+  background-color: var(--backgound-2);
+}
+
+.btnPagenation:hover {
+  border: solid 1px var(--primary-darker);
+  color: var(--backgound-1);
+  background-color: var(--primary-darker);
+}
+
+.btnPagenationDisable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) / 2);
+  font-size: var(--font-size-smaller);
+  font-weight: 600;
+  padding: calc(var(--pading) / 3) calc(var(--pading));
+  border: solid 1px transparent;
+  color: var(--text-color-light);
+  border-radius: var(--border-radius);
+  transition: 100ms ease-in-out;
+  width: fit-content;
+  background-color: var(--backgound-2);
+}
