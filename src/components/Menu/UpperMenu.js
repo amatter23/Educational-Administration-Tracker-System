@@ -13,7 +13,11 @@ import {
   faSchool,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+// import translate file
+import { useTranslation } from 'react-i18next';
 const UpperMenu = props => {
+  // implement the translation variable
+  const { t } = useTranslation();
   // state to store the user data
   const [userData, setuserData] = useState(props.userData);
   // state to change the user role to a more readable format
@@ -43,7 +47,7 @@ const UpperMenu = props => {
                   className={classes.icon}
                   icon={faTableColumns}
                 />
-                Schools
+                {t('Schools')}
               </NavLink>
             </li>
             <li>
@@ -55,7 +59,7 @@ const UpperMenu = props => {
                   className={classes.icon}
                   icon={faAlignJustify}
                 />
-                New Form
+                {t('New Form')}
               </NavLink>
             </li>
           </ul>
@@ -77,7 +81,7 @@ const UpperMenu = props => {
                   className={classes.icon}
                   icon={faTableColumns}
                 />
-                Dashboard
+                {t('Dashboard')}
               </NavLink>
             </li>
             <li>
@@ -86,7 +90,7 @@ const UpperMenu = props => {
                 className={({ isActive }) => (isActive ? classes.active : null)}
               >
                 <FontAwesomeIcon className={classes.icon} icon={faSchool} />
-                Schools
+                {t('Schools')}
               </NavLink>
             </li>
           </ul>
@@ -116,7 +120,7 @@ const UpperMenu = props => {
           className={classes.name}
         >
           <FontAwesomeIcon icon={faCircleUser} className={classes.icon} />
-          <h6>{userRoleHandler}</h6>
+          <h6>{t(userRoleHandler)}</h6>
         </div>
         {menuItems()}
       </div>
