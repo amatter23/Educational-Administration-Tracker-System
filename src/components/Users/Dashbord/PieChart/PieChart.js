@@ -4,21 +4,18 @@ import { Pie } from 'react-chartjs-2';
 import classes from './PieChart.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareMinus } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = props => {
-  const [formData, setFormData] = useState({
-    issue: 12,
-    noIssue: 19,
-    department: 'الموارد البشرية',
-  });
+  const { t } = useTranslation();
   const data = {
-    labels: ['لا يوجد', 'يوجد'],
+    labels: [`${t('have not Cons')}`, `${t('have Cons')}`],
     datasets: [
       {
-        label: 'عدد المدارس ',
-        data: [formData.noIssue, formData.issue],
+        label: `${t('schools number')}`,
+        data: [props.schoolStatics.no_issues, props.schoolStatics.issues],
         backgroundColor: ['#182938', '#617586'],
         borderColor: [],
         borderWidth: 1,
@@ -27,7 +24,9 @@ const PieChart = props => {
   };
   return (
     <div className={classes.container}>
-      <h5>سلبيات قسم {formData.department} </h5>
+      <h5>
+        {t('Cons section') + ' ' + t(props.userData.role.replace('_admin', ''))}
+      </h5>
       <Pie data={data} />
     </div>
   );
