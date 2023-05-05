@@ -16,6 +16,7 @@
   "wall": "سور",
   "external_factors": "عوامل خارجيه",
   "security safety": "الامن والسلامه",
+  "security_safety": "الامن والسلامه",
   "Department": "قسم",
   "Please add response her": " الرجاء اضافة الرد هنا",
   "Add response": "اضافة رد",
@@ -25,5 +26,17 @@
   "Error to add a response": "خطأ لإضافة رد",
   "Level": "المرحلة الدراسية",
   "Try again later": "حاول مرة أخرى لاحقا",
-  "Add user success": "تمت إضافة المستخدم بنجاح"
+  "Add user success": "تمت إضافة المستخدم بنجاح",
+  "nutrition": "التغذية",
+  "Cons section": "سلبيات قسم ",
+  "Department stats": "احصائيات قسم",
+  "Unanswered problems": "المشاكل التي لم يتم الرد عليها",
+  "The last school added": "اخر مدرسة تم اضافتها",
+  "Schools In system": "المدارس في النظام",
+  "have Cons": "يوجد سلبيه",
+  "have not Cons": "لا يوجد سلبيه",
+  "schools number": "عدد المدارس",
+  "Schools": "المدارس",
+  "Dashboard": "لوحة التحكم",
+  "New form": "استمارة جديدة"
 }
