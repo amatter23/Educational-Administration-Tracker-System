@@ -7,7 +7,7 @@
   border-bottom: 1px solid var(--border-color);
   border-bottom: solid 1px var(--border-color);
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   padding: calc(var(--pading) / 4) 0;
   width: 100%;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 .menuLogo {
   display: flex;
-  flex-direction: row;
+  flex-direction: inherit;
   align-items: center;
   justify-content: center;
   gap: calc(var(--gap) / 2);
@@ -23,10 +23,12 @@
 .name {
   border-right: solid 1px var(--border-color);
   cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
 }
 .menuLogo > div {
   display: flex;
-  flex-direction: row;
+  flex-direction: inherit;
   align-items: center;
   justify-content: center;
 }
@@ -65,7 +67,7 @@
 
 .list ul {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   gap: var(--gap);
   margin-left: calc(var(--pading) * 2);
   color: var(--backgound-1);
@@ -79,7 +81,7 @@
   color: var(--backgound-1);
   gap: var(--gap);
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   transform: none !important;
 }
 .icon {
@@ -88,6 +90,11 @@
 a {
   text-decoration: none;
   color: var(--primary-dark);
+  flex-direction: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--gap) / 2);
 }
 .active {
   color: var(--primary-light);
@@ -102,6 +109,7 @@ a {
 
 .left {
   display: flex;
+  flex-direction: row-reverse;
 }
 @media screen and (max-width: 600px) {
   .list ul {
