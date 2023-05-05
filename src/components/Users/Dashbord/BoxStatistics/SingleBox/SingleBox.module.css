@@ -9,30 +9,40 @@
   color: var(--text-color-body);
   border-radius: var(--border-radius);
   border-bottom: solid 2px var(--border-color);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   /* min-width: fit-content;
   max-width: fit-content; */
 }
 .container:hover {
   scale: 1.02;
+  background-color: var(--primary-dark);
+}
+.container:hover .title {
+  color: var(--backgound-1);
+}
+.container:hover .title .icon {
+  background-color: transparent;
+}
+.container:hover .content {
+  color: var(--backgound-1);
 }
 .title {
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;
   justify-content: flex-start;
   width: 100%;
   color: var(--text-color-body);
 }
 .title .icon {
   background-color: var(--primary-light);
-  color: var(--primary-dark);
   display: flex;
   padding: calc(var(--pading) / 4);
   border-radius: 50%;
 }
 .content {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: flex-start;
   width: 100%;

@@ -9,6 +9,7 @@ const SingleBox = props => {
   const [data, setData] = useState(props.data);
   return (
     <div className={classes.container}>
+      {/* {console.log(data)} */}
       <div className={classes.title}>
         <div className={classes.icon}>
           <FontAwesomeIcon icon={data.icon} size='xs' />
@@ -16,8 +17,8 @@ const SingleBox = props => {
         <h6>{data.title}</h6>
       </div>
       <div className={classes.content}>
-        <FontAwesomeIcon icon={faHashtag} />
-        <h3>123</h3>
+        {/* <FontAwesomeIcon icon={faHashtag} /> */}
+        <h4>{data.data}</h4>
       </div>
     </div>
   );
