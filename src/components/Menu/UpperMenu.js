@@ -67,7 +67,10 @@ const UpperMenu = props => {
       );
     } else if (userData.role === 'system_admin') {
       return;
-    } else if (userRoles.includes(userData.role)) {
+    } else if (
+      userRoles.includes(userData.role) ||
+      userData.role === 'laboratories_admin'
+    ) {
       return (
         <div className={classes.list}>
           <ul className={menuShow ? classes.side : ''}>

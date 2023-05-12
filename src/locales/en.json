@@ -79,7 +79,12 @@
   "health_files": "ملف عن الوضع الصحي ",
   "diagnosis_health_plan": "خطه للتشخيص الطبي",
   "check_health_plan": "خطه للفحص الطبي",
-  "activities":"انشطه البيئه و السكان",
+  "laboratories": "المعامل",
+  "networks": "الشبكات",
+  "computer": "الحاسب الالي",
+  "evaluation": "تطور",
+  "ory_association": "اتحاد الاوري",
+  "activities": "انشطه البيئه و السكان",
   "labs_health_procedures": "المختبرات والاجراءات الصحية",
   "Department": "قسم",
   "Please add response her": " الرجاء اضافة الرد هنا",
@@ -101,5 +106,6 @@
   "schools number": "عدد المدارس",
   "Schools": "المدارس",
   "Dashboard": "لوحة التحكم",
-  "New form": "استمارة جديدة"
+  "New form": "استمارة جديدة",
+  "Number": "عدد"
 }

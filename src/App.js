@@ -28,6 +28,7 @@ import './App.css';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en.json';
+import LapDashbord from './components/Users/Dashbord/LapDashbord/Dashbord/LapDashbord';
 function App() {
   // state to store the user data
 
@@ -125,6 +126,37 @@ function App() {
       ],
     },
   ]);
+  // create a router for Laboratories user
+  const routerLaboratories = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <UserRoute
+          userRolesHaveCheckBoxInputs={userRolesHaveCheckBoxInputs}
+          userData={userData}
+        />
+      ),
+      children: [
+        {
+          path: '/',
+          element: <LapDashbord userData={userData} />,
+        },
+        {
+          path: '/schools',
+          element: <SchoolsTable userData={userData} />,
+        },
+        {
+          path: '/formData',
+          element: <UserCheckBoxData userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
+        },
+      ],
+    },
+  ]);
+
   // create a router for the login page
   const routerLogin = createBrowserRouter([
     {
@@ -147,6 +179,8 @@ function App() {
       // }
       else if (userRolesHaveCheckBoxInputs.includes(userData.role)) {
         return <RouterProvider router={routerUsersInputsCheckBox} />;
+      } else if (userData.role === 'laboratories_admin') {
+        return <RouterProvider router={routerLaboratories} />;
       }
     }
     // if the user is not authenticated redirect to login page
@@ -158,7 +192,6 @@ function App() {
   const fetchUserData = async () => {
     if (checkAuth() === true) {
       setLoading(true);
-      console.log('auth');
       try {
         const response = getPersonalData().then(data => {
           setLoading(false);
