@@ -1,7 +1,7 @@
 // component for the tracker form that is used to add a new school to the track and add all the information about the school to the database
 // this component is used in the Tracker.js component
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './TrackerForm.module.css';
 import { addForm } from '../../../utils/getData';
 import { ToastContainer, toast } from 'react-toastify';
@@ -176,6 +176,7 @@ const TrackerForm = () => {
       },
     },
   });
+
   const [issueField, setIssueField] = useState({
     students_affairs: {
       issue: false,
@@ -260,6 +261,7 @@ const TrackerForm = () => {
     setIsLoading(true);
     try {
       const response = await addForm(inputs).then(response => {
+        localStorage.removeItem('myFormData');
         setIsLoading(false);
         if (response.error === true) {
           toast.error('حاول مره اخري', {});
@@ -276,6 +278,17 @@ const TrackerForm = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    if (localStorage.getItem('myFormData') !== null) {
+      const data = localStorage.getItem('myFormData');
+      setinputs(JSON.parse(data));
+    }
+
+    setIsLoading(false);
+  }, []);
 
   // let allKeysAreEmpty = true;
   // Object.keys(inputs.quality).forEach(key => {
@@ -307,6 +320,14 @@ const TrackerForm = () => {
   //   // }
   // };
 
+  if (isLoading === true) {
+    return (
+      <div className={classes.loader}>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className={classes.contaner}>
       <ToastContainer />
@@ -315,7 +336,13 @@ const TrackerForm = () => {
           <Loader />
         </div>
       )}
-      <form className={classes.form} onSubmit={addFormHandler}>
+      <form
+        onChange={() => {
+          localStorage.setItem('myFormData', JSON.stringify(inputs));
+        }}
+        className={classes.form}
+        onSubmit={addFormHandler}
+      >
         <div className={classes.field}>
           <h4>بيانات المدرسه</h4>
           <div className={classes.inputs}>
@@ -328,6 +355,7 @@ const TrackerForm = () => {
                     school_id: e.target.value,
                   })
                 }
+                defaultValue={inputs.school_id}
                 id='school_id'
                 type='text'
               />
@@ -341,6 +369,7 @@ const TrackerForm = () => {
                     school_level: e.target.value,
                   })
                 }
+                defaultValue={inputs.school_level}
                 id='school_level'
                 type='text'
               />
@@ -354,6 +383,7 @@ const TrackerForm = () => {
                     school_name: e.target.value,
                   })
                 }
+                defaultValue={inputs.school_name}
                 id='school_name'
                 type='text'
               />
@@ -1863,6 +1893,7 @@ const TrackerForm = () => {
                     setinputs({
                       ...inputs,
                       laboratories: {
+                        ...inputs.laboratories,
                         work_validity: 'يوجد',
                       },
                     })
@@ -1878,6 +1909,7 @@ const TrackerForm = () => {
                     setinputs({
                       ...inputs,
                       laboratories: {
+                        ...inputs.laboratories,
                         work_validity: 'لا يوجد',
                       },
                     })
