@@ -29,6 +29,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en.json';
 import LapDashbord from './components/Users/Dashbord/LapDashbord/Dashbord/LapDashbord';
+import WorkersAffairsDashbord from './components/Users/Dashbord/WorkersAffairs/Dashbord/WorkersAffairsDashbord';
 function App() {
   // state to store the user data
 
@@ -156,6 +157,35 @@ function App() {
       ],
     },
   ]);
+  const routerWorkersAffairs = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <UserRoute
+          userRolesHaveCheckBoxInputs={userRolesHaveCheckBoxInputs}
+          userData={userData}
+        />
+      ),
+      children: [
+        {
+          path: '/',
+          element: <WorkersAffairsDashbord userData={userData} />,
+        },
+        {
+          path: '/schools',
+          element: <SchoolsTable userData={userData} />,
+        },
+        {
+          path: '/formData',
+          element: <UserCheckBoxData userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
+        },
+      ],
+    },
+  ]);
 
   // create a router for the login page
   const routerLogin = createBrowserRouter([
@@ -181,6 +211,8 @@ function App() {
         return <RouterProvider router={routerUsersInputsCheckBox} />;
       } else if (userData.role === 'laboratories_admin') {
         return <RouterProvider router={routerLaboratories} />;
+      } else if (userData.role === 'workers_affairs_admin') {
+        return <RouterProvider router={routerWorkersAffairs} />;
       }
     }
     // if the user is not authenticated redirect to login page
