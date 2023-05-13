@@ -28,6 +28,7 @@ const PieChartWorkersAffairs = props => {
           props.fields.percentage_of_absence_gt_40,
           props.fields.percentage_of_absence_gt_50,
         ],
+        //todo updates colors
         backgroundColor: [
           '#182938',
           '#273745',
