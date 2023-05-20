@@ -10,10 +10,10 @@ import {
   faReply,
   faCircleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
-import classes from './UserCheckBoxData.module.css';
+import classes from './FormData.module.css';
 import { useLocation } from 'react-router-dom';
-import { getSchools, addResponse } from '../../../utils/getData';
-import Loader from '../../../pages/Loader';
+import { getSchools, addResponse } from '../../../../utils/getData';
+import Loader from '../../../../pages/Loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

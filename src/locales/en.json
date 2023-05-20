@@ -118,5 +118,9 @@
   "Schools": "المدارس",
   "Dashboard": "لوحة التحكم",
   "New form": "استمارة جديدة",
-  "Number": "عدد"
+  "Number": "عدد",
+  "first_class": "الصف الاول",
+  "transfers_to_school": "التحويلات إلى المدرسة",
+  "transfers_from_school": "التحويلات من المدرسة",
+  "transferred_files": "ملفات التحويل"
 }

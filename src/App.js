@@ -21,7 +21,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { checkAuth } from './utils/auth';
 import DashboardCheckBox from './components/Users/Dashbord/DashbordCheckBox/DashboardCheckBox';
 import SchoolsTable from './components/Users/Dashbord/UserSchools/SchoolsTable/SchoolsTable';
-import UserCheckBoxData from './components/Users/UsersCheckBoxData/UserCheckBoxData';
+import UserCheckBoxData from './components/Users/FormData/General/FormData';
 import UserInformationView from './pages/UserInformationView/UserInformationView';
 import './App.css';
 
@@ -30,6 +30,8 @@ import { initReactI18next } from 'react-i18next';
 import enTranslation from './locales/en.json';
 import LapDashbord from './components/Users/Dashbord/LapDashbord/Dashbord/LapDashbord';
 import WorkersAffairsDashbord from './components/Users/Dashbord/WorkersAffairs/Dashbord/WorkersAffairsDashbord';
+import StudentsAffairsDashbord from './components/Users/Dashbord/StudentsAffairsDashbord/Dashbord/StudentsAffairsDashbord';
+import FormData from './components/Users/FormData/StudentsAffairs/FormData';
 function App() {
   // state to store the user data
 
@@ -186,6 +188,36 @@ function App() {
       ],
     },
   ]);
+  // create a router for the students affairs
+  const routerStudentsAffairs = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <UserRoute
+          userRolesHaveCheckBoxInputs={userRolesHaveCheckBoxInputs}
+          userData={userData}
+        />
+      ),
+      children: [
+        {
+          path: '/',
+          element: <StudentsAffairsDashbord userData={userData} />,
+        },
+        {
+          path: '/schools',
+          element: <SchoolsTable userData={userData} />,
+        },
+        {
+          path: '/formData',
+          element: <FormData userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
+        },
+      ],
+    },
+  ]);
 
   // create a router for the login page
   const routerLogin = createBrowserRouter([
@@ -213,6 +245,8 @@ function App() {
         return <RouterProvider router={routerLaboratories} />;
       } else if (userData.role === 'workers_affairs_admin') {
         return <RouterProvider router={routerWorkersAffairs} />;
+      } else if (userData.role === 'students_affairs_admin') {
+        return <RouterProvider router={routerStudentsAffairs} />;
       }
     }
     // if the user is not authenticated redirect to login page

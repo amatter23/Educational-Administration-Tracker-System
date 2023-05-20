@@ -69,9 +69,9 @@ const UpperMenu = props => {
       return;
     } else if (
       userRoles.includes(userData.role) ||
-      userData.role === 'laboratories_admin'
-      ||
-      userData.role === 'workers_affairs_admin'
+      userData.role === 'laboratories_admin' ||
+      userData.role === 'workers_affairs_admin' ||
+      userData.role === 'students_affairs_admin'
     ) {
       return (
         <div className={classes.list}>
