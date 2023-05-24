@@ -219,6 +219,35 @@ function App() {
     },
   ]);
 
+  const routerQuality = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <UserRoute
+          userRolesHaveCheckBoxInputs={userRolesHaveCheckBoxInputs}
+          userData={userData}
+        />
+      ),
+      children: [
+        {
+          path: '/',
+          element: <StudentsAffairsDashbord userData={userData} />,
+        },
+        {
+          path: '/schools',
+          element: <SchoolsTable userData={userData} />,
+        },
+        {
+          path: '/formData',
+          element: <FormData userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
+        },
+      ],
+    },
+  ]);
   // create a router for the login page
   const routerLogin = createBrowserRouter([
     {
@@ -247,6 +276,8 @@ function App() {
         return <RouterProvider router={routerWorkersAffairs} />;
       } else if (userData.role === 'students_affairs_admin') {
         return <RouterProvider router={routerStudentsAffairs} />;
+      } else if (userData.role === 'quality_admin') {
+        return <RouterProvider router={routerQuality} />;
       }
     }
     // if the user is not authenticated redirect to login page
