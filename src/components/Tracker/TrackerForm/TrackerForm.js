@@ -17,7 +17,10 @@ import Select from 'react-select';
 const TrackerForm = () => {
   const { t } = useTranslation();
 
+  // navigate to the tracker page after adding a new school
   const navigate = useNavigate();
+
+  // state for the form inputs
   const [inputs, setinputs] = useState({
     school_name: '',
     school_id: '',
@@ -178,12 +181,15 @@ const TrackerForm = () => {
     },
   });
 
+  // state for school level
   const [schoolLevel, setSchoolLevel] = useState([
     { value: 'primary', label: t('primary'), count: 6 },
     { value: 'intermediate', label: t('intermediate'), count: 3 },
     { value: 'secondary', label: t('secondary'), count: 3 },
   ]);
 
+
+  // state for school level primary
   const [schoolLevelPrimary, setSchoolLevelPrimary] = useState([
     { value: 'first_class', label: t('first_class') },
     { value: 'second_class', label: t('second_class') },
@@ -193,12 +199,14 @@ const TrackerForm = () => {
     { value: 'sixth_class', label: t('sixth_class') },
   ]);
 
+  // state for school level intermediate
   const [schoolLevelIntermediate, setSchoolLevelIntermediate] = useState([
     { value: 'first_class', label: t('first_class') },
     { value: 'second_class', label: t('second_class') },
     { value: 'third_class', label: t('third_class') },
   ]);
 
+  // state for school level secondary
   const [schoolLevelSecondary, setSchoolLevelSecondary] = useState([
     { value: 'first_class', label: t('first_class') },
     { value: 'second_class', label: t('second_class') },
@@ -206,6 +214,7 @@ const TrackerForm = () => {
   ]);
 
 
+  // state for school material Primary
    // todo : add school material for all levels
   const [schoolsMaterialPrimary, setSchoolsMaterialPrimary] = useState([
     { value: 'classroom', label: t('classroom') },
@@ -214,6 +223,8 @@ const TrackerForm = () => {
     { value: 'office', label: t('office') },
     { value: 'bathroom', label: t('bathroom') },
   ]);
+  
+  // state for school material Intermediate
   const [schoolsMaterialIntermediate, setSchoolsMaterialIntermediate] = useState([
     { value: 'classroom', label: t('classroom') },
     { value: 'library', label: t('library') },
