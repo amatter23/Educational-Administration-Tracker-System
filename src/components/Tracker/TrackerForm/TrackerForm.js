@@ -8,8 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../../pages/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
+
+import Select from 'react-select';
 
 // the main component function
 
@@ -20,7 +21,7 @@ const TrackerForm = () => {
   const [inputs, setinputs] = useState({
     school_name: '',
     school_id: '',
-    school_level: '',
+    school_level: 'primary',
     students_affairs: {
       first_class: {
         registered: null,
@@ -176,6 +177,33 @@ const TrackerForm = () => {
       },
     },
   });
+
+  const [schoolLevel, setSchoolLevel] = useState([
+    { value: 'primary', label: t('primary'), count: 6 },
+    { value: 'intermediate', label: t('intermediate'), count: 3 },
+    { value: 'secondary', label: t('secondary'), count: 3 },
+  ]);
+
+  const [schoolLevelPrimary, setSchoolLevelPrimary] = useState([
+    { value: 'first_class', label: t('first_class') },
+    { value: 'second_class', label: t('second_class') },
+    { value: 'third_class', label: t('third_class') },
+    { value: 'fourth_class', label: t('fourth_class') },
+    { value: 'fifth_class', label: t('fifth_class') },
+    { value: 'sixth_class', label: t('sixth_class') },
+  ]);
+
+  const [schoolLevelIntermediate, setSchoolLevelIntermediate] = useState([
+    { value: 'first_class', label: t('first_class') },
+    { value: 'second_class', label: t('second_class') },
+    { value: 'third_class', label: t('third_class') },
+  ]);
+
+  const [schoolLevelSecondary, setSchoolLevelSecondary] = useState([
+    { value: 'first_class', label: t('first_class') },
+    { value: 'second_class', label: t('second_class') },
+    { value: 'third_class', label: t('third_class') },
+  ]);
 
   const [issueField, setIssueField] = useState({
     students_affairs: {
@@ -362,17 +390,18 @@ const TrackerForm = () => {
             </div>
             <div className='input-label'>
               <label htmlFor=''>المرحله</label>
-              <input
-                onChange={e =>
+
+              <Select
+                onChange={(value, e) =>
                   setinputs({
                     ...inputs,
-                    school_level: e.target.value,
+                    school_level: value.value,
                   })
                 }
-                defaultValue={inputs.school_level}
                 id='school_level'
-                type='text'
-              />
+                options={schoolLevel}
+                defaultInputValue={inputs.school_level}
+              ></Select>
             </div>
             <div className='input-label'>
               <label htmlFor=''>اسم المدرسه</label>
@@ -394,49 +423,7 @@ const TrackerForm = () => {
           <h4>شئون طلبة</h4>
           <h5>الطلبه</h5>
           <div className={classes.inputs}>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>الحاضر</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      students_affairs: {
-                        ...inputs.students_affairs,
-                        first_class: {
-                          ...inputs.students_affairs.first_class,
-                          present: e.target.value,
-                        },
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>المقيد</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-registered'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      students_affairs: {
-                        ...inputs.students_affairs,
-                        first_class: {
-                          ...inputs.students_affairs.first_class,
-                          registered: e.target.value,
-                        },
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>الصف الاول</h6>
-            </div>
+            
           </div>
           <h5>التحويلات</h5>
           <div className={classes.inputs}>
