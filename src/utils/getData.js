@@ -270,3 +270,47 @@ export function getDepartmentStatics(userRole) {
     }
   });
 }
+
+// search about schools by name
+export function searchSchoolsByName(userRole, value) {
+  var api = userRole.replace('_admin', '').replace('_', '-');
+  return fetch(api_url + '/' + api + '/?search=' + value, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+// filter out schools by level
+export function filterSchoolsByLevel(userRole, value) {
+  var api = userRole.replace('_admin', '').replace('_', '-');
+  return fetch(api_url + '/' + api + '/?school_level=' + value, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
