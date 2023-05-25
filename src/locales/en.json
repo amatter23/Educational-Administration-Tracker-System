@@ -120,7 +120,15 @@
   "New form": "استمارة جديدة",
   "Number": "عدد",
   "first_class": "الصف الاول",
+  "second_class": "الصف الثاني",
+  "third_class": "الصف الثالث",
+  "fourth_class": "الصف الرابع",
+  "fifth_class": "الصف الخامس",
+  "sixth_class": "الصف السادس",
   "transfers_to_school": "التحويلات إلى المدرسة",
   "transfers_from_school": "التحويلات من المدرسة",
-  "transferred_files": "ملفات التحويل"
-}
+  "transferred_files": "ملفات التحويل",
+  "primary": "المرحلة الابتدائية",
+  "intermediate": "المرحلة الاعدادية",
+  "secondary": "المرحلة الثانوية",
+  "Choose Level first": "اختر المرحلة اولا"
