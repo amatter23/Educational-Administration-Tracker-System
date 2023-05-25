@@ -7,10 +7,20 @@ import {
   faCircleExclamation,
   faShield,
 } from '@fortawesome/free-solid-svg-icons';
-import { getSchools } from '../../../../../utils/getData';
+import {
+  getSchools,
+  searchSchoolsByName,
+  filterSchoolsByLevel,
+} from '../../../../../utils/getData';
 import Loader from '../../../../../pages/Loader';
 import PaginationCustom from '../../../../Ui/Pagination/Pagination';
+import { useTranslation } from 'react-i18next';
+import Select from 'react-select';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SearchFilter from '../../../../Ui/Search_Filter/Search_Filter';
 const SchoolsTable = props => {
+  const { t } = useTranslation();
   // state to handle the loading
   const [isLoading, setLoading] = useState(false);
   // state to handle the error
@@ -52,6 +62,43 @@ const SchoolsTable = props => {
     }
   };
 
+  //
+  const fetchSchoolsDataByLevel = async (value, userData) => {
+    const response = filterSchoolsByLevel(userData, value).then(data => {
+      setLoading(false);
+      if (data.status === 200) {
+        if (data.result.results.length === 0) {
+          toast.info(t('No schools found'));
+        }
+        setSchools(data.result.results);
+        updatePageNext(data.result.next);
+        updatePagePrevious(data.result.previous);
+        return;
+      } else {
+        setError(true);
+        return;
+      }
+    });
+  };
+
+  const fetchSchoolsDataByName = async (value, userData) => {
+    const response = searchSchoolsByName(userData, value).then(data => {
+      setLoading(false);
+      if (data.status === 200) {
+        if (data.result.results.length === 0) {
+          toast.info(t('No schools found'));
+        }
+        setSchools(data.result.results);
+        updatePageNext(data.result.next);
+        updatePagePrevious(data.result.previous);
+        return;
+      } else {
+        setError(true);
+        return;
+      }
+    });
+  };
+
   // useEffect to fetch the data from the server
   useEffect(() => {
     fetchSchoolsData();
@@ -86,14 +133,18 @@ const SchoolsTable = props => {
   }
   return (
     <div className={classes.container}>
+      <ToastContainer autoClose={1000} />
+
       <div className={classes.header}>
         <div className={classes.title}>
           <FontAwesomeIcon icon={faSchool} />
           <h3>المدارس</h3>
         </div>
-        <div className={classes.search}>
-          <input type='text' placeholder='بحث' />
-        </div>
+        <SearchFilter
+          search={fetchSchoolsDataByName}
+          filter={fetchSchoolsDataByLevel}
+          role={userData.role}
+        />
       </div>
       <div className={classes.table}>
         <div className={classes.content}>
