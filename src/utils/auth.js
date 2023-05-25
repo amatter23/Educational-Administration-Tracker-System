@@ -1,13 +1,12 @@
 import { redirect } from 'react-router-dom';
-import {api_url} from './getData';
+import { api_url } from './getData';
 export function getAuthToken() {
   return localStorage.getItem('token');
 }
 
-export function setAuthToken(token) {
+export function setAuthToken(token, refreshToken) {
   localStorage.setItem('token', token);
-  const time = new Date();
-  localStorage.setItem('time', time.getTime());
+  localStorage.setItem('refreshToken', refreshToken);
 }
 // create a function to check if the token is expired by 24 hours
 export function checkToken() {
@@ -39,7 +38,6 @@ export function checkAuth() {
   }
 }
 
-
 export function loginPageRedirect() {
   if (localStorage.getItem('token')) {
     return redirect('/');
@@ -61,8 +59,32 @@ export function fetchlogin(userName, password) {
   }).then(res => {
     if (res.status === 200) {
       return res.json().then(data => {
-        setAuthToken(data.access);
+        setAuthToken(data.access, data.refresh);
         return true;
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function refreshToken(refreshToken) {
+  return fetch(api_url + '/auth/jwt/refresh', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      refresh: refreshToken,
+    }),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        setAuthToken(data.access, localStorage.getItem('refreshToken'));
+        return {
+          result: data,
+          status: res.status,
+        };
       });
     } else {
       return res.status;

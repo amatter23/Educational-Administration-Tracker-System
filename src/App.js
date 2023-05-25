@@ -13,12 +13,12 @@ import TrackerForm from './components/Tracker/TrackerForm/TrackerForm';
 import UserRoute from './routes/UserRoute.js';
 import TrackerSchools from './components/Tracker/TrackerSchools/TrackerSchools';
 import Login from './pages/Login/Login';
-import { getPersonalData, getRoles } from '../src/utils/getData';
+import { getPersonalData } from '../src/utils/getData';
 import Loader from '../src/pages/Loader';
 import AdminTable from './components/Admin/AdminTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { checkAuth } from './utils/auth';
+import { checkAuth, refreshToken } from './utils/auth';
 import DashboardCheckBox from './components/Users/Dashbord/DashbordCheckBox/DashboardCheckBox';
 import SchoolsTable from './components/Users/Dashbord/UserSchools/SchoolsTable/SchoolsTable';
 import UserCheckBoxData from './components/Users/FormData/General/FormData';
@@ -248,7 +248,7 @@ function App() {
       ],
     },
   ]);
-  
+
   const routerTeachers = createBrowserRouter([
     {
       path: '/',
@@ -308,8 +308,7 @@ function App() {
         return <RouterProvider router={routerStudentsAffairs} />;
       } else if (userData.role === 'quality_admin') {
         return <RouterProvider router={routerQuality} />;
-      }
-      else if (userData.role === 'teachers_admin') {
+      } else if (userData.role === 'teachers_admin') {
         return <RouterProvider router={routerTeachers} />;
       }
     }
@@ -319,14 +318,13 @@ function App() {
     }
   };
   //create a function to fetch user date the data from the server
-  const fetchUserData = async () => {
+  const fetchUserData = async e => {
     if (checkAuth() === true) {
       setLoading(true);
       try {
         const response = getPersonalData().then(data => {
-          setLoading(false);
-
           if (data.status === 200) {
+            setLoading(false);
             UpdateUserData({
               fallName: data.result.first_name + ' ' + data.result.last_name,
               role: data.result.role,
@@ -339,7 +337,22 @@ function App() {
               password: data.result.password,
             });
             return;
-          } else {
+          } else if (data === 401) {
+            const response1 = refreshToken(
+              localStorage.getItem('refreshToken')
+            ).then(data => {
+              setLoading(false);
+              if (data.status === 200) {
+                window.location.reload(true);
+                return;
+              } else if (data === 401) {
+                localStorage.clear();
+                window.location.reload(true);
+                setError(true);
+                return;
+              }
+            });
+
             setError(true);
             return;
           }
