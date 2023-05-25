@@ -21,7 +21,7 @@ const TrackerForm = () => {
   const [inputs, setinputs] = useState({
     school_name: '',
     school_id: '',
-    school_level: "",
+    school_level: '',
     students_affairs: {
       first_class: {
         registered: null,
@@ -424,11 +424,10 @@ const TrackerForm = () => {
             style={{ flexDirection: 'row-reverse' }}
             className={classes.inputs}
           >
-            {inputs.school_level === ""
-              ? (
-                <h3>{t("Choose Level first")}</h3>
-              )
-              : (inputs.school_level === 'primary' ?schoolLevelPrimary.map((item, index) => (
+            {inputs.school_level === '' ? (
+              <h3>{t('Choose Level first')}</h3>
+            ) : inputs.school_level === 'primary' ? (
+              schoolLevelPrimary.map((item, index) => (
                 <div className={classes.input}>
                   <div className='input-label'>
                     <label htmlFor=''>الحاضر</label>
@@ -473,7 +472,8 @@ const TrackerForm = () => {
                   <h6>{t(item.value)}</h6>
                 </div>
               ))
-            : schoolLevelIntermediate.map((item, index) => (
+            ) : (
+              schoolLevelIntermediate.map((item, index) => (
                 <div className={classes.input}>
                   <div className='input-label'>
                     <label htmlFor=''>الحاضر</label>
@@ -517,8 +517,8 @@ const TrackerForm = () => {
                   </div>
                   <h6>{t(item.value)}</h6>
                 </div>
-              )))
-             }
+              ))
+            )}
           </div>
           <h5>التحويلات</h5>
           <div className={classes.inputs}>
@@ -1506,198 +1506,148 @@ const TrackerForm = () => {
         </div>
         <div className={classes.field}>
           <h4>الجوده</h4>
-          <h5>الصف الاول</h5>
-          <div className={classes.inputs}>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        first_year_three: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثالث</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        first_year_two: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثاني</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        first_year_one: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
+          {inputs.school_level === '' ? (
+            <h3>{t('Choose Level first')}</h3>
+          ) : inputs.school_level === 'primary' ? (
+            schoolLevelPrimary.map((item, index) => (
+              <>
+                <h5>{t(item.value)}</h5>
+                <div className={classes.inputs}>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_three`]: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                    <h6>العام الثالث</h6>
+                  </div>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_two`]: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                    <h6>العام الثاني</h6>
+                  </div>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_one`]: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
 
-              <h6>العام الاول</h6>
-            </div>
-          </div>
-          <h5>الصف الثاني</h5>
-          <div className={classes.inputs}>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        second_year_three: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثالث</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        second_year_two: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثاني</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        second_year_one: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
+                    <h6>العام الاول</h6>
+                  </div>
+                </div>
+              </>
+            ))
+          ) : (
+            schoolLevelIntermediate.map((item, index) => (
+              <>
+                <h5>{t(item.value)}</h5>
+                <div className={classes.inputs}>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_three`]: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                    <h6>العام الثالث</h6>
+                  </div>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_two`]:
+                                e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                    <h6>العام الثاني</h6>
+                  </div>
+                  <div className={classes.input}>
+                    <div className='input-label'>
+                      <label htmlFor=''>نسبه النحاح</label>
+                      <input
+                        placeholder='0'
+                        id='students_affairs-first_class-present'
+                        type='number'
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year')+ `_one`]: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
 
-              <h6>العام الاول</h6>
-            </div>
-          </div>
-          <h5>الصف الثالث</h5>
-          <div className={classes.inputs}>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        third_year_three: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثالث</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        third_year_two: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <h6>العام الثاني</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>نسبه النحاح</label>
-                <input
-                  placeholder='0'
-                  id='students_affairs-first_class-present'
-                  type='number'
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      quality: {
-                        ...inputs.quality,
-                        third_year_one: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-
-              <h6>العام الاول</h6>
-            </div>
-          </div>
+                    <h6>العام الاول</h6>
+                  </div>
+                </div>
+              </>
+            ))
+          )}
           {/* this field is isseu by graeds */}
           <div
             style={{
