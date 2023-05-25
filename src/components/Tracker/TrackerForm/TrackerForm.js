@@ -205,6 +205,23 @@ const TrackerForm = () => {
     { value: 'third_class', label: t('third_class') },
   ]);
 
+
+   // todo : add school material for all levels
+  const [schoolsMaterialPrimary, setSchoolsMaterialPrimary] = useState([
+    { value: 'classroom', label: t('classroom') },
+    { value: 'library', label: t('library') },
+    { value: 'laboratory', label: t('laboratory') },
+    { value: 'office', label: t('office') },
+    { value: 'bathroom', label: t('bathroom') },
+  ]);
+  const [schoolsMaterialIntermediate, setSchoolsMaterialIntermediate] = useState([
+    { value: 'classroom', label: t('classroom') },
+    { value: 'library', label: t('library') },
+    { value: 'laboratory', label: t('laboratory') },
+    { value: 'office', label: t('office') },
+    { value: 'bathroom', label: t('bathroom') },
+  ]);
+
   const [issueField, setIssueField] = useState({
     students_affairs: {
       issue: false,
@@ -1525,7 +1542,8 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_three`]: e.target.value,
+                              [item.value.replace('class', 'year') + `_three`]:
+                                e.target.value,
                             },
                           })
                         }
@@ -1545,7 +1563,8 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_two`]: e.target.value,
+                              [item.value.replace('class', 'year') + `_two`]:
+                                e.target.value,
                             },
                           })
                         }
@@ -1565,7 +1584,8 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_one`]: e.target.value,
+                              [item.value.replace('class', 'year') + `_one`]:
+                                e.target.value,
                             },
                           })
                         }
@@ -1594,7 +1614,8 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_three`]: e.target.value,
+                              [item.value.replace('class', 'year') + `_three`]:
+                                e.target.value,
                             },
                           })
                         }
@@ -1614,7 +1635,7 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_two`]:
+                              [item.value.replace('class', 'year') + `_two`]:
                                 e.target.value,
                             },
                           })
@@ -1635,7 +1656,8 @@ const TrackerForm = () => {
                             ...inputs,
                             quality: {
                               ...inputs.quality,
-                              [item.value.replace('class', 'year')+ `_one`]: e.target.value,
+                              [item.value.replace('class', 'year') + `_one`]:
+                                e.target.value,
                             },
                           })
                         }
@@ -1985,115 +2007,101 @@ const TrackerForm = () => {
           <h4>المعلمين</h4>
           <h5>المواد</h5>
           <div className={classes.inputs}>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      teachers: {
-                        ...inputs.teachers,
-                        material_one: {
-                          ...inputs.teachers.material_one,
-                          increase: e.target.value,
-                        },
-                      },
-                    })
-                  }
-                  placeholder='0'
-                  id='schoolInf_level'
-                  type='number'
-                />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input
-                  onChange={e =>
-                    setinputs({
-                      ...inputs,
-                      teachers: {
-                        ...inputs.teachers,
-                        material_one: {
-                          ...inputs.teachers.material_one,
-                          decrease: e.target.value,
-                        },
-                      },
-                    })
-                  }
-                  placeholder='0'
-                  id='schoolInf_level'
-                  type='number'
-                />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            {/* <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div>
-            <div className={classes.input}>
-              <div className='input-label'>
-                <label htmlFor=''>عجز</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <div className='input-label'>
-                <label htmlFor=''>زياده</label>
-                <input placeholder='0' id='schoolInf_level' type='number' />
-              </div>
-              <h6>ماده</h6>
-            </div> */}
+            {inputs.school_level === '' ? (
+              <h3>{t('Choose Level first')}</h3>
+            ) : inputs.school_level === 'primary' ? (
+              schoolsMaterialPrimary.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>عجز</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.value]: {
+                              ...inputs.teachers[item.value],
+                              increase: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>زياده</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.value]: {
+                              ...inputs.teachers[item.value],
+                              decrease: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              ))
+            ) : (
+              schoolsMaterialIntermediate.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>عجز</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.value]: {
+                              ...inputs.teachers[item.value],
+                              increase: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>زياده</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.value]: {
+                              ...inputs.teachers[item.value],
+                              decrease: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              ))
+            )}
           </div>
           {/* this feild issue is by numbers of workers */}
           <div
