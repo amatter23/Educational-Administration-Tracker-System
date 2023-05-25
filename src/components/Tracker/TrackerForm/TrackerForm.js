@@ -21,7 +21,7 @@ const TrackerForm = () => {
   const [inputs, setinputs] = useState({
     school_name: '',
     school_id: '',
-    school_level: 'primary',
+    school_level: "",
     students_affairs: {
       first_class: {
         registered: null,
@@ -310,10 +310,10 @@ const TrackerForm = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    if (localStorage.getItem('myFormData') !== null) {
-      const data = localStorage.getItem('myFormData');
-      setinputs(JSON.parse(data));
-    }
+    // if (localStorage.getItem('myFormData') !== null) {
+    //   const data = localStorage.getItem('myFormData');
+    //   setinputs(JSON.parse(data));
+    // }
 
     setIsLoading(false);
   }, []);
@@ -398,9 +398,7 @@ const TrackerForm = () => {
                     school_level: value.value,
                   })
                 }
-                id='school_level'
                 options={schoolLevel}
-                defaultInputValue={inputs.school_level}
               ></Select>
             </div>
             <div className='input-label'>
@@ -422,8 +420,105 @@ const TrackerForm = () => {
         <div className={classes.field}>
           <h4>شئون طلبة</h4>
           <h5>الطلبه</h5>
-          <div className={classes.inputs}>
-            
+          <div
+            style={{ flexDirection: 'row-reverse' }}
+            className={classes.inputs}
+          >
+            {inputs.school_level === ""
+              ? (
+                <h3>{t("Choose Level first")}</h3>
+              )
+              : (inputs.school_level === 'primary' ?schoolLevelPrimary.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>الحاضر</label>
+                    <input
+                      placeholder='0'
+                      id='students_affairs-first_class-present'
+                      type='number'
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          students_affairs: {
+                            ...inputs.students_affairs,
+                            [item.value]: {
+                              ...inputs.students_affairs[[item.value]],
+                              present: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>المقيد</label>
+                    <input
+                      placeholder='0'
+                      id='students_affairs-first_class-registered'
+                      type='number'
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          students_affairs: {
+                            ...inputs.students_affairs,
+                            [item.value]: {
+                              ...inputs.students_affairs[item.value],
+                              registered: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              ))
+            : schoolLevelIntermediate.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>الحاضر</label>
+                    <input
+                      placeholder='0'
+                      id='students_affairs-first_class-present'
+                      type='number'
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          students_affairs: {
+                            ...inputs.students_affairs,
+                            [item.value]: {
+                              ...inputs.students_affairs[[item.value]],
+                              present: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>المقيد</label>
+                    <input
+                      placeholder='0'
+                      id='students_affairs-first_class-registered'
+                      type='number'
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          students_affairs: {
+                            ...inputs.students_affairs,
+                            [item.value]: {
+                              ...inputs.students_affairs[item.value],
+                              registered: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              )))
+             }
           </div>
           <h5>التحويلات</h5>
           <div className={classes.inputs}>
