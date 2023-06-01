@@ -1,0 +1,71 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--pading);
+  color: var(--text-color-titles);
+}
+.head {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: var(--pading);
+  background-color: var(--primary-darker);
+  border-radius: var(--border-radius);
+  color: var(--backgound-1);
+  gap: var(--gap);
+}
+.content {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--pading);
+}
+.tableHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--primary-dark);
+  border-radius: var(--border-radius);
+  color: var(--backgound-1);
+}
+.tableContent {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--pading);
+  overflow-y: auto;
+  gap: var(--gap);
+}
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: solid 1px var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+.row:hover {
+  background-color: var(--text-color-placeholder);
+  border-radius: var(--border-radius);
+  /* color: var(--backgound-1); */
+}
+.title {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
