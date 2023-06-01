@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: 100%;
+  height: fit-content;
+  color: var(--text-color-titles);
+  border-radius: var(--border-radius);
+  border: solid 1px var(--border-color);
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: var(--pading);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: var(--backgound-1);
+}

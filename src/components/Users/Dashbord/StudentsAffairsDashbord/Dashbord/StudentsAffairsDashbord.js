@@ -8,6 +8,7 @@ import UserInformation from '../../UserInformationCard/UserInformation';
 import PieChart from '../../PieChart/PieChart';
 import { getDepartmentStatics } from '../../../../../utils/getData';
 import Loader from '../../../../../pages/Loader';
+import PieChartStudent from '../PieChartStudent/PieChartStudent';
 const StudentsAffairsDashbord = props => {
   // state to handle the loading
   const [isLoading, setLoading] = useState(true);
@@ -63,7 +64,9 @@ const StudentsAffairsDashbord = props => {
         </div>
       </div>
       <div className={classes.bottom}>
-        <div className={classes.left}></div>
+        <div className={classes.right}>
+          <PieChartStudent userData={userData} fields={fields} />
+        </div>
         <div className={classes.right}>
           <PieChart userData={userData} schoolStatics={schoolStatics} />
         </div>

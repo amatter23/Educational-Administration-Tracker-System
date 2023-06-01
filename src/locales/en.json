@@ -131,5 +131,11 @@
   "primary": "المرحلة الابتدائية",
   "intermediate": "المرحلة الاعدادية",
   "secondary": "المرحلة الثانوية",
-  "Choose Level first": "اختر المرحلة اولا"
+  "Choose Level first": "اختر المرحلة اولا",
+  "percentage absent primary school": "نسبة الغياب في المدرسة الابتدائية",
+  "percentage absent intermediate school": "نسبة الغياب في المدرسة الاعدادية",
+  "percentage absent secondary school": "نسبة الغياب في المدرسة الثانوية",
+  "percentage absent": "نسبة الغياب",
+  "students_affairs": "شؤون الطلاب",
+  "students affairs": "شؤون الطلاب"
 }
