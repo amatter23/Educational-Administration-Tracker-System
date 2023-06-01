@@ -480,6 +480,7 @@ const TrackerForm = () => {
                             [item.value]: {
                               ...inputs.students_affairs[item.value],
                               registered: e.target.value,
+                              level: inputs.school_level,
                             },
                           },
                         })
@@ -526,6 +527,7 @@ const TrackerForm = () => {
                             [item.value]: {
                               ...inputs.students_affairs[item.value],
                               registered: e.target.value,
+                              level: inputs.school_level,
                             },
                           },
                         })
