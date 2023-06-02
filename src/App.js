@@ -33,6 +33,7 @@ import WorkersAffairsDashbord from './components/Users/Dashbord/WorkersAffairs/D
 import StudentsAffairsDashbord from './components/Users/Dashbord/StudentsAffairsDashbord/Dashbord/StudentsAffairsDashbord';
 import FormData from './components/Users/FormData/StudentsAffairs/FormData';
 import QualityDashborde from './components/Users/Dashbord/QualityDashbord/Dashbord/QualityDashbord';
+import TeacherDashbord from './components/Users/Dashbord/TeacherDashbord/Dashbord/TeacherDashbord';
 function App() {
   // state to store the user data
 
@@ -262,7 +263,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <StudentsAffairsDashbord userData={userData} />,
+          element: <TeacherDashbord userData={userData} />,
         },
         {
           path: '/schools',

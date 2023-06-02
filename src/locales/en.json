@@ -141,7 +141,21 @@
   "Schools qualified to work": "المدارس المؤهلة للعمل",
   "School Level": "المرحلة الدراسية",
   "Schools Name": "اسم المدرسة",
-  "quality" : "الجودة"
-
-
+  "quality" : "الجودة",
+  "material_one" : "المادة الاولى",
+  "material_two" : "المادة الثانية",
+  "material_three" : "المادة الثالثة",
+  "material_four" : "المادة الرابعة",
+  "material_five" : "المادة الخامسة",
+  "material_six" : "المادة السادسة",
+  "material_seven" : "المادة السابعة",
+  "material_eight" : "المادة الثامنة",
+  "material_nine" : "المادة التاسعة",
+  "material_ten" : "المادة العاشرة",
+  "material_eleven" : "المادة الحادية عشر",
+  "material_twelve" : "المادة الثانية عشر",
+  "name" : "الاسم",
+  "increase" : "الزيادة",
+  "decrease" : "العجز",
+  "teachers" : "المعلمين"
 }
