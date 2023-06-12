@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f2d2b53b.css",
+    "main.js": "/static/js/main.7b20df80.js",
+    "static/media/cool-background.png": "/static/media/cool-background.4305838cbf73326b0df3.png",
+    "static/media/iconfinder-icon.svg": "/static/media/iconfinder-icon.8f0c63cc87beea460a45c99f54ddab23.svg",
+    "index.html": "/index.html",
+    "main.f2d2b53b.css.map": "/static/css/main.f2d2b53b.css.map",
+    "main.7b20df80.js.map": "/static/js/main.7b20df80.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2d2b53b.css",
+    "static/js/main.7b20df80.js"
+  ]
+}
