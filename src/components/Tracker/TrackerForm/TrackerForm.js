@@ -53,10 +53,68 @@ const TrackerForm = () => {
     },
     teachers: {
       material_one: {
-        name: '',
-        increase: null,
         decrease: null,
+        increase: null,
+        name: '',
       },
+      material_two: {
+        decrease: null,
+
+        increase: null,
+        name: '',
+      },
+      material_three: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_four: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_five: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+
+      material_six: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_seven: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_nine: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_eight: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_ten: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_eleven: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+      material_twelve: {
+        decrease: null,
+        increase: null,
+        name: '',
+      },
+
       issue: {
         issue: '',
       },
@@ -205,21 +263,50 @@ const TrackerForm = () => {
     { value: 'third_class', label: t('third_class') },
   ]);
 
-
-   // todo : add school material for all levels
+  // todo : add school material for all levels
   const [schoolsMaterialPrimary, setSchoolsMaterialPrimary] = useState([
-    { value: 'classroom', label: t('classroom') },
-    { value: 'library', label: t('library') },
-    { value: 'laboratory', label: t('laboratory') },
-    { value: 'office', label: t('office') },
-    { value: 'bathroom', label: t('bathroom') },
+    { name: 'material_one', value: 'Arabic', label: t('Arabic') },
+    { name: 'material_two', value: 'Math', label: t('Math') },
+    { name: 'material_three', value: 'Sciences', label: t('Sciences') },
+    { name: 'material_four', value: 'English', label: t('English') },
+    { name: 'material_five', value: 'Studies', label: t('Studies') },
+    { name: 'material_six', value: 'Draw', label: t('Draw') },
+    { name: 'material_seven', value: 'Fields', label: t('Fields') },
+    { name: 'material_nine', value: ' Computer', label: t('Computer') },
   ]);
-  const [schoolsMaterialIntermediate, setSchoolsMaterialIntermediate] = useState([
-    { value: 'classroom', label: t('classroom') },
-    { value: 'library', label: t('library') },
-    { value: 'laboratory', label: t('laboratory') },
-    { value: 'office', label: t('office') },
-    { value: 'bathroom', label: t('bathroom') },
+
+  const [schoolsMaterialIntermediate, setSchoolsMaterialIntermediate] =
+    useState([
+      { name: 'material_one', value: 'Arabic', label: t('Arabic') },
+      { name: 'material_two', value: 'Math', label: t('Math') },
+      { name: 'material_three', value: 'Sciences', label: t('Sciences') },
+      { name: 'material_four', value: 'English', label: t('English') },
+      { name: 'material_five', value: 'Studies', label: t('Studies') },
+      { name: 'material_six', value: 'Draw', label: t('Draw') },
+      { name: 'material_seven', value: 'Fields', label: t('Fields') },
+      { name: 'material_nine', value: ' Computer', label: t('Computer') },
+    ]);
+
+  const [schoolsMaterialSecondary, setSchoolsMaterialSecondary] = useState([
+    { name: 'material_one', value: 'Arabic', label: t('Arabic') },
+    { name: 'material_two', value: 'Math', label: t('Math') },
+    { name: 'material_three', value: 'Physics', label: t('Physics') },
+    { name: 'material_four', value: 'English', label: t('English') },
+    { name: 'material_five', value: 'Chemistry', label: t('Chemistry') },
+    { name: 'material_six', value: 'Biology', label: t('Biology') },
+    { name: 'material_seven', value: 'French', label: t('French') },
+    { name: 'material_nine', value: ' History', label: t('History') },
+    { name: 'material_eight', value: ' Geography', label: t('Geography') },
+    {
+      name: 'material_ten',
+      value: 'Philosophy and logic',
+      label: t('Philosophy and logic'),
+    },
+    {
+      name: 'material_eleven',
+      value: ' Psychology and Sociology',
+      label: t('Psychology and Sociology'),
+    },
   ]);
 
   const [issueField, setIssueField] = useState({
@@ -289,16 +376,33 @@ const TrackerForm = () => {
   //     }
   //     setIsError("none");
   //   }
-  const test = () => {
-    const hasNonArabicValue = Object.values(inputs).some(value => {
-      if (typeof value === 'object' && value !== null) {
-        return Object.values(value).some(
-          nestedValue => !nestedValue?.includes('غير')
-        );
-      }
-      return !value?.includes('غير');
-    });
-  };
+
+  // todo handle bug if use remove the last item in the quality object 
+  function checkPassPercentage(value, item, number) {
+    if (value < 60) {
+      setinputs({
+        ...inputs,
+        quality: {
+          ...inputs.quality,
+          [item.value.replace('class', 'year') + `_` + number]: value,
+          issue: {
+            issue: 'not ready to work on it',
+          },
+        },
+      });
+    } else {
+      setinputs({
+        ...inputs,
+        quality: {
+          ...inputs.quality,
+          [item.value.replace('class', 'year') + `_three`]: value,
+          issue: {
+            issue: '',
+          },
+        },
+      });
+    }
+  }
 
   // function to handle the submit of the form
   const addFormHandler = async event => {
@@ -778,7 +882,7 @@ const TrackerForm = () => {
                         external_factors: 'غير منضبط',
                       },
                     });
-                    test();
+                    
                   }}
                   placeholder='0'
                   id='schoolInf_level'
@@ -795,7 +899,7 @@ const TrackerForm = () => {
                         external_factors: 'منضبط',
                       },
                     });
-                    test();
+
                   }}
                   placeholder='0'
                   id='schoolInf_level'
@@ -1539,16 +1643,7 @@ const TrackerForm = () => {
                         placeholder='0'
                         id='students_affairs-first_class-present'
                         type='number'
-                        onChange={e =>
-                          setinputs({
-                            ...inputs,
-                            quality: {
-                              ...inputs.quality,
-                              [item.value.replace('class', 'year') + `_three`]:
-                                e.target.value,
-                            },
-                          })
-                        }
+                        onChange={e => checkPassPercentage(e.target.value, item, "three")}
                       />
                     </div>
                     <h6>العام الثالث</h6>
@@ -1561,15 +1656,8 @@ const TrackerForm = () => {
                         id='students_affairs-first_class-present'
                         type='number'
                         onChange={e =>
-                          setinputs({
-                            ...inputs,
-                            quality: {
-                              ...inputs.quality,
-                              [item.value.replace('class', 'year') + `_two`]:
-                                e.target.value,
-                            },
-                          })
-                        }
+                          checkPassPercentage(e.target.value, item, "two")}
+                        
                       />
                     </div>
                     <h6>العام الثاني</h6>
@@ -1582,15 +1670,8 @@ const TrackerForm = () => {
                         id='students_affairs-first_class-present'
                         type='number'
                         onChange={e =>
-                          setinputs({
-                            ...inputs,
-                            quality: {
-                              ...inputs.quality,
-                              [item.value.replace('class', 'year') + `_one`]:
-                                e.target.value,
-                            },
-                          })
-                        }
+                          checkPassPercentage(e.target.value, item, "one")}
+                        
                       />
                     </div>
 
@@ -2022,8 +2103,8 @@ const TrackerForm = () => {
                           ...inputs,
                           teachers: {
                             ...inputs.teachers,
-                            [item.value]: {
-                              ...inputs.teachers[item.value],
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
                               increase: e.target.value,
                             },
                           },
@@ -2042,9 +2123,104 @@ const TrackerForm = () => {
                           ...inputs,
                           teachers: {
                             ...inputs.teachers,
-                            [item.value]: {
-                              ...inputs.teachers[item.value],
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
                               decrease: e.target.value,
+                              name: item.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              ))
+            ) : inputs.school_level === 'intermediate' ? (
+              schoolsMaterialIntermediate.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>عجز</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
+                              increase: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>زياده</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
+                              decrease: e.target.value,
+                              name: item.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <h6>{t(item.value)}</h6>
+                </div>
+              ))
+            ) : inputs.school_level === 'secondary' ? (
+              schoolsMaterialSecondary.map((item, index) => (
+                <div className={classes.input}>
+                  <div className='input-label'>
+                    <label htmlFor=''>عجز</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
+                              increase: e.target.value,
+                            },
+                          },
+                        })
+                      }
+                      placeholder='0'
+                      id='schoolInf_level'
+                      type='number'
+                    />
+                  </div>
+                  <div className='input-label'>
+                    <label htmlFor=''>زياده</label>
+                    <input
+                      onChange={e =>
+                        setinputs({
+                          ...inputs,
+                          teachers: {
+                            ...inputs.teachers,
+                            [item.name]: {
+                              ...inputs.teachers[item.name],
+                              decrease: e.target.value,
+                              name: item.value,
                             },
                           },
                         })
@@ -2058,51 +2234,7 @@ const TrackerForm = () => {
                 </div>
               ))
             ) : (
-              schoolsMaterialIntermediate.map((item, index) => (
-                <div className={classes.input}>
-                  <div className='input-label'>
-                    <label htmlFor=''>عجز</label>
-                    <input
-                      onChange={e =>
-                        setinputs({
-                          ...inputs,
-                          teachers: {
-                            ...inputs.teachers,
-                            [item.value]: {
-                              ...inputs.teachers[item.value],
-                              increase: e.target.value,
-                            },
-                          },
-                        })
-                      }
-                      placeholder='0'
-                      id='schoolInf_level'
-                      type='number'
-                    />
-                  </div>
-                  <div className='input-label'>
-                    <label htmlFor=''>زياده</label>
-                    <input
-                      onChange={e =>
-                        setinputs({
-                          ...inputs,
-                          teachers: {
-                            ...inputs.teachers,
-                            [item.value]: {
-                              ...inputs.teachers[item.value],
-                              decrease: e.target.value,
-                            },
-                          },
-                        })
-                      }
-                      placeholder='0'
-                      id='schoolInf_level'
-                      type='number'
-                    />
-                  </div>
-                  <h6>{t(item.value)}</h6>
-                </div>
-              ))
+              ''
             )}
           </div>
           {/* this feild issue is by numbers of workers */}
