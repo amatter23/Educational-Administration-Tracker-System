@@ -98,7 +98,7 @@ const TrackerSchools = () => {
               <div className={classes.bodyItem}>
                 <div className={classes.bodyItemHeader}>
                   <div className={classes.level}>
-                    <h6>{item.school_level}</h6>
+                    <h6>{t(`${item.school_level}`)}</h6>
                     <h6> : {t('Level')}</h6>
                   </div>
                   <FontAwesomeIcon icon={faSchool} />
