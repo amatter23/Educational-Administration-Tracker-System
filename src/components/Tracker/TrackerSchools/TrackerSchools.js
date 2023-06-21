@@ -8,6 +8,7 @@ import {
   faSchool,
   faCircleUser,
   faCircleExclamation,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { getTrackerSchools } from '../../../utils/getData';
@@ -53,30 +54,36 @@ const TrackerSchools = () => {
   }, []);
 
   // is loading state to show the loader
-  if (isLoading === true) {
-    return (
-      <div className='loader'>
-        <Loader />
-      </div>
-    );
-  }
+  // if (isLoading === true) {
+  //   return (
+  //     <div className='loader'>
+  //       <Loader />
+  //     </div>
+  //   );
+  // }
   // if error state to show the error message
-  else if (error === true) {
+  if (error === true) {
     return (
       <div className='loader'>
         <FontAwesomeIcon icon={faCircleExclamation} size='2xl' />
-        <span>Can't retch it now</span>
+        <span>{t('Something wrong happened')}</span>
       </div>
     );
   }
 
   return (
     <div className={classes.contaner}>
+      {isLoading ? (
+        <Loader
+          color={'var(--text-color-titles)'}
+          backgroundColor={'transparent'}
+        />
+      ) : null}
       <div className={classes.header}>
         <div className={classes.headerItem}>
           <h4>
-            {' '}
-            <FontAwesomeIcon icon={faSchool} /> Schools
+            
+            {t('Schools')} &nbsp; <FontAwesomeIcon icon={faSchool} />
           </h4>
         </div>
         <div className={classes.headerItem}>
@@ -86,7 +93,9 @@ const TrackerSchools = () => {
             }}
             className='btn'
           >
-            <FontAwesomeIcon icon={faPlus} /> Add New School
+            {t('Add New School')}
+            &nbsp;
+            <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
       </div>
@@ -104,11 +113,11 @@ const TrackerSchools = () => {
                   <FontAwesomeIcon icon={faSchool} />
                 </div>
                 <div className={classes.bodyItemBody}>
-                  {/*  todo: create name creator from back end */}
-                  {/* <div className={classes.creatorName}>
-                    {item.creatorName}
-                    <FontAwesomeIcon icon={faCircleUser} />
-                  </div> */}
+                  <div className={classes.creatorName}>
+                    {item.created_at.split('T')[0]}
+                    &nbsp;
+                    <FontAwesomeIcon icon={faClock} />
+                  </div>
                   <div className={classes.schoolId}>{item.school_id}</div>
                   <div className={classes.schoolName}>
                     <h6>{item.school_name}</h6>
