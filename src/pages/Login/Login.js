@@ -2,6 +2,7 @@ import react, { useState } from 'react';
 import classes from './Login.module.css';
 import loginImg from '../../assits/iconfinder-icon.svg';
 import Loader from '../../pages/Loader';
+import LoadingRing from '../../components/Ui/LoadingRing/LoadingRing';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faRightToBracket,
@@ -29,7 +30,8 @@ const Login = () => {
   };
 
   // function to login
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const response = fetchlogin(userName, password).then(data => {
@@ -39,8 +41,7 @@ const Login = () => {
           setLoading(false);
         } else if (data === 401) {
           setError('Invalid user name or password');
-        }
-        else{
+        } else {
           // refresh the site data
           window.location.reload();
         }
@@ -51,14 +52,8 @@ const Login = () => {
   };
   return (
     <div className={classes.container}>
-      {isLoading === true ? (
-        <div className={classes.loader}>
-          <Loader />
-        </div>
-      ) : null}
-
       <div className={classes.content}>
-        <div className={classes.inputs}>
+        <form onSubmit={login} className={classes.inputs}>
           <div className={classes.text}>
             <h3>
               <FontAwesomeIcon
@@ -82,6 +77,8 @@ const Login = () => {
                 onChange={userNameHandler}
                 type='text'
                 placeholder='Username'
+                required
+                autoFocus
               />
             </div>
             <div className={classes.inputContanier}>
@@ -94,15 +91,18 @@ const Login = () => {
                 onChange={passwordHandler}
                 type='Password'
                 placeholder='Password'
+                required
               />
             </div>
             <b style={{ color: '#b80000' }}>{error}</b>
           </div>
-
-          <button onClick={login} className='btn'>
-            Login
-          </button>
-        </div>
+          {
+            // if the loading state is true then show the loader
+            <button type='submit' className='btn'>
+              {isLoading ? <LoadingRing /> : 'Login'}
+            </button>
+          }
+        </form>
       </div>
     </div>
   );
