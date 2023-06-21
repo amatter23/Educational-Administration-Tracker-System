@@ -9,11 +9,11 @@ import Loader from '../../../pages/Loader';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
 import Select from 'react-select';
 
+// todo check if inpout null or not
+// todo retern a data from local storage to the form
 // the main component function
-
 const TrackerForm = () => {
   const { t } = useTranslation();
 
@@ -24,6 +24,31 @@ const TrackerForm = () => {
     school_level: '',
     students_affairs: {
       first_class: {
+        registered: null,
+        present: null,
+        absent: null,
+      },
+      second_class: {
+        registered: null,
+        present: null,
+        absent: null,
+      },
+      third_class: {
+        registered: null,
+        present: null,
+        absent: null,
+      },
+      fourth_class: {
+        registered: null,
+        present: null,
+        absent: null,
+      },
+      fifth_class: {
+        registered: null,
+        present: null,
+        absent: null,
+      },
+      sixth_class: {
         registered: null,
         present: null,
         absent: null,
@@ -236,12 +261,14 @@ const TrackerForm = () => {
     },
   });
 
+  // state for school level
   const [schoolLevel, setSchoolLevel] = useState([
     { value: 'primary', label: t('primary'), count: 6 },
     { value: 'intermediate', label: t('intermediate'), count: 3 },
     { value: 'secondary', label: t('secondary'), count: 3 },
   ]);
 
+  //state for school level classes
   const [schoolLevelPrimary, setSchoolLevelPrimary] = useState([
     { value: 'first_class', label: t('first_class') },
     { value: 'second_class', label: t('second_class') },
@@ -263,7 +290,7 @@ const TrackerForm = () => {
     { value: 'third_class', label: t('third_class') },
   ]);
 
-  // todo : add school material for all levels
+  //state for school level materials
   const [schoolsMaterialPrimary, setSchoolsMaterialPrimary] = useState([
     { name: 'material_one', value: 'Arabic', label: t('Arabic') },
     { name: 'material_two', value: 'Math', label: t('Math') },
@@ -309,113 +336,64 @@ const TrackerForm = () => {
     },
   ]);
 
-  const [issueField, setIssueField] = useState({
-    students_affairs: {
-      issue: false,
-    },
-    security_safety: {
-      issue: [false, false],
-    },
-    teachers: {
-      issue: false,
-    },
-    workers_affairs: {
-      issue: false,
-    },
-    strategic_planning: {
-      issue: false,
-    },
-    administration: {
-      issue: false,
-    },
-    training: {
-      issue: false,
-    },
-    nutrition: {
-      issue: false,
-    },
-    cooperative: {
-      issue: false,
-    },
-    laboratories: {
-      issue: false,
-    },
-    decentralization: {
-      issue: false,
-    },
-    production_unit: {
-      issue: false,
-    },
-    environment_population: {
-      issue: false,
-    },
-    quality: {
-      issue: false,
-    },
-  });
-
   // check if the form is loading or not
   const [isLoading, setIsLoading] = useState();
   // check if the form is submitted or not
   const [isError, setIsError] = useState('none');
 
-  // function test(obj) {
-  //     for (let prop in obj) {
-  //      console.log(isError);
-  //       if (typeof obj[prop] === 'object') {
-  //         if (test(obj[prop])) {
-  //          setIsError("flex");
-  //          console.log(obj[prop]);
-  //         }
-  //       } else {
-  //         if (typeof obj[prop] === 'string' && obj[prop].includes('غير')) {
-  //           console.log(obj[prop]);
-  //           setIsError("flex");
-  //         }
-  //       }
-  //     }
-  //     setIsError("none");
-  //   }
+  // change level
+  const changeLevel = value => {
+    // set the level
+    setinputs({
+      ...inputs,
+      school_level: value.value,
+    });
+    // todo reset all fildes depend on the level
+  };
 
-  // todo handle bug if use remove the last item in the quality object 
-  function checkPassPercentage(value, item, number) {
-    if (value < 60) {
-      setinputs({
-        ...inputs,
-        quality: {
-          ...inputs.quality,
-          [item.value.replace('class', 'year') + `_` + number]: value,
-          issue: {
-            issue: 'not ready to work on it',
+  //check if the quality is ready or not
+  const checkQuality = () => {
+    const array = Object.entries(inputs.quality);
+    console.log(array);
+    array.map(key => {
+      if (key[1] < 60) {
+        console.log(key[1]);
+        setinputs({
+          ...inputs,
+          quality: {
+            ...inputs.quality,
+            issue: {
+              issue: 'not ready to work on it',
+            },
           },
-        },
-      });
-    } else {
-      setinputs({
-        ...inputs,
-        quality: {
-          ...inputs.quality,
-          [item.value.replace('class', 'year') + `_three`]: value,
-          issue: {
-            issue: '',
-          },
-        },
-      });
-    }
-  }
+        });
+        return 0;
+      }
+    });
+  };
 
   // function to handle the submit of the form
   const addFormHandler = async event => {
     event.preventDefault();
-    setIsLoading(true);
+    const id = toast.loading('Please wait...');
+    checkQuality();
     try {
       const response = await addForm(inputs).then(response => {
         localStorage.removeItem('myFormData');
-        setIsLoading(false);
         if (response.error === true) {
-          toast.error('حاول مره اخري', {});
+          toast.update(id, {
+            render: 'Try again',
+            type: 'error',
+            isLoading: false,
+            autoClose: 2000,
+          });
         } else {
-          toast.success('تم اضافة المدرسه بنجاح', {});
+          toast.update(id, {
+            render: 'All is good',
+            type: 'success',
+            isLoading: false,
+            autoClose: 2000,
+          });
           setIsLoading(false);
           setTimeout(() => {
             navigate('/');
@@ -428,63 +406,15 @@ const TrackerForm = () => {
     }
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    // if (localStorage.getItem('myFormData') !== null) {
-    //   const data = localStorage.getItem('myFormData');
-    //   setinputs(JSON.parse(data));
-    // }
-
-    setIsLoading(false);
-  }, []);
-
   // let allKeysAreEmpty = true;
   // Object.keys(inputs.quality).forEach(key => {
   //   if (inputs.quality[key] !== '') {
   //     allKeysAreEmpty = false;
   //   }
-  // });
-
-  // const checkIssues = objectTrack => event => {
-  //   // if (Object.keys(objectTrack) === 0) {
-  //     if (objectTrack.includes('غير' || 'لا')) {
-  //       console.log('true');
-  //       return true;
-  //     } else {
-  //       console.log('false');
-  //       return false;
-  //     }
-  //   // }
-  //   // } else {
-  //   //   Object.keys(objectTrack).forEach(key => {
-  //   //     if (objectTrack[key] === 'غير' || objectTrack[key] === 'لا') {
-  //   //       console.log('true');
-  //   //       return true;
-  //   //     } else {
-  //   //       console.log('false');
-  //   //       return false;
-  //   //     }
-  //   //   });
-  //   // }
-  // };
-
-  if (isLoading === true) {
-    return (
-      <div className={classes.loader}>
-        <Loader />
-      </div>
-    );
-  }
-
+  // });  
   return (
     <div className={classes.contaner}>
       <ToastContainer />
-      {isLoading && (
-        <div className={classes.loader}>
-          <Loader />
-        </div>
-      )}
       <form
         onChange={() => {
           localStorage.setItem('myFormData', JSON.stringify(inputs));
@@ -513,12 +443,7 @@ const TrackerForm = () => {
               <label htmlFor=''>المرحله</label>
 
               <Select
-                onChange={(value, e) =>
-                  setinputs({
-                    ...inputs,
-                    school_level: value.value,
-                  })
-                }
+                onChange={(value, e) => changeLevel(value)}
                 options={schoolLevel}
               ></Select>
             </div>
@@ -664,12 +589,6 @@ const TrackerForm = () => {
                         transferred_files: 'غير منضبط',
                       },
                     });
-                    setIssueField({
-                      ...issueField,
-                      students_affairs: {
-                        issue: true,
-                      },
-                    });
                   }}
                   name='students_affairs-transferred_files'
                   id='students_affairs-transferred_files'
@@ -689,12 +608,6 @@ const TrackerForm = () => {
                       students_affairs: {
                         ...inputs.students_affairs,
                         transferred_files: 'منضبط',
-                      },
-                    });
-                    setIssueField({
-                      ...issueField,
-                      students_affairs: {
-                        issue: false,
                       },
                     });
                   }}
@@ -820,13 +733,7 @@ const TrackerForm = () => {
                       ...inputs,
                       workers_affairs: {
                         ...inputs.workers_affairs,
-                        negatives: e.target.checked ? 'لا يوجد' : 'يوجد',
-                      },
-                    });
-                    setIssueField({
-                      ...issueField,
-                      workers_affairs: {
-                        issue: !issueField.workers_affairs.issue,
+                        negatives: e.target.checked ? 'يوجد' : 'لا يوجد',
                       },
                     });
                   }}
@@ -882,7 +789,6 @@ const TrackerForm = () => {
                         external_factors: 'غير منضبط',
                       },
                     });
-                    
                   }}
                   placeholder='0'
                   id='schoolInf_level'
@@ -899,7 +805,6 @@ const TrackerForm = () => {
                         external_factors: 'منضبط',
                       },
                     });
-
                   }}
                   placeholder='0'
                   id='schoolInf_level'
@@ -919,12 +824,6 @@ const TrackerForm = () => {
                         wall: 'غير منضبط',
                       },
                     });
-                    setIssueField({
-                      ...issueField,
-                      security_safety: {
-                        issue: true,
-                      },
-                    });
                   }}
                   placeholder='0'
                   id='schoolInf_level'
@@ -939,12 +838,6 @@ const TrackerForm = () => {
                       security_safety: {
                         ...inputs.security_safety,
                         wall: 'منضبط',
-                      },
-                    });
-                    setIssueField({
-                      ...issueField,
-                      security_safety: {
-                        issue: false,
                       },
                     });
                   }}
@@ -1643,7 +1536,16 @@ const TrackerForm = () => {
                         placeholder='0'
                         id='students_affairs-first_class-present'
                         type='number'
-                        onChange={e => checkPassPercentage(e.target.value, item, "three")}
+                        onChange={e =>
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year') + `_three`]:
+                                e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <h6>العام الثالث</h6>
@@ -1656,8 +1558,15 @@ const TrackerForm = () => {
                         id='students_affairs-first_class-present'
                         type='number'
                         onChange={e =>
-                          checkPassPercentage(e.target.value, item, "two")}
-                        
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year') + `_two`]:
+                                e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <h6>العام الثاني</h6>
@@ -1670,8 +1579,15 @@ const TrackerForm = () => {
                         id='students_affairs-first_class-present'
                         type='number'
                         onChange={e =>
-                          checkPassPercentage(e.target.value, item, "one")}
-                        
+                          setinputs({
+                            ...inputs,
+                            quality: {
+                              ...inputs.quality,
+                              [item.value.replace('class', 'year') + `_one`]:
+                                e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
 
