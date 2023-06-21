@@ -183,7 +183,9 @@ const SchoolsTable = props => {
                     {school.school_id}
                   </div>
                   <div className={`${classes.tableBodyItem} ${classes.clear} `}>
-                    {school.school_level}
+                    {
+                       (t(`${school.school_level}`))
+                    }
                   </div>
                   <div
                     className={`${classes.tableBodyItem} ${classes.schoolName} `}
@@ -209,11 +211,11 @@ const SchoolsTable = props => {
             })}
           </div>
         </div>
-        {/* <PaginationCustom
+        <PaginationCustom
           getPaginationUrl={getPaginationUrl}
           pageNext={pageNext}
           pagePrevious={pagePrevious}
-        ></PaginationCustom> */}
+        ></PaginationCustom>
       </div>
     </div>
   );
