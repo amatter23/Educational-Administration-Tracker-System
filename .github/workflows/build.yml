@@ -15,8 +15,8 @@ jobs:
 
       - name: Create branch
         run: |
-          git config --global user.name 'Your Name'
-          git config --global user.email 'your-email@example.com'
+          git config --global user.name 'amatter23'
+          git config --global user.email 'matterahmed36@gmail.com'
           git checkout -b build-branch
 
       - name: Install dependencies and build
