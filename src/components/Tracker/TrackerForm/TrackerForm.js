@@ -27,31 +27,37 @@ const TrackerForm = () => {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       second_class: {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       third_class: {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       fourth_class: {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       fifth_class: {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       sixth_class: {
         registered: null,
         present: null,
         absent: null,
+        level: null
       },
       transfers_to_school: null,
       transfers_from_school: null,
@@ -394,15 +400,19 @@ const TrackerForm = () => {
             isLoading: false,
             autoClose: 2000,
           });
-          setIsLoading(false);
           setTimeout(() => {
             navigate('/');
           }, 5000);
         }
       });
     } catch (error) {
-      toast.error('حاول مره اخري', {});
-      setIsLoading(false);
+      toast.update(id, {
+        render: 'Try again',
+        type: 'error',
+        isLoading: false,
+        autoClose: 2000,
+      });
+      console.log("response.error === ffff");
     }
   };
 
@@ -411,7 +421,7 @@ const TrackerForm = () => {
   //   if (inputs.quality[key] !== '') {
   //     allKeysAreEmpty = false;
   //   }
-  // });  
+  // });
   return (
     <div className={classes.contaner}>
       <ToastContainer />
@@ -489,6 +499,7 @@ const TrackerForm = () => {
                             [item.value]: {
                               ...inputs.students_affairs[[item.value]],
                               present: e.target.value,
+                              level: inputs.school_level,
                             },
                           },
                         })
@@ -536,6 +547,7 @@ const TrackerForm = () => {
                             [item.value]: {
                               ...inputs.students_affairs[[item.value]],
                               present: e.target.value,
+                              level: inputs.school_level,
                             },
                           },
                         })
