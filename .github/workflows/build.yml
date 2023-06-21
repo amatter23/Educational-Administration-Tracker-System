@@ -24,6 +24,7 @@ jobs:
           git config --global user.name 'amatter23'
           git config --global user.email 'matterahmed36@gmail.com'
           git checkout -b build-branch
+          git rm -rf .  # Remove all files in the branch
           git add -f build  # Add the build folder/files
           git commit -m 'Add build files'
 
