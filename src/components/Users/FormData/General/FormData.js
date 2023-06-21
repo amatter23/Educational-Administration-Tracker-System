@@ -59,7 +59,7 @@ const UserCheckBoxData = props => {
   function getObjectArray(obj) {
     const entries = Object.entries(obj);
     const flatEntries = entries.flatMap(([key, value]) => {
-      if (typeof value === 'object') {
+      if (value !== null && typeof value === 'object') {
         const { id, ...valueWithOut } = value;
         const nestedEntries = getObjectArray(valueWithOut);
         return nestedEntries;
@@ -134,7 +134,7 @@ const UserCheckBoxData = props => {
   // function to handle the post response
   const handleResponse = async event => {
     event.preventDefault();
-    setLoading(true);
+    const id = toast.loading('Please wait...');
     try {
       const response = addResponse(
         dataId,
@@ -150,22 +150,32 @@ const UserCheckBoxData = props => {
         },
         userData.role
       ).then(data => {
-        console.log('test');
-
         if (data.status === 200) {
-          setLoading(false);
-          toast.success(`${t('Response added')}`, {});
+          toast.update(id, {
+            render: 'All is good',
+            type: 'success',
+            isLoading: false,
+            autoClose: 2000,
+          });
           setTimeout(() => {
             window.location.reload();
           }, 2000);
         } else {
-          setLoading(false);
-          toast.error(t('Error to add a response'), {});
+          toast.update(id, {
+            render: 'Try again',
+            type: 'error',
+            isLoading: false,
+            autoClose: 2000,
+          });
         }
       });
     } catch (error) {
-      setLoading(false);
-      console.log(error);
+      toast.update(id, {
+        render: 'Try again',
+        type: 'error',
+        isLoading: false,
+        autoClose: 2000,
+      });
     }
   };
   // is loading state to show the loader
@@ -204,11 +214,13 @@ const UserCheckBoxData = props => {
             {/* call object value  */}
             <h6>{formInformation['school name']}</h6>
           </div>
-          <div className={`${classes.school_id} ${classes.schoolInformation} `}>
+          <div
+            className={`${classes.school_name} ${classes.schoolInformation} `}
+          >
             {/* call object key edit by remove _ and add space */}
             <h6>
               {' '}
-              :{t(`${Object.entries(formInformation)[3][0]}`)}{' '}
+              :{t(`${Object.entries(formInformation)[2][0]}`)}{' '}
               <span>
                 <FontAwesomeIcon icon={faFingerprint} size='sm' />
               </span>{' '}
@@ -216,19 +228,17 @@ const UserCheckBoxData = props => {
             {/* call object value  */}
             <h6>{formInformation['school id']}</h6>
           </div>
-          <div
-            className={`${classes.school_level} ${classes.schoolInformation} `}
-          >
+          <div className={`${classes.school_id} ${classes.schoolInformation} `}>
             {/* call object key edit by remove _ and add space */}
             <h6>
               {' '}
-              :{t(`${Object.entries(formInformation)[2][0]}`)}{' '}
+              :{t(`${Object.entries(formInformation)[3][0]}`)}{' '}
               <span>
                 <FontAwesomeIcon icon={faLayerGroup} size='sm' />
               </span>{' '}
             </h6>
             {/* call object value  */}
-            <h6>{formInformation['school level']}</h6>
+            <h6>{t(`${formInformation['school level']}`)}</h6>
           </div>
         </div>
         <div className={classes.issue}>

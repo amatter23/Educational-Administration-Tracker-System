@@ -89,28 +89,30 @@ const FormData = props => {
             const dataToShow = Object.entries(data33);
             return dataToShow.map(([key, value]) => {
               const masterKey = key;
-              if (typeof value === 'object') {
-                const test = Object.entries(value);
-                return (
-                  <div className={classes.group}>
-                    <h5>{t(`${key}`)}</h5>
-                    <div className={classes.values}>
-                      {test.map(([key, value]) => {
-                        return (
-                          <div className={classes.row} key={key}>
-                            <h5>{t(`${key}`)}</h5>:<h6>{value}</h6>
-                          </div>
-                        );
-                      })}
+              if (value !== null) {
+                if (typeof value === 'object') {
+                  const test = Object.entries(value);
+                  return (
+                    <div className={classes.group}>
+                      <h5>{t(`${key}`)}</h5>
+                      <div className={classes.values}>
+                        {test.map(([key, value]) => {
+                          return (
+                            <div className={classes.row} key={key}>
+                              <h5>{t(`${key}`)}</h5>:<h6>{value}</h6>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div className={classes.row} key={key}>
-                    <h5>{t(`${key}`)}</h5>:<h6>{value}</h6>
-                  </div>
-                );
+                  );
+                } else {
+                  return (
+                    <div className={classes.row} key={key}>
+                      <h5>{t(`${key}`)}</h5>:<h6>{value}</h6>
+                    </div>
+                  );
+                }
               }
             });
           });
@@ -204,7 +206,7 @@ const FormData = props => {
             {/* call object key edit by remove _ and add space */}
             <h6>
               {' '}
-              :{t(`${Object.entries(formInformation)[3][0]}`)}{' '}
+              :{t(`${Object.entries(formInformation)[2][0]}`)}{' '}
               <span>
                 <FontAwesomeIcon icon={faFingerprint} size='sm' />
               </span>{' '}
@@ -218,13 +220,13 @@ const FormData = props => {
             {/* call object key edit by remove _ and add space */}
             <h6>
               {' '}
-              :{t(`${Object.entries(formInformation)[2][0]}`)}{' '}
+              :{t(`${Object.entries(formInformation)[3][0]}`)}{' '}
               <span>
                 <FontAwesomeIcon icon={faLayerGroup} size='sm' />
               </span>{' '}
             </h6>
             {/* call object value  */}
-            <h6>{formInformation['school level']}</h6>
+            <h6>{t(`${formInformation['school level']}`)}</h6>
           </div>
         </div>
         <div className={classes.issue}>
