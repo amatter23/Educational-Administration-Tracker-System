@@ -1,0 +1,39 @@
+name: Build on Commit
+
+on:
+  push:
+    branches:
+      - master # Replace with your main branch name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create branch
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-email@example.com'
+          git checkout -b build-branch
+
+      - name: Install dependencies and build
+        run: |
+          npm install  # Or yarn install
+          npm run build  # Or yarn build
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Build project'
+          commit_user_name: 'amatter23'
+          commit_user_email: 'matterahmed36@gmail.com'
+          branch: build-branch
+
+      - name: Push branch to GitHub
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: build-branch
