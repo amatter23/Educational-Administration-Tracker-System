@@ -26,15 +26,12 @@ jobs:
           git config --global user.email 'matterahmed36@gmail.com'
           git rev-parse --verify build-branch || git checkout -b build-branch
 
-      - name: Reset branch to main
-        if: steps.create-branch.outputs.branch-exists != 'true'  # Only reset if branch doesn't exist
+      - name: Create build directory
         run: |
-          git fetch origin master
-          git reset --hard origin/master
+          mkdir -p build-branch
 
       - name: Copy build files to branch
         run: |
-          rm -rf build-branch/*
           cp -R build/* build-branch/
 
       - name: Commit and push changes
