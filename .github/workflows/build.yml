@@ -28,7 +28,7 @@ jobs:
       - name: Copy build files to build branch
         run: |
           mkdir -p ${BUILD_BRANCH}
-          p -R build/* ${BUILD_BRANCH}
+          cp -R build/* ${BUILD_BRANCH}
           rm -rf ${BUILD_BRANCH}/build
 
       - name: Update .htaccess
