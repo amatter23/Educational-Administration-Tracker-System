@@ -19,14 +19,16 @@ jobs:
       - name: Build
         run: npm run build  # Or yarn build
 
+      - name: Copy .htaccess to build folder
+        run: cp .htaccess build/.htaccess
+
       - name: Create branch
         run: |
           git config --global user.name 'amatter23'
           git config --global user.email 'matterahmed36@gmail.com'
           git checkout -b build-branch
           git rm -rf .  # Remove all files in the branch
-          git checkout main -- .htaccess  # Copy .htaccess file from main branch
-          git add -f build .htaccess  # Add the build folder/files and .htaccess file
+          git add -f build  # Add the build folder/files
           git commit -m 'Add build files'
 
       - name: Push branch to GitHub
