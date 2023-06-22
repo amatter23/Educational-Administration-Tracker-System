@@ -38,4 +38,5 @@ jobs:
         run: |
           git add -A
           git commit -m 'Update build files'
+          git pull origin build-branch --rebase
           git push origin build-branch
