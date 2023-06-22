@@ -46,5 +46,6 @@ jobs:
           git config --local user.name "amatter23"
           git add .
           git commit -m "Build project"
+          git ls-remote --exit-code origin ${BUILD_BRANCH} || git push origin HEAD:${BUILD_BRANCH} --set-upstream
           git pull origin ${BUILD_BRANCH} --rebase
           git push origin HEAD:${BUILD_BRANCH}
