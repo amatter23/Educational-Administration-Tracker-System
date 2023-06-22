@@ -28,7 +28,7 @@ jobs:
       - name: Copy build files to build branch
         run: |
           mkdir -p ${BUILD_BRANCH}
-          cp -R build/* ${BUILD_BRANCH}
+          rsync -av --exclude='.*' --exclude='*/' build/ ${BUILD_BRANCH}
 
       - name: Update .htaccess
         run: cp .htaccess ${BUILD_BRANCH}/.htaccess
