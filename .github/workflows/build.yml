@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - master  # Replace with your main branch name
+      - main
 
 jobs:
   build:
@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Check if build branch exists
         run: |
-          if git rev-parse --verify --quiet build-branch; then
+          if git -C $GITHUB_WORKSPACE rev-parse --verify --quiet build-branch; then
             echo "build-branch already exists."
             exit 0
           else
-            git checkout -b build-branch
+            git -C $GITHUB_WORKSPACE checkout -b build-branch
           fi
 
       - name: Set up Node.js
@@ -38,9 +38,9 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add build-branch
-          git add .gitignore
-          git config --local user.email "matterahmed36@gmail.com"
-          git config --local user.name "amatter23"
-          git commit -m "Add build files to build-branch"
-          git push origin build-branch
+          git -C $GITHUB_WORKSPACE add build-branch
+          git -C $GITHUB_WORKSPACE add .gitignore
+          git -C $GITHUB_WORKSPACE config --local user.email "matterahmed36@gmail.com"
+          git -C $GITHUB_WORKSPACE config --local user.name "amatter23"
+          git -C $GITHUB_WORKSPACE commit -m "Add build files to build-branch"
+          git -C $GITHUB_WORKSPACE push origin build-branch
