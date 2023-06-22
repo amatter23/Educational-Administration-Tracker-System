@@ -31,10 +31,10 @@ jobs:
           git checkout -b build-branch
           git rm -rf .  # Remove all files in the branch
           git add -f build  # Add the build folder/files
-          git commit -m 'Add build files'
+          git commit -m 'Update build files'
 
       - name: Push branch to GitHub
-        if: steps.branch-check.outputs.returncode != 0  # Only push if branch doesn't exist
+        if: steps.branch-check.outputs.returncode == 0  # Only push if branch exists
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
