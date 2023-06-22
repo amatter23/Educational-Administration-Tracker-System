@@ -26,7 +26,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Copy build files to build branch
-      run: |
+        run: |
           mkdir -p ${BUILD_BRANCH}
           p -R build/* ${BUILD_BRANCH}
           rm -rf ${BUILD_BRANCH}/build
