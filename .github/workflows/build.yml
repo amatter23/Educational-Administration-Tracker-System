@@ -22,7 +22,14 @@ jobs:
       - name: Check if branch exists
         id: branch-check
         run: |
-          git ls-remote --exit-code . "refs/heads/build-branch"
+          set -e
+          if git ls-remote --exit-code . "refs/heads/build-branch"; then
+            echo "Branch exists"
+            echo "::set-output name=branch-exists::true"
+          else
+            echo "Branch does not exist"
+            echo "::set-output name=branch-exists::false"
+          fi
 
       - name: Create branch
         run: |
@@ -34,7 +41,7 @@ jobs:
           git commit -m 'Update build files'
 
       - name: Push branch to GitHub
-        if: steps.branch-check.outputs.returncode == 0  # Only push if branch exists
+        if: steps.branch-check.outputs.branch-exists == 'true'  # Only push if branch exists
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
