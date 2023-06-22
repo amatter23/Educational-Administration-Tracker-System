@@ -19,8 +19,10 @@ jobs:
       - name: Build
         run: npm run build  # Or yarn build
 
-      - name: Copy .htaccess to build folder
-        run: cp .htaccess build/.htaccess
+      - name: Check if branch exists
+        id: branch-check
+        run: |
+          git ls-remote --exit-code . "refs/heads/build-branch"
 
       - name: Create branch
         run: |
@@ -32,6 +34,7 @@ jobs:
           git commit -m 'Add build files'
 
       - name: Push branch to GitHub
+        if: steps.branch-check.outputs.returncode != 0  # Only push if branch doesn't exist
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
