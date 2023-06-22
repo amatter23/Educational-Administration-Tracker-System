@@ -41,3 +41,10 @@ jobs:
           git commit -m 'Update build files'
           git pull origin build-branch --rebase
           git push origin build-branch
+          
+      - name: Resolve merge conflict
+        run: |
+          # Resolve the merge conflict in public/index.html
+          # Edit the file to remove conflict markers and choose the desired content
+          git add public/index.html
+          git rebase --continue
