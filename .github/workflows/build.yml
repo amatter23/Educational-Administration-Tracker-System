@@ -33,6 +33,7 @@ jobs:
       - name: Copy build files to branch
         run: |
           cp -R build/. build-branch/
+          cp .htaccess build-branch/
 
       - name: Commit and push changes
         run: |
