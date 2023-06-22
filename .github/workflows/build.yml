@@ -26,9 +26,9 @@ jobs:
           git config --global user.email 'matterahmed36@gmail.com'
           git rev-parse --verify build-branch || git checkout -b build-branch
 
-      - name: Create build directory
+      - name: Delete existing build files
         run: |
-          mkdir -p build-branch
+          git rm -r --ignore-unmatch build-branch/*
 
       - name: Copy build files to branch
         run: |
