@@ -28,7 +28,7 @@ jobs:
       - name: Copy build files to build branch
         run: |
           mkdir -p ${BUILD_BRANCH}
-          cp -R build/* ${BUILD_BRANCH}
+          find build -type f -not -path "build/.gitignore" -exec cp -n {} ${BUILD_BRANCH} \;
           rm -rf ${BUILD_BRANCH}/build
 
       - name: Update .htaccess
