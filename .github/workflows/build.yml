@@ -26,9 +26,10 @@ jobs:
         run: npm install && npm run build
 
       - name: Copy build files to build branch
-        run: |
+      run: |
           mkdir -p ${BUILD_BRANCH}
-          rsync -av --exclude='.*' --exclude='*/' build/ ${BUILD_BRANCH}
+          p -R build/* ${BUILD_BRANCH}
+          rm -rf ${BUILD_BRANCH}/build
 
       - name: Update .htaccess
         run: cp .htaccess ${BUILD_BRANCH}/.htaccess
