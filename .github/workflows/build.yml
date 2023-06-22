@@ -25,7 +25,8 @@ jobs:
           git config --global user.email 'matterahmed36@gmail.com'
           git checkout -b build-branch
           git rm -rf .  # Remove all files in the branch
-          git add -f build  # Add the build folder/files
+          git checkout main -- .htaccess  # Copy .htaccess file from main branch
+          git add -f build .htaccess  # Add the build folder/files and .htaccess file
           git commit -m 'Add build files'
 
       - name: Push branch to GitHub
