@@ -40,12 +40,8 @@ jobs:
           echo "*" >> .gitignore
           echo "!${BUILD_BRANCH}/.gitignore" >> .gitignore
 
-      - name: Commit and push changes
+      - name: Copy build files to build branch
         run: |
-          git config --local user.email "matterahmed36@gmail.com"
-          git config --local user.name "amatter23"
-          git add .
-          git commit -m "Build project"
-          git ls-remote --exit-code origin ${BUILD_BRANCH} || git push origin HEAD:${BUILD_BRANCH} --set-upstream
-          git pull origin ${BUILD_BRANCH} --rebase
-          git push origin HEAD:${BUILD_BRANCH}
+          mkdir -p ${BUILD_BRANCH}
+          cp -R build/. ${BUILD_BRANCH}
+          cp .htaccess ${BUILD_BRANCH}/.htaccess
