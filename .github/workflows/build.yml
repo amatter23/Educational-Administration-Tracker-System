@@ -19,30 +19,26 @@ jobs:
       - name: Build
         run: npm run build  # Or yarn build
 
-      - name: Check if branch exists
-        id: branch-check
-        run: |
-          set -e
-          if git ls-remote --exit-code . "refs/heads/build-branch"; then
-            echo "Branch exists"
-            echo "::set-output name=branch-exists::true"
-          else
-            echo "Branch does not exist"
-            echo "::set-output name=branch-exists::false"
-          fi
-
-      - name: Create branch
+      - name: Create branch if it doesn't exist
+        id: create-branch
         run: |
           git config --global user.name 'amatter23'
           git config --global user.email 'matterahmed36@gmail.com'
-          git checkout -b build-branch
-          git rm -rf .  # Remove all files in the branch
-          git add -f build  # Add the build folder/files
-          git commit -m 'Update build files'
+          git rev-parse --verify build-branch || git checkout -b build-branch
 
-      - name: Push branch to GitHub
-        if: steps.branch-check.outputs.branch-exists == 'true'  # Only push if branch exists
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: build-branch
+      - name: Reset branch to main
+        if: steps.create-branch.outputs.branch-exists != 'true'  # Only reset if branch doesn't exist
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Copy build files to branch
+        run: |
+          rm -rf build-branch/*
+          cp -R build/* build-branch/
+
+      - name: Commit and push changes
+        run: |
+          git add -A
+          git commit -m 'Update build files'
+          git push origin build-branch
