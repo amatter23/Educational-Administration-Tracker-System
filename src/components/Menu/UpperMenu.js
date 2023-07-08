@@ -11,6 +11,8 @@ import {
   faAlignJustify,
   faAddressCard,
   faSchool,
+  faPlay,
+  faBarsProgress,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import translate file
@@ -71,8 +73,8 @@ const UpperMenu = props => {
       userRoles.includes(userData.role) ||
       userData.role === 'laboratories_admin' ||
       userData.role === 'workers_affairs_admin' ||
-      userData.role === 'students_affairs_admin'||
-      userData.role === 'quality_admin'||
+      userData.role === 'students_affairs_admin' ||
+      userData.role === 'quality_admin' ||
       userData.role === 'teachers_admin'
     ) {
       return (
@@ -98,6 +100,50 @@ const UpperMenu = props => {
               >
                 <FontAwesomeIcon className={classes.icon} icon={faSchool} />
                 {t('Schools')}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/plan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+              >
+                <FontAwesomeIcon className={classes.icon} icon={faPlay} />
+                {t('Department Plan')}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/managementPlan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+              >
+                <FontAwesomeIcon
+                  className={classes.icon}
+                  icon={faBarsProgress}
+                />
+                {t('Management Plan')}
+              </NavLink>
+            </li>
+          </ul>
+          {/* <div className={classes.footer}>
+            <p>© 2023 All Rights Reserved</p>
+          </div> */}
+        </div>
+      );
+    } else if (userData.role === 'manager') {
+      return (
+        <div className={classes.list}>
+          <ul className={menuShow ? classes.side : ''}>
+            <li>
+              <NavLink
+                to='/'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon
+                  className={classes.icon}
+                  icon={faTableColumns}
+                />
+                {t('Dashboard')}
               </NavLink>
             </li>
           </ul>
