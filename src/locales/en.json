@@ -200,5 +200,19 @@
   "No schools found": "لا يوجد",
   "production unit": "الوحدة المنتجة",
   "environment population": "البيئة و السكان",
-  "strategic planning": "التخطيط الاستراتيجي"
+  "strategic planning": "التخطيط الاستراتيجي",
+  "Follow-up responsible": "المسؤول عن المتابعة",
+  "Duration": "المدة",
+  "Executor": "المنفذ",
+  "objective": "الهدف",
+  "Add objective": "اضافة هدف",
+  "Activities": "نشاط",
+  "Add more Activities": "اضافة نشاط",
+  "Add new objectiv": "اضافة هدف جديد",
+  "Department Plan": "خطة القسم",
+  "No objectives done": "لا يوجد اهداف مكتملة",
+  "No objectives open": "لا يوجد اهداف مفتوحة",
+  "Goal": " الاهداف",
+  "General goal": " الهدف العام",
+  "Login": "تسجيل الدخول"
 }
