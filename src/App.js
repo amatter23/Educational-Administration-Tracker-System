@@ -11,6 +11,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import TrackerForm from './components/Tracker/TrackerForm/TrackerForm';
 import UserRoute from './routes/UserRoute.js';
+import Home from './pages/Home/Home';
 import TrackerSchools from './components/Tracker/TrackerSchools/TrackerSchools';
 import Login from './pages/Login/Login';
 import { getPersonalData } from '../src/utils/getData';
@@ -34,6 +35,10 @@ import StudentsAffairsDashbord from './components/Users/Dashbord/StudentsAffairs
 import FormData from './components/Users/FormData/StudentsAffairs/FormData';
 import QualityDashborde from './components/Users/Dashbord/QualityDashbord/Dashbord/QualityDashbord';
 import TeacherDashbord from './components/Users/Dashbord/TeacherDashbord/Dashbord/TeacherDashbord';
+import LowLevelPlan from './components/Users/LowLevelPlan/LowLevelPlan';
+import HightLevelPlan from './components/Manager/hightLevelPlan/HightLevelPlan';
+import ManagerDashBord from './components/Manager/Dashbord/ManagerDashBord';
+import ManagementPlan from './components/Users/ManagementPlan/ManagementPlan';
 function App() {
   // state to store the user data
 
@@ -128,6 +133,14 @@ function App() {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
         },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -158,6 +171,10 @@ function App() {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
         },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -186,6 +203,10 @@ function App() {
         {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
+        },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
         },
       ],
     },
@@ -217,6 +238,10 @@ function App() {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
         },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -246,6 +271,10 @@ function App() {
         {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
+        },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
         },
       ],
     },
@@ -277,6 +306,10 @@ function App() {
           path: '/userInformation',
           element: <UserInformationView userData={userData} />,
         },
+        {
+          path: '/plan',
+          element: <LowLevelPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -284,10 +317,36 @@ function App() {
   const routerLogin = createBrowserRouter([
     {
       path: '/',
+      element: <Home />,
+    },
+    {
+      path: '/login',
       element: <Login />,
     },
   ]);
-  // todo create a router for the manager, and the other users
+
+  const routerManager = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <UserRoute
+          userRolesHaveCheckBoxInputs={userRolesHaveCheckBoxInputs}
+          userData={userData}
+        />
+      ),
+      children: [
+        {
+          path: '/',
+          element: <ManagerDashBord userData={userData} />,
+        },
+        {
+          path: '/Plan',
+          element: <HightLevelPlan userData={userData} />,
+        },
+      ],
+    },
+  ]);
+
   // function to choose the router by the user role
   const chooseRouterByRole = () => {
     // check if the user is authenticated
@@ -296,11 +355,9 @@ function App() {
         return <RouterProvider router={routerAdmin} />;
       } else if (userData.role === 'tracker') {
         return <RouterProvider router={routerTracker} />;
-      }
-      // else if (userData.role === 'manager') {
-      //   return <RouterProvider router={routerTracker} />;
-      // }
-      else if (userRolesHaveCheckBoxInputs.includes(userData.role)) {
+      } else if (userData.role === 'manager') {
+        return <RouterProvider router={routerManager} />;
+      } else if (userRolesHaveCheckBoxInputs.includes(userData.role)) {
         return <RouterProvider router={routerUsersInputsCheckBox} />;
       } else if (userData.role === 'laboratories_admin') {
         return <RouterProvider router={routerLaboratories} />;
