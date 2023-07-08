@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.289c1699.css",
-    "main.js": "/static/js/main.e2623c46.js",
+    "main.css": "/static/css/main.84fe709d.css",
+    "main.js": "/static/js/main.70fb6ef1.js",
+    "static/media/home.png": "/static/media/home.5a49a9788072fdde5684.png",
     "static/media/cool-background.png": "/static/media/cool-background.4305838cbf73326b0df3.png",
+    "static/media/goal.png": "/static/media/goal.e2e13f585127cbdccc01.png",
+    "static/media/genralGoal.png": "/static/media/genralGoal.7a7fc7df5d012573244d.png",
+    "static/media/management.png": "/static/media/management.b491b5f03b30c15c9c23.png",
     "static/media/iconfinder-icon.svg": "/static/media/iconfinder-icon.8f0c63cc87beea460a45c99f54ddab23.svg",
     "index.html": "/index.html",
-    "main.289c1699.css.map": "/static/css/main.289c1699.css.map",
-    "main.e2623c46.js.map": "/static/js/main.e2623c46.js.map"
+    "main.84fe709d.css.map": "/static/css/main.84fe709d.css.map",
+    "main.70fb6ef1.js.map": "/static/js/main.70fb6ef1.js.map"
   },
   "entrypoints": [
-    "static/css/main.289c1699.css",
-    "static/js/main.e2623c46.js"
+    "static/css/main.84fe709d.css",
+    "static/js/main.70fb6ef1.js"
   ]
 }
