@@ -214,5 +214,11 @@
   "No objectives open": "لا يوجد اهداف مفتوحة",
   "Goal": " الاهداف",
   "General goal": " الهدف العام",
-  "Login": "تسجيل الدخول"
+  "Login": "تسجيل الدخول",
+  "Hey, Enter your details to get sign in to your account": "مرحبا، أدخل تفاصيلك لتسجيل الدخول إلى حسابك",
+  "Email": "البريد الالكتروني",
+  "Password": "كلمة المرور",
+  "Forgot Password?": "هل نسيت كلمة المرور؟",
+  "Sign In": "تسجيل الدخول",
+  "UserName": "اسم المستخدم"
 }
