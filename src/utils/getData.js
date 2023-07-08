@@ -314,3 +314,66 @@ export function filterSchoolsByLevel(userRole, value) {
     }
   });
 }
+
+// get opjectives
+export function getOpjectives() {
+  return fetch(api_url + '/p/plan/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function addNewObjectiveLowerLevel(objective) {
+  return fetch(api_url + '/p/plan/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+    body: JSON.stringify(objective),
+  }).then(res => {
+    if (res.status === 201) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function getManagementPlan() {
+  return fetch(api_url + '/p/manger-plan/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}

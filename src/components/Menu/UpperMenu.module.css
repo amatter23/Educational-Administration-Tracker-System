@@ -124,7 +124,7 @@ a {
     transition: 200ms ease-in-out;
     margin-left: 0;
   }
-  a {
+  .menu a {
     text-decoration: none;
     color: var(--backgound-1);
   }
@@ -146,7 +146,7 @@ a {
     transition: 200ms ease-in-out;
     margin-top: 10%;
   } */
-  a {
+  .menu a {
     text-decoration: none;
     color: var(--backgound-1);
   }

@@ -9,9 +9,11 @@ import {
   faUser,
   faLock,
 } from '@fortawesome/free-solid-svg-icons';
-
+import { useNavigate } from 'react-router-dom';
 import { fetchlogin } from '../../utils/auth';
+import { useTranslation } from 'react-i18next';
 const Login = () => {
+  const { t } = useTranslation();
   // state to store the user name
   const [userName, setUserName] = useState(null);
   // state to store the password
@@ -29,8 +31,9 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const navigate = useNavigate();
   // function to login
-  const login = async (e) => {
+  const login = async e => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -43,6 +46,7 @@ const Login = () => {
           setError('Invalid user name or password');
         } else {
           // refresh the site data
+          navigate('/');
           window.location.reload();
         }
       });
@@ -56,15 +60,15 @@ const Login = () => {
         <form onSubmit={login} className={classes.inputs}>
           <div className={classes.text}>
             <h3>
+              {t('Login')} &nbsp;
               <FontAwesomeIcon
                 icon={faRightToBracket}
                 shake
                 size='xs'
                 style={{ color: '#374e63' }}
               />
-              Login
             </h3>
-            <b>Hey, Enter your details to get sign in to your account</b>
+            <b>{t('Hey, Enter your details to get sign in to your account')}</b>
           </div>
           <div className={classes.inputsCon}>
             <div className={classes.inputContanier}>
@@ -76,7 +80,7 @@ const Login = () => {
               <input
                 onChange={userNameHandler}
                 type='text'
-                placeholder='Username'
+                placeholder={t('UserName')}
                 required
                 autoFocus
               />
@@ -90,7 +94,7 @@ const Login = () => {
               <input
                 onChange={passwordHandler}
                 type='Password'
-                placeholder='Password'
+                placeholder={t('Password')}
                 required
               />
             </div>
@@ -99,7 +103,7 @@ const Login = () => {
           {
             // if the loading state is true then show the loader
             <button type='submit' className='btn'>
-              {isLoading ? <LoadingRing /> : 'Login'}
+              {isLoading ? <LoadingRing /> : `${t('Login')}`}
             </button>
           }
         </form>

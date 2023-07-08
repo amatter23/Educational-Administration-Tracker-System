@@ -1,0 +1,262 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+}
+.menu {
+  width: 100%;
+  padding: 0.5% 10%;
+  display: flex;
+  justify-content: flex-end;
+  color: var(--backgound-1);
+  background-color: var(--primary-darker);
+  border-bottom: solid 1px var(--backgound-1);
+  align-items: center;
+}
+.Home {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.window {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.title {
+  width: 80%;
+  height: 50%;
+  background-color: var(--backgound-1);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+}
+.title .text {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+}
+.image {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cards {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  position: relative;
+  top: -2%;
+}
+.cards .card {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: calc(var(--border-radius) * 2);
+  background-color: var(--primary-dark);
+  color: var(--backgound-1);
+  padding: 1%;
+  transition: all 0.2s ease-in-out;
+}
+.cards .card:hover {
+  color: var(--primary-darker);
+}
+.cards .card:nth-of-type(1):hover {
+  background-color: #efd2c3;
+}
+.cards .card:nth-of-type(2):hover {
+  background-color: var(--backgound-1);
+}
+.cards .card:nth-of-type(3):hover {
+  background-color: #19d8dd;
+}
+.cards .card:nth-of-type(4):hover {
+  background-color: #ffde59;
+}
+.card h5 {
+  font-weight: 400;
+}
+.cardBody h6 span {
+  color: var(--text-color-light);
+  font-weight: 700;
+}
+.cardBody h6 {
+  font-weight: 700;
+}
+.loginBtn {
+  background-color: var(--backgound-1);
+  border: solid 1px var(--primary-darker);
+  border-radius: var(--border-radius);
+  padding: calc(var(--pading) / 6) calc(var(--pading) / 2);
+}
+.loginBtn:hover {
+  background-color: var(--primary-darker);
+  color: var(--backgound-1);
+  border: solid 1px var(--backgound-1);
+}
+.goals {
+  width: 80%;
+  height: 80%;
+  background-color: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: var(--border-radius);
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  color: var(--backgound-1);
+  padding: 3% 0;
+}
+.circel {
+  width: 6%;
+  height: 12%;
+  border-radius: 50%;
+  background-color: var(--backgound-1);
+  position: absolute;
+  top: -2%;
+  left: -1%;
+}
+.header {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.triger {
+  width: 30%;
+  height: 7%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--border-radius) * 6);
+  position: relative;
+}
+.trigerItem1 {
+  background-color: var(--backgound-1);
+  width: 50%;
+  height: 100%;
+  color: var(--primary-darker);
+  border-radius: calc(var(--border-radius) * 6);
+  position: absolute;
+  left: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px var(--backgound-1);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.trigerItem2 {
+  background-color: var(--primary-darker);
+  width: 50%;
+  height: 100%;
+  border-radius: calc(var(--border-radius) * 6);
+  position: absolute;
+  right: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease-in-out;
+  border: solid 1px var(--primary-darker);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.checked {
+  width: 60%;
+  z-index: 10;
+}
+.body {
+  width: 80%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.bodyList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--gap);
+}
+.bodyItem {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  text-align: right;
+}
+
+@media screen and (max-width: 1200px) {
+  .Home {
+    padding: 2%;
+    height: fit-content;
+  }
+  .title {
+    width: 90%;
+    flex-direction: column;
+    height: fit-content;
+  }
+  .image {
+    width: 50%;
+  }
+  .cards {
+    flex-direction: column;
+    top: 0;
+    gap: var(--gap);
+    margin: 2% 0;
+  }
+  .cards .card {
+    width: 100%;
+    margin: 1% 0;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .body {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  .objective {
+    height: fit-content;
+  }
+  .goals {
+    height: fit-content;
+    gap: var(--gap);
+  }
+  .triger {
+    height: 2rem;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .triger {
+    width: 80%;
+  }
+}
