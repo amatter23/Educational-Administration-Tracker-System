@@ -377,3 +377,55 @@ export function getManagementPlan() {
     }
   });
 }
+
+export function getDepartmentPlan(department) {
+  return fetch(
+    api_url +
+      '/p/manger-plan/?department=' +
+      department +
+      '&ordering=-created_at/',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: auth,
+      },
+    }
+  ).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function updateOpjective(id, approved, done) {
+  return fetch(api_url + '/p/manger-plan/' + id + '/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+    method: 'PATCH',
+    body: JSON.stringify({
+      approved: approved,
+      done: done,
+      archived: false,
+    }),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
