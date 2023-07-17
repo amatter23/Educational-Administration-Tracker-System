@@ -13,6 +13,8 @@ import {
   faSchool,
   faPlay,
   faBarsProgress,
+  faListCheck,
+  faBullseye,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import translate file
@@ -146,14 +148,30 @@ const UpperMenu = props => {
                 {t('Dashboard')}
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to='/Plan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon icon={faListCheck} />
+                {t('Plan management')}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/managmentPlan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon icon={faBullseye} />
+                {t('Management plan')}
+              </NavLink>
+            </li>
           </ul>
-          {/* <div className={classes.footer}>
-            <p>© 2023 All Rights Reserved</p>
-          </div> */}
         </div>
       );
     }
-    //todo add manager and user roles to the menu
   };
   return (
     <div className={classes.menu}>
