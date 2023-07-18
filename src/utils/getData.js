@@ -429,3 +429,22 @@ export function updateOpjective(id, approved, done) {
     }
   });
 }
+export function getMnagerStatics() {
+  return fetch(api_url + '/m/manager-statics/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
