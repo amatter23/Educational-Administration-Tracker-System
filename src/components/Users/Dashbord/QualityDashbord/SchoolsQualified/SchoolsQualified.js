@@ -13,7 +13,7 @@ const SchoolsQualified = props => {
     <div className={classes.container}>
       <div className={classes.head}>
         <FontAwesomeIcon icon={faSchool} />
-        <div>{t('Schools qualified to work')}</div>
+        <div>{t(props.title)}</div>
       </div>
       <div className={classes.content}>
         <div className={classes.tableHeader}>
