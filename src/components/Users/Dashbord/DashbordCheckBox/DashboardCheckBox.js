@@ -4,7 +4,7 @@ import classes from './DashboardCheckBox.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import RowBox from '../BoxStatistics/RowBox/RowBox';
-import UserInformation from '../UserInformationCard/UserInformation';
+import UserInformation from '../../../Ui/UserInformationCard/UserInformation';
 import VerticalBarChart from '../VerticalBarChart/VerticalBarChart';
 import PieChart from '../PieChart/PieChart';
 import { getDepartmentStatics } from '../../../../utils/getData';
