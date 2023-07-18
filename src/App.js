@@ -276,6 +276,7 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        //todo add the management plan
       ],
     },
   ]);
@@ -340,8 +341,16 @@ function App() {
           element: <ManagerDashBord userData={userData} />,
         },
         {
-          path: '/Plan',
+          path: '/plan',
           element: <HightLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managmentPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
         },
       ],
     },
