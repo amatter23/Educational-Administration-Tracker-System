@@ -224,5 +224,15 @@
   "Plan management": "ادارة الخطة",
   "please choose a department first": "الرجاء اختيار قسم اولا",
   "Add to managment plan": "أضف إلى خطة الإدارة",
-  "Done": "منتهي"
+  "Done": "منتهي",
+  "Add new user": "اضافة مستخدم جديد",
+  "Role": "الدور",
+  "User Name": "اسم المستخدم",
+  "Email": "البريد الالكتروني",
+  "Name": "الاسم",
+  "New user": "مستخدم جديد",
+  "First Name": "الاسم الاول",
+  "Last Name": "الاسم الاخير",
+  "Save": "حفظ",
+  "Cancel": "الغاء"
 }

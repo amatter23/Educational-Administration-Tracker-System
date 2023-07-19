@@ -13,11 +13,7 @@ import { getUsers, addUser, getRoles } from '../../utils/getData';
 import Loader from '../../pages/Loader';
 import { useTranslation } from 'react-i18next';
 import Select from 'react-select';
-
 const AdminTable = props => {
-  // todo create a filter component
-  // todo create a search component
-  // todo create a pagination component
   // todo create a delete and edit component for each row
   // implement the translation variable
   const { t } = useTranslation();
@@ -151,18 +147,7 @@ const AdminTable = props => {
     <div className={classes.container}>
       <ToastContainer />
       <div className={classes.header}>
-        <div className={classes.search}>
-          <div className={classes.inputSearch}>
-            <input type='text' placeholder='Search' />
-          </div>
-          <div className={classes.filter}>
-            {/*  todo: create a filter component */}
-            <button>
-              <FontAwesomeIcon icon={faList} /> Filters
-            </button>
-          </div>
-        </div>
-        {/* btn to phone screen and all screens */}
+        {' '}
         <div className={`${classes.add} ${classes.all}`}>
           <button
             onClick={() => {
@@ -171,7 +156,8 @@ const AdminTable = props => {
             className='btn'
           >
             {' '}
-            <FontAwesomeIcon icon={faPlus} /> Add new user
+            {t('Add new user')}
+            <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
         <div className={`${classes.add} ${classes.phone}`}>
@@ -188,10 +174,10 @@ const AdminTable = props => {
       <div className={classes.body}>
         <div className={classes.table}>
           <div className={`${classes.tableHeader} ${classes.row} `}>
-            <div className={classes.cell}>Name</div>
-            <div className={classes.cell}>Email</div>
-            <div className={classes.cell}>User Name</div>
-            <div className={classes.cell}>Role</div>
+            <div className={classes.cell}>{t(`Name`)}</div>
+            <div className={classes.cell}>{t('Email')}</div>
+            <div className={classes.cell}>{t('User Name')}</div>
+            <div className={classes.cell}>{t('Role')}</div>
           </div>
           {users.map(user => {
             return (
@@ -209,38 +195,32 @@ const AdminTable = props => {
                   {user.username}
                 </div>
                 <div title={user.role} className={classes.cell}>
-                  {user.role}
+                  {t(user.role)}
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-
-      <div className={classes.pagination}>
-        <button>Next</button>
-        <button>pervious</button>
-      </div>
-      {/* add user screen */}
       {addUserToggle && (
         <div className={classes.addUser}>
           <form onSubmit={addUserHandler}>
             <div className={classes.addUserContainer}>
               <div className={classes.addUserHeader}>
-                <h4>Add new user</h4>
-                <h6>New user</h6>
+                <h4>{t('Add new user')}</h4>
+                <h6>{t('New user')}</h6>
               </div>
               <div className={classes.addUserBody}>
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='name'>First Name</label>
+                  <label htmlFor='name'>{t(`First Name`)}</label>
                   <input type='text' id='firstName' />
                 </div>
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='name'>Last Name</label>
+                  <label htmlFor='name'>{t('Last Name')}</label>
                   <input type='text' id='lastName' />
                 </div>
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='role'>Role</label>
+                  <label htmlFor='role'>{t('Role')}</label>
                   <Select
                     defaultValue={selectedOption}
                     onChange={setSelectedOption}
@@ -257,16 +237,16 @@ const AdminTable = props => {
                   />
                 </div>
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='email'>Email</label>
+                  <label htmlFor='email'>{t('Email')}</label>
                   <input type='text' id='email' />
                 </div>
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='userName'>User Name</label>
+                  <label htmlFor='userName'>{t('User Name')}</label>
                   <input type='text' id='userName' />
                 </div>
 
                 <div style={{ width: '100%' }} className='input-label'>
-                  <label htmlFor='password'>Password</label>
+                  <label htmlFor='password'>{t('Password')}</label>
                   <input type='text' id='password' />
                 </div>
                 <div className={classes.errorMassage}>{errorMassage}</div>
@@ -276,10 +256,10 @@ const AdminTable = props => {
                   className='btn-outline'
                   onClick={() => UpdateaddUserToggle(false)}
                 >
-                  Cancel
+                  {t('Cancel')}
                 </button>
                 <button type='Submit' className='btn'>
-                  Save
+                  {t('Save')}
                 </button>
               </div>
             </div>
