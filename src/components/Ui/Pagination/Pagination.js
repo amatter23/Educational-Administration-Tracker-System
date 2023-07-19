@@ -9,9 +9,6 @@ const PaginationCustom = props => {
   const [pageNext, updatePageNext] = useState(props.pageNext);
   const [pagePrevious, updatePagePrevious] = useState(props.pagePrevious);
   const [pageUrl, updatePageUrl] = useState();
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const pageNumbers = [];
-
   return (
     <ul className={classes.pagination}>
       {pageNext === null ? (

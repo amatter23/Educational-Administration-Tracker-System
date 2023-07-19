@@ -44,7 +44,7 @@ const SchoolsTable = props => {
   const fetchSchoolsData = async () => {
     setLoading(true);
     try {
-      const response = getSchools(userData.role, null).then(data => {
+      const response = getSchools(userData.role, null, pageUrl).then(data => {
         setLoading(false);
         if (data.status === 200) {
           setSchools(data.result.results);
@@ -102,7 +102,7 @@ const SchoolsTable = props => {
   // useEffect to fetch the data from the server
   useEffect(() => {
     fetchSchoolsData();
-  }, []);
+  }, [pageUrl]);
 
   // function to handle the navigation to the school data page
   const navigate = useNavigate();
