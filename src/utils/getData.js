@@ -104,14 +104,19 @@ export function getPersonalData() {
 
 // get school to each user
 export function getSchools(userRole, formId, paginationUrl) {
-  var api = userRole.replace('_admin', '').replace('_', '-');
-  var url = api_url + '/' + api + '?ordering=-created_at';
+  var api = api_url + '/' + userRole.replace('_admin', '').replace('_', '-');
+  var url = api;
   if (formId !== null) {
-    api = api + '/' + formId;
+    api =
+      api_url +
+      '/' +
+      userRole.replace('_admin', '').replace('_', '-') +
+      '/' +
+      formId;
+    url = api;
   } else if (paginationUrl !== undefined) {
     url = paginationUrl.replace('http', 'https');
   }
-
   return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
