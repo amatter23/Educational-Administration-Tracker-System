@@ -16,6 +16,7 @@ import 'reactjs-popup/dist/index.css';
 import Loader from '../../../pages/Loader';
 import { getManagementPlan } from '../../../utils/getData';
 import { toast } from 'react-toastify';
+import { act } from 'react-dom/test-utils';
 const contentStyle = {
   height: '80%',
   overflow: 'auto',
@@ -276,13 +277,21 @@ const ManagementPlan = props => {
                                           {activity.activity}
                                         </li>
                                       </div>
-                                      <a
-                                        href={activity.file}
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                      >
-                                        {t(`download file`)}
-                                      </a>
+                                      {activity.file === null ? (
+                                        <h6>
+                                          {t(
+                                            `no file attached to this activity`
+                                          )}
+                                        </h6>
+                                      ) : (
+                                        <a
+                                          href={activity.file}
+                                          target='_blank'
+                                          rel='noopener noreferrer'
+                                        >
+                                          {t(`download file`)}
+                                        </a>
+                                      )}
                                     </div>
                                   );
                                 })}
