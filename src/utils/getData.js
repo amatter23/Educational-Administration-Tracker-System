@@ -1,4 +1,5 @@
 import { getAuthToken } from './auth';
+import axios from 'axios';
 
 export const api_url = 'https://fms.fly.dev';
 export const auth = 'Bearer ' + getAuthToken();
@@ -454,3 +455,39 @@ export function getMnagerStatics() {
     }
   });
 }
+
+export function updateOpjectiveLowerLevel(id, opjective) {
+  return fetch(api_url + '/p/plan/' + id + '/', {
+    headers: {
+      Authorization: auth,
+    },
+    method: 'PATCH',
+    body: opjective,
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+// export function updateOpjectiveLowerLevel(id, opjective) {
+//   return axios.put(api_url + '/p/plan/' + id + '/', {
+//     activities: [
+//       {
+//         file: opjective,
+//       },
+//     ],
+//   }, {
+//     headers: {
+//       'Content-Type': 'multipart/form-data',
+//       Authorization: auth,
+//     },
+//   });
+// }

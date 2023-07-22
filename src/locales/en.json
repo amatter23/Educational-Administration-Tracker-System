@@ -206,7 +206,7 @@
   "Executor": "المنفذ",
   "objective": "الهدف",
   "Add objective": "اضافة هدف",
-  "Activities": "نشاط",
+  "Activities": "الانشطة",
   "Add more Activities": "اضافة نشاط",
   "Add new objectiv": "اضافة هدف جديد",
   "Department Plan": "خطة القسم",
@@ -234,5 +234,8 @@
   "First Name": "الاسم الاول",
   "Last Name": "الاسم الاخير",
   "Save": "حفظ",
-  "Cancel": "الغاء"
+  "Cancel": "الغاء",
+  "Next": "التالي",
+  "Previous": "السابق",
+  "percentage of absence": "نسبة الغياب"
 }
