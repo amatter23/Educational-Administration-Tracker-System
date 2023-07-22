@@ -46,7 +46,6 @@
 .content .card {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
   width: 90%;
   padding: calc(var(--pading) / 2) var(--pading);
   background-color: var(--primary-dark);
@@ -60,6 +59,7 @@
   position: relative;
   overflow: hidden;
   min-height: 9%;
+  white-space: nowrap;
 }
 .content .card .num {
   padding: calc(var(--pading) / 4) calc(var(--pading) / 2);
@@ -70,6 +70,9 @@
 
 .content .card .text {
   z-index: 10;
+  display: flex;
+  word-wrap: inherit;
+  height: 50%;
 }
 .content .card:hover {
   background-color: var(--backgound-1);
@@ -103,7 +106,7 @@
     width: 95%;
   }
   .content .card {
-    width: 600px;
+    width: fit-content;
     overflow: visible;
     padding: 0 var(--pading);
   }

@@ -75,7 +75,9 @@ const ManagerDashBord = props => {
                 setActive(index);
               }}
             >
-              <div className={classes.text}>{t(`${key}`)}</div>
+              <div className={classes.text}>
+                <h5>{t(`${key}`)}</h5>
+              </div>
             </div>
           ))}
         </div>
