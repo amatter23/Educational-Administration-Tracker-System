@@ -175,6 +175,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -207,6 +211,10 @@ function App() {
         {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
         },
       ],
     },
@@ -242,6 +250,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -276,8 +288,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
-        //todo add the management plan
-      ],
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },      ],
     },
   ]);
 
@@ -310,6 +324,10 @@ function App() {
         {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
         },
       ],
     },
