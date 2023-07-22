@@ -13,6 +13,8 @@ import {
   faSchool,
   faPlay,
   faBarsProgress,
+  faListCheck,
+  faBullseye,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import translate file
@@ -28,7 +30,7 @@ const UpperMenu = props => {
     .replace('_', '-')
     .replace('-', ' ');
   // state to store the menu show state
-  const [menuShow, setmenuShow] = useState(true);
+  const [menuShow, setmenuShow] = useState("test");
   // state to store the user roles have checkbox inputs
   const [userRoles, setUserRoles] = useState(props.userRolesHaveCheckBoxInputs);
   // navigate function
@@ -38,7 +40,7 @@ const UpperMenu = props => {
     if (userData.role === 'tracker') {
       return (
         <div className={classes.list}>
-          <ul className={menuShow ? classes.side : ''}>
+          <ul className={menuShow === true  ? classes.side : ''}>
             <li>
               <NavLink
                 to='/'
@@ -146,14 +148,30 @@ const UpperMenu = props => {
                 {t('Dashboard')}
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to='/Plan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon icon={faListCheck} />
+                {t('Plan management')}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/managmentPlan'
+                className={({ isActive }) => (isActive ? classes.active : null)}
+                end
+              >
+                <FontAwesomeIcon icon={faBullseye} />
+                {t('Management plan')}
+              </NavLink>
+            </li>
           </ul>
-          {/* <div className={classes.footer}>
-            <p>© 2023 All Rights Reserved</p>
-          </div> */}
         </div>
       );
     }
-    //todo add manager and user roles to the menu
   };
   return (
     <div className={classes.menu}>
@@ -177,7 +195,6 @@ const UpperMenu = props => {
         </div>
         {menuItems()}
       </div>
-
       <div className={classes.left}>
         <div
           className={classes.user}

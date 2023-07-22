@@ -4,7 +4,7 @@ import classes from './QualityDashbord.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import RowBox from '../../BoxStatistics/RowBox/RowBox';
-import UserInformation from '../../UserInformationCard/UserInformation';
+import UserInformation from '../../../../Ui/UserInformationCard/UserInformation';
 import PieChart from '../../PieChart/PieChart';
 import { getDepartmentStatics } from '../../../../../utils/getData';
 import SchoolsQualified from '../SchoolsQualified/SchoolsQualified';
@@ -66,7 +66,7 @@ const QualityDashbord = props => {
       </div>
       <div className={classes.bottom}>
         <div className={classes.left}>
-          <SchoolsQualified fields={fields} />
+          <SchoolsQualified title={'Schools qualified to work'} fields={fields} />
         </div>
         <div className={classes.right}>
           <PieChart userData={userData} schoolStatics={schoolStatics} />

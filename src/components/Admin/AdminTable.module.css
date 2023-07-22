@@ -11,7 +11,7 @@
 }
 .header {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -23,33 +23,7 @@
 .header .phone {
   display: none;
 }
-.header .search {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-}
-.header .search .inputSearch input {
-  text-align: left;
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
-.header .search .filter {
-  display: block;
-}
-.header .search .filter button {
-  font-size: var(--font-size-standard);
-  color: var(--text-color-light);
-  border: solid 1px var(--border-color);
-  border-radius: var(--border-radius);
-  padding: calc(var(--pading) / 4) var(--pading);
-  background-color: var(--backgound-1);
-  cursor: pointer;
-  border-left: none;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
-}
-.header .search .filter button svg {
-  font-size: 0.8rem;
-}
+
 .body {
   display: flex;
   flex-direction: column;
