@@ -197,7 +197,7 @@
   "New Form": "استمارة جديدة",
   "Add New School": "اضافة مدرسة جديدة",
   "Something wrong happened": "حدث خطأ ما",
-  "No schools found": "لا يوجد",
+  "No schools found": "لا يوجد مدارس",
   "production unit": "الوحدة المنتجة",
   "environment population": "البيئة و السكان",
   "strategic planning": "التخطيط الاستراتيجي",
@@ -239,5 +239,8 @@
   "Previous": "السابق",
   "percentage of absence": "نسبة الغياب",
   "download file": "تحميل الملف",
-  "Management Plan": "خطة الإدارة"
+  "Management Plan": "خطة الإدارة",
+  "Reset password": "إعادة تعيين كلمة المرور",
+  "Reset username": "إعادة تعيين اسم المستخدم",
+  "Edit": "تعديل"
 }
