@@ -18,6 +18,7 @@ import Loader from '../../../pages/Loader';
 import {
   getOpjectives,
   addNewObjectiveLowerLevel,
+  updateOpjectiveLowerLevel,
 } from '../../../utils/getData';
 import { toast } from 'react-toastify';
 const contentStyle = {
@@ -31,7 +32,7 @@ const contentStyle = {
   backgroundColor: 'var(--primary-darker)',
   border: 'none',
   borderRadius: 'var(--border-radius)',
-  width: '80%',
+  width: '90%',
 };
 
 const LowLevelPlan = props => {
@@ -46,13 +47,14 @@ const LowLevelPlan = props => {
   const [activities, setActivities] = useState([
     {
       activity: '',
+      file: null,
     },
   ]);
   const [newObjective, setNewObjective] = useState({
-    objective: 'gfdsgdfsg',
-    execution_time: 'test set',
-    executed_by: 'test set',
-    execution_tracker: 'test set',
+    objective: '',
+    execution_time: '',
+    executed_by: '',
+    execution_tracker: '',
     activities: activities,
     done: false,
   });
@@ -84,7 +86,6 @@ const LowLevelPlan = props => {
   const [activeItemIndex, setActiveItemIndex] = useState('open');
 
   const addNewObjective = async e => {
-    console.log(newObjective);
     e.preventDefault();
     try {
       const id = toast.loading('Please wait...');
@@ -114,6 +115,64 @@ const LowLevelPlan = props => {
     } catch (error) {
       setError(true);
       setLoading(false);
+    }
+  };
+
+  const addFilesToActivity = (e, index, index1) => {
+    updateData(current => {
+      const updatedData = [...current];
+      updatedData[index].activities[index1] = {
+        ...updatedData[index].activities[index1],
+        file: e.target.files[0],
+      };
+      return updatedData;
+    });
+  };
+  // todo update objective not working
+  const updateOpjective = async opjective => {
+    const formData = new FormData();
+
+    formData.append('id', opjective.id);
+    formData.append('objective', opjective.objective);
+    formData.append('execution_time', opjective.execution_time);
+    formData.append('executed_by', opjective.executed_by);
+    formData.append('execution_tracker', opjective.execution_tracker);
+    formData.append('done', opjective.done);
+
+    opjective.activities.forEach((activity, index) => {
+      formData.append(`activities[${index}][activity]`, activity.activity);
+      if (activity.file) {
+        formData.append(`activities[${index}][file]`, activity.file);
+      }
+    });
+    const formDataObj = {};
+    formData.forEach((value, key) => (formDataObj[key] = value));
+    try {
+      const id = toast.loading('Please wait...');
+      const response = updateOpjectiveLowerLevel(opjective.id, formData).then(
+        data => {
+          if (data.status === 200) {
+            toast.update(id, {
+              render: t(`update successfully`),
+              type: 'success',
+              isLoading: false,
+              autoClose: 3000,
+            });
+            return;
+          } else {
+            toast.update(id, {
+              render: t(`update failed`),
+              type: 'error',
+              isLoading: false,
+              autoClose: 3000,
+            });
+            return;
+          }
+        }
+      );
+    } catch (error) {
+      // setError(true);
+      // setLoading(false);
     }
   };
   if (Loading) {
@@ -222,8 +281,9 @@ const LowLevelPlan = props => {
                   <div className='input-label'>
                     <label htmlFor='Duration'>{t(`Duration`)} </label>
                     <input
+                      className={classes.date}
                       required
-                      type='text'
+                      type='date'
                       name='Duration'
                       id='Duration'
                       placeholder={t(`Duration`)}
@@ -289,6 +349,7 @@ const LowLevelPlan = props => {
                         ...current,
                         {
                           activity: '',
+                          file: null,
                         },
                       ]);
                     }}
@@ -312,7 +373,7 @@ const LowLevelPlan = props => {
             >
               {t(`objective`)}{' '}
             </div>
-            <div className={`${classes.tableHeaderItem}  `}>
+            <div className={`${classes.tableHeaderItem} ${classes.clear}  `}>
               {t(`Executor`)}
             </div>
             <div
@@ -350,7 +411,9 @@ const LowLevelPlan = props => {
                       <div className={`${classes.tableBodyItem} `}>
                         {opjectiv.objective}
                       </div>
-                      <div className={`${classes.tableBodyItem}  `}>
+                      <div
+                        className={`${classes.tableBodyItem} ${classes.clear} `}
+                      >
                         {opjectiv.executed_by}
                       </div>
                       <div
@@ -381,21 +444,29 @@ const LowLevelPlan = props => {
                         modal
                       >
                         <div className={classes.objectiveDetails}>
-                          <h3>
-                            {opjectiv.objective} : {t(`objective`)} &nbsp;
-                            <FontAwesomeIcon
-                              className={classes.icon}
-                              icon={faBullseye}
-                              style={{ color: '#ffffff' }}
-                            />
-                          </h3>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'row-reverse',
+                            }}
+                          >
+                            <div className={classes.titleIcon}>
+                              <FontAwesomeIcon
+                                className={classes.icon}
+                                icon={faBullseye}
+                                style={{ color: '#ffffff' }}
+                              />
+                              <h4> &nbsp;:{t(`objective`)} </h4>
+                            </div>
+
+                            <h5>{opjectiv.objective}</h5>
+                          </div>
 
                           <div className={classes.objectiveDetailsItem}>
                             <h4> : {t(`Executor`)}</h4>
                             <p>{opjectiv.executed_by}</p>
                           </div>
                           <div className={classes.objectiveDetailsItem}>
-                            {/* // todo : add reamainng time */}
                             <h4> : {t(`Duration`)}</h4>
                             <p>{opjectiv.execution_time}</p>
                           </div>
@@ -403,20 +474,70 @@ const LowLevelPlan = props => {
                             <h4> : {t(`Follow-up responsible`)}</h4>
                             <p>{opjectiv.execution_tracker}</p>
                           </div>
-                          <div className={classes.objectiveDetailsItem}>
-                            <h4>: {t(`Activities`)} </h4>
-                            <ul>
-                              {opjectiv.activities.map((activity, index) => {
-                                return (
-                                  // {// todo : add file upload}
-                                  <div>
-                                    <li key={index}>
-                                      {activity.activity} -{index + 1}
-                                    </li>
-                                  </div>
-                                );
-                              })}
-                            </ul>
+                          <div
+                            style={{ flexDirection: 'column' }}
+                            className={classes.objectiveDetailsItem}
+                          >
+                            <div className={classes.data}>
+                              <h4> :{t(`Activities`)} </h4>
+                              <ul className={classes.activities}>
+                                {opjectiv.activities.map((activity, index1) => {
+                                  return (
+                                    <div className={classes.activityContaner}>
+                                      <div className={classes.activity}>
+                                        <h6>-{index1 + 1}</h6>
+                                        <li key={index1}>
+                                          {activity.activity}
+                                        </li>
+                                      </div>
+
+                                      {opjectiv.done ? (
+                                        <a
+                                          href={activity.file}
+                                          target='_blank'
+                                          rel='noopener noreferrer'
+                                        >
+                                          {t(`download file`)}
+                                        </a>
+                                      ) : activity.file === null ? (
+                                        <input
+                                          onChange={e => {
+                                            addFilesToActivity(
+                                              e,
+                                              index,
+                                              index1
+                                            );
+                                          }}
+                                          type='file'
+                                        />
+                                      ) : (
+                                        <a
+                                          href={activity.file}
+                                          target='_blank'
+                                          rel='noopener noreferrer'
+                                        >
+                                          {t(`download file`)}
+                                        </a>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                            {opjectiv.done ? (
+                              ''
+                            ) : (
+                              <div className={classes.updateActivities}>
+                                <button
+                                  onClick={() => {
+                                    updateOpjective(opjectiv);
+                                  }}
+                                  className='btn'
+                                >
+                                  {t('update activities')}
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </Popup>

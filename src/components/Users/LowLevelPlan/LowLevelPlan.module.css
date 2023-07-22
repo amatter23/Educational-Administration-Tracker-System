@@ -97,7 +97,7 @@
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
-
+  overflow: hidden;
   border-radius: var(--border-radius);
 }
 
@@ -219,6 +219,9 @@
   .clear {
     display: none;
   }
+  .updateActivities{
+    width: 100%;
+  }
 }
 
 .addNewObjectiv {
@@ -266,9 +269,58 @@
   color: var(--text-color-light);
 }
 
-
-.icon{
+.icon {
   border: solid 1px var(--backgound-1);
   padding: calc(var(--pading) / 2);
   border-radius: var(--border-radius);
+}
+.data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  width: 100%;
+  padding: calc(var(--pading) / 2);
+}
+.updateActivities {
+  width: 50%;
+}
+
+.titleIcon {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: calc(var(--gap) / 2);
+}
+.activities {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+}
+.activityContaner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  border-bottom: solid 1px var(--border-color);
+  width: 100%;
+}
+.activity {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: end;
+}
+.date{
+  font-size: 0.9rem;
+    color: var(--text-color-body);
+    border: solid 1px var(--border-color);
+    border-radius: var(--border-radius);
+    text-align: right;
+    padding: 0 var(--pading);
+    background-color: var(--backgound-1);
+    height: -moz-fit-content;
+    height: fit-content;
+    align-items: center;
 }
