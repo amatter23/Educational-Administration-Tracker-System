@@ -242,5 +242,22 @@
   "Management Plan": "خطة الإدارة",
   "Reset password": "إعادة تعيين كلمة المرور",
   "Reset username": "إعادة تعيين اسم المستخدم",
-  "Edit": "تعديل"
+  "Edit": "تعديل",
+  "Management plan": "خطة الإدارة",
+  "no file attached to this activity": "لا يوجد ملف مرفق بهذا النشاط",
+  "schools_with_issues": "المدارس التي بها مشاكل",
+  "schools_without_issues": "المدارس التي لا توجد بها مشاكل",
+  "daily_not_received": "لا يتم الاستلام يوميا للتغذية",
+  "no_health_certificate": "لا يوجد شهادة صحية",
+  "no_training_plan": "لا يوجد خطة تدريب",
+  "no_teachers_training": "لا يوجد تدريب للمعلمين",
+  "no_fire_line": "لا يوجد خط حريق",
+  "no_tanks": "لا يوجد خزانات",
+  "no_wall": "لا يوجد سور",
+  "no_analysis": "لا يوجد تحليل للوضع الراهن",
+  "no_risks_indicators": "لا يوجد مؤشرات مخاطر",
+  "no_transferred_files": "يوجد مشاكل في ملفات التحويل",
+  "no_labs_health_procedures": "لا يوجد اجراءات صحية",
+  "no_diagnosis_health_plan": "لا يوجد خطه للفحص الطبي",
+  "no_toilets_health_procedures": "لا يوجد اجراءات صحية "
 }
