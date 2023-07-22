@@ -3,7 +3,7 @@ import classes from './SchoolsQualified.module.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faSchool } from '@fortawesome/free-solid-svg-icons';
+import { faSchool, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { useTranslation } from 'react-i18next';
 
@@ -21,12 +21,22 @@ const SchoolsQualified = props => {
           <div className={classes.title}>{t('School Level')}</div>
         </div>
         <div className={classes.tableContent}>
-          {props.fields.map(field => (
-            <div className={classes.row}>
-              <div className={classes.title}>{field.school_name}</div>
-              <div className={classes.title}>{t(field.school_level)}</div>
+          {props.fields.length === 0 ? (
+            <div className={classes.noData}>
+              <FontAwesomeIcon
+                icon={faCircleXmark}
+                style={{ color: '#ff0000' }}
+              />
+              <h4>{t(`No schools found`)}</h4>
             </div>
-          ))}
+          ) : (
+            props.fields.map(field => (
+              <div className={classes.row}>
+                <div className={classes.title}>{field.school_name}</div>
+                <div className={classes.title}>{t(field.school_level)}</div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
