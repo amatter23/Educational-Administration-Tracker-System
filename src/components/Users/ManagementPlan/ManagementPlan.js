@@ -149,7 +149,7 @@ const ManagementPlan = props => {
             >
               {t(`objective`)}{' '}
             </div>
-            <div className={`${classes.tableHeaderItem}  `}>
+            <div className={`${classes.tableHeaderItem} ${classes.clear}  `}>
               {t(`Executor`)}
             </div>
             <div
@@ -192,7 +192,9 @@ const ManagementPlan = props => {
                       <div className={`${classes.tableBodyItem} `}>
                         {opjectiv.objective}
                       </div>
-                      <div className={`${classes.tableBodyItem}  `}>
+                      <div
+                        className={`${classes.tableBodyItem} ${classes.clear}  `}
+                      >
                         {opjectiv.executed_by}
                       </div>
                       <div
@@ -206,9 +208,9 @@ const ManagementPlan = props => {
                         {opjectiv.execution_tracker}
                       </div>
                       <div
-                        className={`${classes.tableBodyItem} ${classes.schoolName}`}
+                        className={`${classes.tableBodyItem} ${classes.schoolName} ${classes.clear}`}
                       >
-                        {opjectiv.department}
+                        {t(`${opjectiv.department}`)}
                       </div>
                       <Popup
                         trigger={
@@ -228,21 +230,29 @@ const ManagementPlan = props => {
                         modal
                       >
                         <div className={classes.objectiveDetails}>
-                          <h3>
-                            {opjectiv.objective} : {t(`objective`)} &nbsp;
-                            <FontAwesomeIcon
-                              className={classes.icon}
-                              icon={faBullseye}
-                              style={{ color: '#ffffff' }}
-                            />
-                          </h3>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'row-reverse',
+                            }}
+                          >
+                            <div className={classes.titleIcon}>
+                              <FontAwesomeIcon
+                                className={classes.icon}
+                                icon={faBullseye}
+                                style={{ color: '#ffffff' }}
+                              />
+                              <h4> &nbsp;:{t(`objective`)} </h4>
+                            </div>
+
+                            <h5>{opjectiv.objective}</h5>
+                          </div>
 
                           <div className={classes.objectiveDetailsItem}>
                             <h4> : {t(`Executor`)}</h4>
                             <p>{opjectiv.executed_by}</p>
                           </div>
                           <div className={classes.objectiveDetailsItem}>
-                            {/* // todo : add reamainng time */}
                             <h4> : {t(`Duration`)}</h4>
                             <p>{opjectiv.execution_time}</p>
                           </div>
@@ -250,19 +260,34 @@ const ManagementPlan = props => {
                             <h4> : {t(`Follow-up responsible`)}</h4>
                             <p>{opjectiv.execution_tracker}</p>
                           </div>
-                          <div className={classes.objectiveDetailsItem}>
-                            <h4>: {t(`Activities`)} </h4>
-                            <ul>
-                              {opjectiv.activities.map((activity, index) => {
-                                return (
-                                  <div>
-                                    <li key={index}>
-                                      {activity.activity} -{index + 1}
-                                    </li>
-                                  </div>
-                                );
-                              })}
-                            </ul>
+                          <div
+                            style={{ flexDirection: 'column' }}
+                            className={classes.objectiveDetailsItem}
+                          >
+                            <div className={classes.data}>
+                              <h4> :{t(`Activities`)} </h4>
+                              <ul className={classes.activities}>
+                                {opjectiv.activities.map((activity, index1) => {
+                                  return (
+                                    <div className={classes.activityContaner}>
+                                      <div className={classes.activity}>
+                                        <h6>-{index1 + 1}</h6>
+                                        <li key={index1}>
+                                          {activity.activity}
+                                        </li>
+                                      </div>
+                                      <a
+                                        href={activity.file}
+                                        target='_blank'
+                                        rel='noopener noreferrer'
+                                      >
+                                        {t(`download file`)}
+                                      </a>
+                                    </div>
+                                  );
+                                })}
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </Popup>
