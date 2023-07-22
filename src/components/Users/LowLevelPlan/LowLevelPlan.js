@@ -117,59 +117,45 @@ const LowLevelPlan = props => {
       setLoading(false);
     }
   };
+  const [file, setFile] = useState(null);
 
   const addFilesToActivity = (e, index, index1) => {
-    updateData(current => {
-      const updatedData = [...current];
-      updatedData[index].activities[index1] = {
-        ...updatedData[index].activities[index1],
-        file: e.target.files[0],
-      };
-      return updatedData;
-    });
+    setFile(e.target.files[0]);
   };
   // todo update objective not working
-  const updateOpjective = async opjective => {
+  const updateOpjective = async (activity, index, index1) => {
     const formData = new FormData();
-
-    formData.append('id', opjective.id);
-    formData.append('objective', opjective.objective);
-    formData.append('execution_time', opjective.execution_time);
-    formData.append('executed_by', opjective.executed_by);
-    formData.append('execution_tracker', opjective.execution_tracker);
-    formData.append('done', opjective.done);
-
-    opjective.activities.forEach((activity, index) => {
-      formData.append(`activities[${index}][activity]`, activity.activity);
-      if (activity.file) {
-        formData.append(`activities[${index}][file]`, activity.file);
-      }
-    });
-    const formDataObj = {};
-    formData.forEach((value, key) => (formDataObj[key] = value));
+    formData.append('activity_id', activity.id);
+    formData.append('file', file);
     try {
       const id = toast.loading('Please wait...');
-      const response = updateOpjectiveLowerLevel(opjective.id, formData).then(
-        data => {
-          if (data.status === 200) {
-            toast.update(id, {
-              render: t(`update successfully`),
-              type: 'success',
-              isLoading: false,
-              autoClose: 3000,
-            });
-            return;
-          } else {
-            toast.update(id, {
-              render: t(`update failed`),
-              type: 'error',
-              isLoading: false,
-              autoClose: 3000,
-            });
-            return;
-          }
+      const response = updateOpjectiveLowerLevel(formData).then(data => {
+        if (data.status === 201) {
+          toast.update(id, {
+            render: t(`update successfully`),
+            type: 'success',
+            isLoading: false,
+            autoClose: 3000,
+          });
+          updateData(current => {
+            const updatedData = [...current];
+            updatedData[index].activities[index1] = {
+              ...updatedData[index].activities[index1],
+              file: data.result.file,
+            };
+            return updatedData;
+          });
+          return;
+        } else {
+          toast.update(id, {
+            render: t(`update failed`),
+            type: 'error',
+            isLoading: false,
+            autoClose: 3000,
+          });
+          return;
         }
-      );
+      });
     } catch (error) {
       // setError(true);
       // setLoading(false);
@@ -500,16 +486,40 @@ const LowLevelPlan = props => {
                                           {t(`download file`)}
                                         </a>
                                       ) : activity.file === null ? (
-                                        <input
-                                          onChange={e => {
-                                            addFilesToActivity(
-                                              e,
-                                              index,
-                                              index1
-                                            );
-                                          }}
-                                          type='file'
-                                        />
+                                        <div>
+                                          <input
+                                            onChange={e => {
+                                              addFilesToActivity(
+                                                e,
+                                                index,
+                                                index1
+                                              );
+                                            }}
+                                            type='file'
+                                          />
+                                          {opjectiv.done ? (
+                                            ''
+                                          ) : (
+                                            <div
+                                              className={
+                                                classes.updateActivities
+                                              }
+                                            >
+                                              <button
+                                                onClick={() => {
+                                                  updateOpjective(
+                                                    activity,
+                                                    index,
+                                                    index1
+                                                  );
+                                                }}
+                                                className='btn-outline'
+                                              >
+                                                {t('update activities')}
+                                              </button>
+                                            </div>
+                                          )}
+                                        </div>
                                       ) : (
                                         <a
                                           href={activity.file}
@@ -524,20 +534,6 @@ const LowLevelPlan = props => {
                                 })}
                               </ul>
                             </div>
-                            {opjectiv.done ? (
-                              ''
-                            ) : (
-                              <div className={classes.updateActivities}>
-                                <button
-                                  onClick={() => {
-                                    updateOpjective(opjectiv);
-                                  }}
-                                  className='btn'
-                                >
-                                  {t('update activities')}
-                                </button>
-                              </div>
-                            )}
                           </div>
                         </div>
                       </Popup>

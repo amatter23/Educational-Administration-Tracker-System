@@ -456,26 +456,26 @@ export function getMnagerStatics() {
   });
 }
 
-export function updateOpjectiveLowerLevel(id, opjective) {
-  return fetch(api_url + '/p/plan/' + id + '/', {
-    headers: {
-      Authorization: auth,
-    },
-    method: 'PATCH',
-    body: opjective,
-  }).then(res => {
-    if (res.status === 200) {
-      return res.json().then(data => {
-        return {
-          result: data,
-          status: res.status,
-        };
-      });
-    } else {
-      return res.status;
-    }
-  });
-}
+// export function updateOpjectiveLowerLevel(opjective) {
+//   return fetch(api_url + '/p/plan/post-file/', {
+//     method: 'POST',
+//     headers: {
+//       Authorization: auth,
+//     },
+//     body: opjective,
+//   }).then(res => {
+//     if (res.status === 200) {
+//       return res.json().then(data => {
+//         return {
+//           result: data,
+//           status: res.status,
+//         };
+//       });
+//     } else {
+//       return res.status;
+//     }
+//   });
+// }
 
 // export function updateOpjectiveLowerLevel(id, opjective) {
 //   return axios.put(api_url + '/p/plan/' + id + '/', {
@@ -491,3 +491,23 @@ export function updateOpjectiveLowerLevel(id, opjective) {
 //     },
 //   });
 // }
+export function updateOpjectiveLowerLevel(objective) {
+  return fetch(api_url + '/p/post-file/', {
+    method: 'POST',
+    headers: {
+      Authorization: auth,
+    },
+    body: objective,
+  }).then(res => {
+    if (res.status === 201) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
