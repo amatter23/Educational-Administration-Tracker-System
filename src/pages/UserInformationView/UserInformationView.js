@@ -182,7 +182,7 @@ const UserInformationView = props => {
             <span>
               <FontAwesomeIcon icon={faLock} />
             </span>
-            Reset password
+            {t('Reset password')}
           </button>
           <button
             onClick={() => {
@@ -193,7 +193,7 @@ const UserInformationView = props => {
             <span>
               <FontAwesomeIcon icon={faAt} />
             </span>
-            Reset UserName
+            {t('Reset username')}
           </button>
         </div>
       </div>
@@ -263,7 +263,7 @@ const UserInformationView = props => {
           >
             {error_message}
           </div>
-          <button className={classes.accBtn}>Edit</button>
+          <button className={classes.accBtn}>{t('Edit')}</button>
         </form>
       </div>
 
@@ -298,7 +298,7 @@ const UserInformationView = props => {
           <div className={classes.error}>{resetError}</div>
           <div className={classes.actions}>
             <button type='submit' className={classes.accBtn}>
-              Save
+              {t('Save')}
             </button>
             <button
               onClick={() => {
@@ -306,7 +306,7 @@ const UserInformationView = props => {
               }}
               className={classes.accBtn}
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </div>
         </form>
@@ -322,7 +322,7 @@ const UserInformationView = props => {
             <span>
               <FontAwesomeIcon icon={faAt} />
             </span>{' '}
-            Reset user name
+            {t('Reset username')}
           </h5>
           <input
             placeholder='New user Name '
@@ -343,7 +343,7 @@ const UserInformationView = props => {
           <div className={classes.error}>{resetError}</div>
           <div className={classes.actions}>
             <button type='submit' className={classes.accBtn}>
-              Save
+              {t('Save')}
             </button>
             <button
               onClick={() => {
@@ -351,7 +351,7 @@ const UserInformationView = props => {
               }}
               className={classes.accBtn}
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </div>
         </form>

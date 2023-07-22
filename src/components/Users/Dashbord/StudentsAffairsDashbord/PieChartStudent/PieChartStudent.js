@@ -33,7 +33,7 @@ const PieChartWorkersAffairs = props => {
   return (
     <div className={classes.container}>
       <h5>
-        {t('Cons section') + ' ' + t(props.userData.role.replace('_admin', ''))}
+        {t('percentage absent') }
       </h5>
       <Pie data={data} />
     </div>

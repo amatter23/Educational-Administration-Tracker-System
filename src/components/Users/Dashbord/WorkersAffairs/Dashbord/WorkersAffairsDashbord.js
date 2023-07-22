@@ -4,7 +4,7 @@ import classes from './WorkersAffairsDashbord.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import RowBox from '../../BoxStatistics/RowBox/RowBox';
-import UserInformation from '../../UserInformationCard/UserInformation';
+import UserInformation from '../../../../Ui/UserInformationCard/UserInformation';
 import PieChart from '../../PieChart/PieChart';
 import PieChartWorkersAffairs from '../PieChartWorkersAffairs/PieChartWorkersAffairs';
 import { getDepartmentStatics } from '../../../../../utils/getData';
@@ -65,7 +65,7 @@ const WorkersAffairsDashbord = props => {
       </div>
       <div className={classes.bottom}>
         <div className={classes.left}>
-        <PieChartWorkersAffairs userData={userData} fields={fields} />
+          <PieChartWorkersAffairs userData={userData} fields={fields} />
         </div>
         <div className={classes.right}>
           <PieChart userData={userData} schoolStatics={schoolStatics} />

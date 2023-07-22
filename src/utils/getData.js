@@ -1,4 +1,5 @@
 import { getAuthToken } from './auth';
+import axios from 'axios';
 
 export const api_url = 'https://fms.fly.dev';
 export const auth = 'Bearer ' + getAuthToken();
@@ -103,15 +104,21 @@ export function getPersonalData() {
 // https://fms.fly.dev/security-safety/?ordering=-created_at/&page=2
 
 // get school to each user
-export function getSchools(userRole, formId) {
-  var api = userRole.replace('_admin', '').replace('_', '-');
+export function getSchools(userRole, formId, paginationUrl) {
+  var api = api_url + '/' + userRole.replace('_admin', '').replace('_', '-');
+  var url = api;
   if (formId !== null) {
-    api = api + '/' + formId;
+    api =
+      api_url +
+      '/' +
+      userRole.replace('_admin', '').replace('_', '-') +
+      '/' +
+      formId;
+    url = api;
+  } else if (paginationUrl !== undefined) {
+    url = paginationUrl.replace('http', 'https');
   }
-  // } else if (paginationUrl !== undefined) {
-  //   url = paginationUrl;
-  // }
-  return fetch(api_url + '/' + api + '/', {
+  return fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: auth,
@@ -366,6 +373,133 @@ export function getManagementPlan() {
     },
   }).then(res => {
     if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function getDepartmentPlan(department) {
+  return fetch(
+    api_url +
+      '/p/manger-plan/?department=' +
+      department +
+      '&ordering=-created_at/',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: auth,
+      },
+    }
+  ).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function updateOpjective(id, approved, done) {
+  return fetch(api_url + '/p/manger-plan/' + id + '/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+    method: 'PATCH',
+    body: JSON.stringify({
+      approved: approved,
+      done: done,
+      archived: false,
+    }),
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+export function getMnagerStatics() {
+  return fetch(api_url + '/m/manager-statics/', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 200) {
+      return res.json().then(data => {
+        return {
+          result: data,
+          status: res.status,
+        };
+      });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+// export function updateOpjectiveLowerLevel(opjective) {
+//   return fetch(api_url + '/p/plan/post-file/', {
+//     method: 'POST',
+//     headers: {
+//       Authorization: auth,
+//     },
+//     body: opjective,
+//   }).then(res => {
+//     if (res.status === 200) {
+//       return res.json().then(data => {
+//         return {
+//           result: data,
+//           status: res.status,
+//         };
+//       });
+//     } else {
+//       return res.status;
+//     }
+//   });
+// }
+
+// export function updateOpjectiveLowerLevel(id, opjective) {
+//   return axios.put(api_url + '/p/plan/' + id + '/', {
+//     activities: [
+//       {
+//         file: opjective,
+//       },
+//     ],
+//   }, {
+//     headers: {
+//       'Content-Type': 'multipart/form-data',
+//       Authorization: auth,
+//     },
+//   });
+// }
+export function updateOpjectiveLowerLevel(objective) {
+  return fetch(api_url + '/p/post-file/', {
+    method: 'POST',
+    headers: {
+      Authorization: auth,
+    },
+    body: objective,
+  }).then(res => {
+    if (res.status === 201) {
       return res.json().then(data => {
         return {
           result: data,

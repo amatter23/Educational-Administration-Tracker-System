@@ -175,6 +175,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -207,6 +211,10 @@ function App() {
         {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
         },
       ],
     },
@@ -242,6 +250,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -276,7 +288,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
-      ],
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },      ],
     },
   ]);
 
@@ -310,6 +325,10 @@ function App() {
           path: '/plan',
           element: <LowLevelPlan userData={userData} />,
         },
+        {
+          path: '/managementPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
       ],
     },
   ]);
@@ -340,8 +359,16 @@ function App() {
           element: <ManagerDashBord userData={userData} />,
         },
         {
-          path: '/Plan',
+          path: '/plan',
           element: <HightLevelPlan userData={userData} />,
+        },
+        {
+          path: '/managmentPlan',
+          element: <ManagementPlan userData={userData} />,
+        },
+        {
+          path: '/userInformation',
+          element: <UserInformationView userData={userData} />,
         },
       ],
     },

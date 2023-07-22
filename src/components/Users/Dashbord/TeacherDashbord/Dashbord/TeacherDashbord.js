@@ -4,7 +4,7 @@ import classes from './TeacherDashbord.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faSquare } from '@fortawesome/free-solid-svg-icons';
 import RowBox from '../../BoxStatistics/RowBox/RowBox';
-import UserInformation from '../../UserInformationCard/UserInformation';
+import UserInformation from '../../../../Ui/UserInformationCard/UserInformation';
 import PieChart from '../../PieChart/PieChart';
 import { getDepartmentStatics } from '../../../../../utils/getData';
 import Loader from '../../../../../pages/Loader';
