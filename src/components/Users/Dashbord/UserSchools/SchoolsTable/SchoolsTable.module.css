@@ -7,14 +7,14 @@
   height: 90%;
   color: var(--text-color-body);
 }
-.header{
+.header {
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
 }
-.title{
+.title {
   color: var(--text-color-body);
   display: flex;
   flex-direction: row-reverse;
@@ -40,7 +40,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  
 }
 .tableHeader {
   color: var(--backgound-1);
@@ -129,23 +128,6 @@
   border: solid 1px var(--backgound-2);
 }
 
-/* .tableBodyItem > * {
-  width: 100%;
-  text-align: center;
-}
-.tableBodyItem > *:nth-child(1) {
-  width: 20%;
-}
-.tableBodyItem > *:nth-child(2) {
-  width: 20%;
-}
-.tableBodyItem > *:nth-child(3) {
-  width: 20%;
-}
-.tableBodyItem > *:nth-child(4) {
-  width: 20%;
-} */
-
 @media screen and (max-width: 500px) {
   .schoolName {
     display: flex;
@@ -153,4 +135,14 @@
   .clear {
     display: none;
   }
+}
+
+.noData {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  width: 100%;
+  height: 100%;
 }

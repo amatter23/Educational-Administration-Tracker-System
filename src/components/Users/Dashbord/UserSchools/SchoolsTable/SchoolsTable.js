@@ -6,6 +6,7 @@ import {
   faSchool,
   faCircleExclamation,
   faShield,
+  faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   getSchools,
@@ -166,49 +167,61 @@ const SchoolsTable = props => {
             ></div>
           </div>
           <div className={classes.tableBody}>
-            {schools.map(school => {
-              return (
-                <div
-                  key={school.id}
-                  id={school.id}
-                  onClick={openTaskWindow}
-                  className={classes.tableRow}
-                >
+            {schools.length === 0 ? (
+              <div className={classes.noData}>
+                <FontAwesomeIcon
+                  icon={faCircleXmark}
+                  style={{ color: '#ff0000' }}
+                />
+                <h4>{t(`No schools found`)}</h4>
+              </div>
+            ) : (
+              schools.map(school => {
+                return (
                   <div
-                    className={`${classes.tableBodyItem} ${classes.schoolName} `}
+                    key={school.id}
+                    id={school.id}
+                    onClick={openTaskWindow}
+                    className={classes.tableRow}
                   >
-                    {school.school_name}
-                  </div>
-                  <div className={`${classes.tableBodyItem} ${classes.clear} `}>
-                    {school.school_id}
-                  </div>
-                  <div className={`${classes.tableBodyItem} ${classes.clear} `}>
-                    {
-                       (t(`${school.school_level}`))
-                    }
-                  </div>
-                  <div
-                    className={`${classes.tableBodyItem} ${classes.schoolName} `}
-                  >
-                    {school[roleNames].issue !== null ? (
-                      school[roleNames].response !== null ? (
-                        <FontAwesomeIcon
-                          icon={faCircleExclamation}
-                          color='green'
-                        />
+                    <div
+                      className={`${classes.tableBodyItem} ${classes.schoolName} `}
+                    >
+                      {school.school_name}
+                    </div>
+                    <div
+                      className={`${classes.tableBodyItem} ${classes.clear} `}
+                    >
+                      {school.school_id}
+                    </div>
+                    <div
+                      className={`${classes.tableBodyItem} ${classes.clear} `}
+                    >
+                      {t(`${school.school_level}`)}
+                    </div>
+                    <div
+                      className={`${classes.tableBodyItem} ${classes.schoolName} `}
+                    >
+                      {school[roleNames].issue !== null ? (
+                        school[roleNames].response !== null ? (
+                          <FontAwesomeIcon
+                            icon={faCircleExclamation}
+                            color='green'
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faCircleExclamation}
+                            color='red'
+                          />
+                        )
                       ) : (
-                        <FontAwesomeIcon
-                          icon={faCircleExclamation}
-                          color='red'
-                        />
-                      )
-                    ) : (
-                      <FontAwesomeIcon icon={faShield} />
-                    )}
+                        <FontAwesomeIcon icon={faShield} />
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
         <PaginationCustom
