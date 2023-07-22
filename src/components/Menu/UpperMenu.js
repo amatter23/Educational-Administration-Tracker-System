@@ -30,7 +30,7 @@ const UpperMenu = props => {
     .replace('_', '-')
     .replace('-', ' ');
   // state to store the menu show state
-  const [menuShow, setmenuShow] = useState(true);
+  const [menuShow, setmenuShow] = useState("test");
   // state to store the user roles have checkbox inputs
   const [userRoles, setUserRoles] = useState(props.userRolesHaveCheckBoxInputs);
   // navigate function
@@ -40,7 +40,7 @@ const UpperMenu = props => {
     if (userData.role === 'tracker') {
       return (
         <div className={classes.list}>
-          <ul className={menuShow ? classes.side : ''}>
+          <ul className={menuShow === true  ? classes.side : ''}>
             <li>
               <NavLink
                 to='/'
@@ -195,7 +195,6 @@ const UpperMenu = props => {
         </div>
         {menuItems()}
       </div>
-
       <div className={classes.left}>
         <div
           className={classes.user}
