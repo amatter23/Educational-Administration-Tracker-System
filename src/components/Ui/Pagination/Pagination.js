@@ -2,10 +2,10 @@ import react, { useState } from 'react';
 import classes from './Pagination.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackward, faForward } from '@fortawesome/free-solid-svg-icons';
-
+import { useTranslation } from 'react-i18next';
 const PaginationCustom = props => {
   // pagination handler state
-  const [dataCount, updateDataCount] = useState();
+  const { t } = useTranslation();
   const [pageNext, updatePageNext] = useState(props.pageNext);
   const [pagePrevious, updatePagePrevious] = useState(props.pagePrevious);
   const [pageUrl, updatePageUrl] = useState();
@@ -13,7 +13,8 @@ const PaginationCustom = props => {
     <ul className={classes.pagination}>
       {pageNext === null ? (
         <button disabled={true} className={classes.btnPagenationDisable}>
-          Next
+          {t('Next')}
+
           <FontAwesomeIcon
             className={classes.iconePagenationDisable}
             icon={faForward}
@@ -24,11 +25,11 @@ const PaginationCustom = props => {
           disabled={false}
           className={classes.btnPagenation}
           onClick={() => {
-            console.log(pageNext);
             props.getPaginationUrl(pageNext);
           }}
         >
-          Next
+          {t('Next')}
+
           <FontAwesomeIcon
             className={classes.iconePagenation}
             icon={faForward}
@@ -37,7 +38,8 @@ const PaginationCustom = props => {
       )}
       {pagePrevious === null ? (
         <button disabled={true} className={classes.btnPagenationDisable}>
-          Previous
+          {t('Previous')}
+
           <FontAwesomeIcon
             className={classes.iconePagenationDisable}
             icon={faBackward}
@@ -52,7 +54,8 @@ const PaginationCustom = props => {
             props.getPaginationUrl(pagePrevious);
           }}
         >
-          Previous
+          {t('Previous')}
+
           <FontAwesomeIcon
             className={classes.iconePagenation}
             icon={faBackward}
