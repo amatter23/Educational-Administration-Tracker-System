@@ -80,7 +80,6 @@
   border-radius: var(--border-radius);
   border-bottom: 1px solid var(--border-color);
   transition: 300ms ease-in-out;
-  cursor: pointer;
 }
 .tableRow:nth-child(even) {
   background-color: var(--backgound-2);
