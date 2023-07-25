@@ -389,7 +389,7 @@ export function getDepartmentPlan(department) {
   return fetch(
     api_url +
       '/p/manger-plan/?department=' +
-      department +
+      department.replace('_', '+') +
       '&ordering=-created_at/',
     {
       headers: {
@@ -506,6 +506,21 @@ export function updateOpjectiveLowerLevel(objective) {
           status: res.status,
         };
       });
+    } else {
+      return res.status;
+    }
+  });
+}
+
+export function deleteObjective(id) {
+  return fetch(api_url + '/p/plan/' + id, {
+    method: 'DELETE',
+    headers: {
+      Authorization: auth,
+    },
+  }).then(res => {
+    if (res.status === 204) {
+      return res.status;
     } else {
       return res.status;
     }
