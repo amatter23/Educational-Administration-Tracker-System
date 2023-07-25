@@ -9,6 +9,7 @@ import {
   faPen,
   faCircleInfo,
   faBullseye,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +20,7 @@ import {
   getOpjectives,
   addNewObjectiveLowerLevel,
   updateOpjectiveLowerLevel,
+  deleteObjective,
 } from '../../../utils/getData';
 import { toast } from 'react-toastify';
 const contentStyle = {
@@ -160,6 +162,33 @@ const LowLevelPlan = props => {
       // setError(true);
       // setLoading(false);
     }
+  };
+
+  const deleteObjectivee = async id => {
+    try {
+      const state = toast.loading('Please wait...');
+      const response = deleteObjective(id).then(data => {
+        if (data === 204) {
+          updateData(current => current.filter(item => item.id !== id));
+          toast.update(state, {
+            render: t(`delete successfully`),
+            type: 'success',
+            isLoading: false,
+            autoClose: 3000,
+          });
+
+          return;
+        } else {
+          toast.update(state, {
+            render: t(`delete failed`),
+            type: 'error',
+            isLoading: false,
+            autoClose: 3000,
+          });
+          return;
+        }
+      });
+    } catch (error) {}
   };
   if (Loading) {
     return (
@@ -434,18 +463,40 @@ const LowLevelPlan = props => {
                             style={{
                               display: 'flex',
                               flexDirection: 'row-reverse',
+                              justifyContent: 'space-between',
+                              width: '100%',
                             }}
                           >
-                            <div className={classes.titleIcon}>
-                              <FontAwesomeIcon
-                                className={classes.icon}
-                                icon={faBullseye}
-                                style={{ color: '#ffffff' }}
-                              />
-                              <h4> &nbsp;:{t(`objective`)} </h4>
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row-reverse',
+                              }}
+                            >
+                              <div className={classes.titleIcon}>
+                                <FontAwesomeIcon
+                                  className={classes.icon}
+                                  icon={faBullseye}
+                                  style={{ color: '#ffffff' }}
+                                />
+                                <h4> &nbsp;:{t(`objective`)} </h4>
+                              </div>
+                              <h5>{opjectiv.objective}</h5>
                             </div>
 
-                            <h5>{opjectiv.objective}</h5>
+                            <button
+                              className={classes.delete}
+                              onClick={() => {
+                                console.log(opjectiv.id);
+                                deleteObjectivee(opjectiv.id);
+                              }}
+                            >
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                style={{ color: '#f10e0e' }}
+                                size='xl'
+                              />{' '}
+                            </button>
                           </div>
 
                           <div className={classes.objectiveDetailsItem}>
