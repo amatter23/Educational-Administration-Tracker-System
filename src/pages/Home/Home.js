@@ -47,7 +47,7 @@ const Home = () => {
             </div>
             <div className={classes.cardBody}>
               <h6>
-                <span> دكتورة/ </span>
+                <span> استاذة/ </span>
                 غادة زكريا محمود
               </h6>
             </div>
