@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.bf4fa0b4.css",
-    "main.js": "/static/js/main.3f28bca7.js",
+    "main.js": "/static/js/main.f5da764e.js",
     "static/media/home.png": "/static/media/home.5a49a9788072fdde5684.png",
     "static/media/cool-background.png": "/static/media/cool-background.4305838cbf73326b0df3.png",
     "static/media/goal.png": "/static/media/goal.e2e13f585127cbdccc01.png",
@@ -10,10 +10,10 @@
     "static/media/iconfinder-icon.svg": "/static/media/iconfinder-icon.8f0c63cc87beea460a45c99f54ddab23.svg",
     "index.html": "/index.html",
     "main.bf4fa0b4.css.map": "/static/css/main.bf4fa0b4.css.map",
-    "main.3f28bca7.js.map": "/static/js/main.3f28bca7.js.map"
+    "main.f5da764e.js.map": "/static/js/main.f5da764e.js.map"
   },
   "entrypoints": [
     "static/css/main.bf4fa0b4.css",
-    "static/js/main.3f28bca7.js"
+    "static/js/main.f5da764e.js"
   ]
 }
