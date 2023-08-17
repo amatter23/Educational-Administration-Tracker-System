@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Educational Administration Tracker System (Front-end)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌟 Overview
+A platform designed to assist educational institutions in managing, tracking, and evaluating the performance of their individual departments. The system not only tracks performance but also provides feedback in the form of scores, remarks, and mechanisms to address highlighted concerns.
 
-## Available Scripts
+## ❗ Problem Definition
+Traditional educational administration often relies on manual record-keeping, paper-driven feedback systems, and non-centralized data. This leads to:
+- Mismanagement of records.
+- Inefficiencies in feedback and performance evaluation.
+- Difficulty in monitoring departmental progress and performance.
+- Challenges in addressing and tracking resolutions to identified problems.
 
-In the project directory, you can run:
+The Educational Administration Tracker System aims to streamline these processes, offering a centralized, digital solution to manage, evaluate, and improve the performance of individual departments within educational institutions.
 
-### `npm start`
+## 🛠 Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ➡️ School Profile Creation
+- **Name of the school**: A unique identifier for each school.
+- **School Level**: Specify whether the school is primary, secondary, or higher secondary (or any other classification relevant to your region).
+- **School ID**: A unique code or number assigned to the school for tracking and identification purposes.
+- **Additional details**: Address, principal's name, number of students, faculty, etc.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### ➡️ Departmental Evaluation
+- Consists of 14 different departments per school.
+- Trackers evaluate each department based on various fields/criteria.
+- Score assignment for every department.
+- Remark fields for detailed feedback, allowing for binary responses (right/wrong or true/false).
 
-### `npm test`
+### ➡️ Departmental Administration
+- Each department is overseen by its admin.
+- Admins can view detailed statistics on their department's performance.
+- Ability to respond to feedback/problems highlighted during evaluations.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### ➡️ Problem Resolution Plans
+- Formulate plans based on feedback and scores.
+- Monitor the progress of these plans.
+- Details include objectives, tasks, responsible personnel, deadlines, and status.
 
-### `npm run build`
+### ➡️ Managerial Oversight
+- A central manager for an overarching view.
+- Views consolidated statistics and reports.
+- Reviews and comments on departmental plans.
+- Prioritizes and adds objectives for departments.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ➡️ Dashboard & Reporting
+- Graphics for scores, evaluations, and progress.
+- Compares departments both within and across schools.
+- Managerial dashboard for comprehensive statistics and metrics.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Getting Started
 
-### `npm run eject`
+1. Clone the front-end repository: git clone [project](https://github.com/amatter23/Educational-Administration-Tracker-System)
+2. Navigate to the project directory: cd Educational Administration Tracker System
+3. Install required dependencies: npm install
+4. Start the development server: npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📢 Feedback & Contributions
+Your feedback is invaluable in refining this front-end application. We encourage contributions. Please feel free to open an issue or submit a pull request.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📞 Contact
+For any queries, suggestions, or collaborative efforts, reach out at [LinkedIn](https://www.linkedin.com/in/ahmedmatter23/).
