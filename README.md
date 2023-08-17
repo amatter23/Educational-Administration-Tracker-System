@@ -55,6 +55,10 @@ The Educational Administration Tracker System aims to streamline these processes
 3. Install required dependencies: npm install
 4. Start the development server: npm start
 
+## 🔗 Backend Repository
+
+For backend functionalities, database operations, and other server-side logic related to the Educational Administration Tracker System, please navigate to the [backend repository](https://github.com/zico-son/FMS).
+
 
 ## 📢 Feedback & Contributions
 Your feedback is invaluable in refining this front-end application. We encourage contributions. Please feel free to open an issue or submit a pull request.
