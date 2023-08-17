@@ -50,7 +50,7 @@ The Educational Administration Tracker System aims to streamline these processes
 
 ## 🚀 Getting Started
 
-1. Clone this front-end repository: `git clone [project](https://github.com/amatter23/Educational-Administration-Tracker-System)`.
+1. Clone this front-end repository: `git clone [https://github.com/amatter23/Educational-Administration-Tracker-System]`.
 2. Navigate to the project directory: `cd [frontEnd-setup]`.
 3. Install required dependencies: `npm install`.
 4. Start the development server: `npm start`.
